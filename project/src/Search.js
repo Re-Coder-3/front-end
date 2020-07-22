@@ -8,6 +8,6 @@ const Search = () => {
     );
 }
 
-// 검색창.
+// 검색창이 될 부분.
 
 export default Search;
