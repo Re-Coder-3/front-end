@@ -1,9 +1,12 @@
 import React from "react";
+import Search from "./Search";
 
 const Header = () => {
     return (
         <div>
-            로고 검색창 로그인
+            로고
+            <Search/>
+            로그인
         </div>
     );
 }
