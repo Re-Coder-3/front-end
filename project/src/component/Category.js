@@ -1,5 +1,5 @@
 import React from "react";
-
+import categoryArray from "../img/test2.jpeg";
 const Category = ({text}) => {
     return (
         <>

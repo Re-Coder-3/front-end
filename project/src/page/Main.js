@@ -4,8 +4,6 @@ import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import ContentContainer from "../component/ContentContainer";
 
-const ContentContainer =styled.div``
-
 const Main = () => {
     const name = "김아영"
     // 서버에서 받아오기 전 임시로 쓰는 변수.

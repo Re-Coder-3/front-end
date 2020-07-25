@@ -1,5 +1,8 @@
 import React from "react";
+import img1 from "../img/test1.jpeg";
 import Category from "./Category";
+import {Link, Route} from 'react-router-dom';
+
 
 const Banner = () => {
     const currentArticle = 363
@@ -8,12 +11,7 @@ const Banner = () => {
     return (
         <div>
             <div>
-                커리어스팟은 ~~~<br />
-                지금 하고 있습니다.
-            </div>
-            <div>
-                기타 내용 등 아무내용 넣기<br />
-                {currentArticle}개 글이 있습니다.
+                <Link to="/"><img src={img1}/></Link>
             </div>
             <div>
                 <Category text="카테고리1" />
