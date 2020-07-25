@@ -4,7 +4,6 @@ import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import ContentContainer from "../component/ContentContainer";
 
-const ContentContainer =styled.div``
 
 const Main = () => {
     const name = "김아영"
