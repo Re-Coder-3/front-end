@@ -1,8 +1,10 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Banner from "./Banner";
-import ContentContainer from "./ContentContainer";
+import Header from "../component/Header";
+import Footer from "../component/Footer";
+import Banner from "../component/Banner";
+import ContentContainer from "../component/ContentContainer";
+
+const ContentContainer =styled.div``
 
 const Main = () => {
     const name = "김아영"
