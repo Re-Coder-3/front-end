@@ -4,6 +4,10 @@ import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import ContentContainer from "../component/ContentContainer";
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 87dd0009ef835108db0172ed603683da7fa677f6
 const Main = () => {
     const name = "김아영"
     // 서버에서 받아오기 전 임시로 쓰는 변수.
