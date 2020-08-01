@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Banner from "../component/Banner";
-import ContentContainer from "../component/ContentContainer";
+import Content from "../component/Content";
 
 const Main = () => {
     const name = "김아영"
@@ -25,13 +25,21 @@ const Main = () => {
         }]
     // content 컴포넌트에 담을 데이터 예시. 서버에서 주면 그걸로 교체한다.
 
+    const contentList = (contenttext) => contenttext.map(text => <Content title={text.title} tags={text.tags} />);
+
     return (
         <div>
             <Header/>
             <Banner/>
             <div className="mainContents">
-                <ContentContainer title={recommend} moreText="관심 분야 수정하기" contentText={sampleContentText} />
-                <ContentContainer title="실시간 인기 모집" moreText="더보기" contentText={sampleContentText}/>
+                <div>
+                    {recommend} 더보기
+                    {contentList(sampleContentText)}
+                </div>
+                <div>
+                    {recommend} 더보기
+                    {contentList(sampleContentText)}
+                </div>
             </div>
             <Footer/>
         </div>
