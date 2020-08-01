@@ -1,13 +1,18 @@
 import React from "react";
 import Search from "./Search";
+import styled from "styled-components";
+
+const Head = styled.div`
+  height: 64px;
+`
 
 const Header = () => {
     return (
-        <div>
+        <Head>
             로고
             <Search/>
             로그인
-        </div>
+        </Head>
     );
 }
 

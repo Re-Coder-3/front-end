@@ -1,10 +1,19 @@
 import React from "react";
-import categoryArray from "../img/test2.jpeg";
+import styled from "styled-components";
+
+const CategoryCircle = styled.div`
+  background-color: gray;
+  height: 88px;
+  width: 88px;
+  display: inline-block;
+  margin-right: 24px;
+`
+
 const Category = ({text}) => {
     return (
-        <div>
+        <CategoryCircle>
             {text}
-        </div>
+        </CategoryCircle>
     );
 }
 
