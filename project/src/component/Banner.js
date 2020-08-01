@@ -20,6 +20,17 @@ const TextBox = styled.div`
   top: 67px;
   left: 163px;
   color: white;
+  font-size: 2rem;
+  line-height: 3rem;
+`
+const BoldText = styled.div`
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 4rem;
+`
+const NumberText = styled.span`
+  font-weight: bold;
+  text-decoration: underline;
 `
 
 const Banner = () => {
@@ -29,7 +40,13 @@ const Banner = () => {
     return (
         <WholeBanner>
             <TextBox>
-                
+                <BoldText>
+                    커리어스팟은~~~<br/>
+                    지금 하고 있습니다
+                </BoldText>
+                <br/>
+                기타 내용 등 아무내용 넣기<br/>
+                <NumberText>{currentArticle}개</NumberText> 글이 있습니다
             </TextBox>
             <CategoryCircles>
                 <Category text="카테고리1" />
