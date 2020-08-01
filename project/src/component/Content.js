@@ -1,11 +1,19 @@
 import React from "react";
+import styled from "styled-components";
+
+const ContentBox = styled.div`
+  height: 259px;
+  width: 262px;
+  background-color: blue;
+  display: inline-block;
+`
 
 const Content = ({title, tags}) => {
     return (
-        <div>
+        <ContentBox>
             <div>{title}</div>
             <div>{tags}</div>
-        </div>
+        </ContentBox>
     );
 }
 

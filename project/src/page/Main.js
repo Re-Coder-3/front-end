@@ -33,11 +33,11 @@ const Main = () => {
             <Banner/>
             <div className="mainContents">
                 <div>
-                    {recommend} 더보기
+                    {recommend} 더보기<br/>
                     {contentList(sampleContentText)}
                 </div>
                 <div>
-                    {recommend} 더보기
+                    {recommend} 더보기<br/>
                     {contentList(sampleContentText)}
                 </div>
             </div>
