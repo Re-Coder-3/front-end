@@ -1,12 +1,16 @@
-import React from 'react';
-import { Route } from 'react-router-dom'
-import Main from "./page/Main";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import GlobalStyles from "./component/GlobalStyles";
+import Routes from "./component/Routes";
 
 function App() {
   return (
-    <div>
-        <Route path="/" component={Main}/>
-    </div>
+    <>
+      <GlobalStyles />
+      <Router>
+        <Routes LoggedBool={true} />
+      </Router>
+    </>
   );
 }
 
