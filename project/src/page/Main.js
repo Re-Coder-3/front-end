@@ -3,6 +3,13 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import Content from "../component/Content";
+import {Link} from "react-router-dom";
+import styled from "styled-components";
+
+const Button = styled.button`
+width:200px;
+`
+
 
 const Main = () => {
     const name = "김아영"
@@ -40,6 +47,7 @@ const Main = () => {
                     {recommend} 더보기
                     {contentList(sampleContentText)}
                 </div>
+                <Button><Link to={"/profile"}>프로필</Link></Button>
             </div>
             <Footer/>
         </div>
