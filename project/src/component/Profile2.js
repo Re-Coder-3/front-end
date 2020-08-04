@@ -26,7 +26,24 @@ color:gray;
 border:0px;
 `;
 
-const profile2 = () => {
+const Profile2 = () => {
+    const [name,setName] = useState();
+    const [year,setYear] = useState("");
+    const [month,setMonth] = useState("");
+    const [day, setDay] = useState("");
+
+    const myYear = useCallback((e) => {
+        setYear(e.target.value);
+    },[]);
+    const myMonth = useCallback((e) => {
+        setMonth(e.target.value);
+    },[]);
+    const myDay = useCallback((e) => {
+        setDay(e.target.value);
+    },[]);
+
+
+
 
     let check = React.createElement('input',
         {type: 'checkbox', value: false});
@@ -97,4 +114,4 @@ const profile2 = () => {
 };
 
 
-export default profile2;
+export default Profile2;

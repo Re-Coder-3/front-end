@@ -25,7 +25,7 @@ color: blue;
 `;
 
 
-const profile3 = () => {
+const Profile3 = () => {
 
     return(
         <div>
@@ -64,4 +64,4 @@ const profile3 = () => {
     );
 };
 
-export default profile3;
+export default Profile3;

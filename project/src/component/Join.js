@@ -10,11 +10,13 @@ const Join = () => {
             size="40"
             placeholder="이메일을 입력해주세요."
         />
+        <br/>
         <input
             type="text"
             size="40"
             placeholder="아이디를 입력해주세요."
         />
+        <br/>
         <input
             type="text"
             size="40"

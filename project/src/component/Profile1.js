@@ -27,23 +27,9 @@ color:gray;
 border:0px;
 `;
 
-const profile1 = () => {
-    const selectbeauty = () => {
-        document.getElementById('beauty').style.backgroundColor = 'gray';
-    }
-    const selectshot= () => {
-        document.getElementById('shot').style.backgroundColor = 'gray';
-    }
-    const selectedu = () => {
-        document.getElementById('edu').style.backgroundColor = 'gray';
-    }
-    const selectmedi = () => {
-        document.getElementById('medi').style.backgroundColor = 'gray';
-    }
-    const selectetc = () => {
-        document.getElementById('etc').style.backgroundColor='gray';
+const Profile1 = () => {
 
-    }
+
     return(
         <div>
             <div>
@@ -56,27 +42,27 @@ const profile1 = () => {
                 <SelectButton
                     id = "beauty"
                     property = "false"
-                    onClick={selectbeauty}>
+                >
                     <FaApple size="1x"  />뷰티
                 </SelectButton>
                 <SelectButton
                     id = "education"
-                    onClick={selectedu}>
+                >
                     <FaApple size="1x"  />교육
                 </SelectButton>
                 <SelectButton
                     id = "shot"
-                    onClick={selectshot}>
+                >
                     <FaApple size="1x"  />촬영
                 </SelectButton>
                 <SelectButton
                     id = "medical"
-                    onClick={selectmedi}>
+                >
                     <FaApple size="1x"  />의료
                 </SelectButton>
                 <SelectButton
                     id = "etc"
-                    onClick={selectetc}>
+                >
                     <FaApple size="1x"  />기타
                 </SelectButton>
             </div>
@@ -94,4 +80,4 @@ const profile1 = () => {
 };
 
 
-export default profile1;
+export default Profile1;

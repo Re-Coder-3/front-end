@@ -1,10 +1,12 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import styled from "styled-components";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import Content from "../component/Content";
-import {Link} from "react-router-dom";
-import styled from "styled-components";
+
+
 
 const Button = styled.button`
 width:200px;
