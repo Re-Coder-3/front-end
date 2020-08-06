@@ -18,7 +18,9 @@ const Profile = () => {
         <div>
             <Section1>
                 <Join></Join>
+                <br /><br /><br />
                 <Profile1></Profile1>
+                <br /><br /><br />
                 <Profile2></Profile2>
             </Section1>
         </div>

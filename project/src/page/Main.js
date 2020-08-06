@@ -6,13 +6,6 @@ import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import Content from "../component/Content";
 
-
-
-const Button = styled.button`
-width:200px;
-`
-
-
 const Main = () => {
     const name = "김아영"
     // 서버에서 받아오기 전 임시로 쓰는 변수.
@@ -49,7 +42,6 @@ const Main = () => {
                     {recommend} 더보기
                     {contentList(sampleContentText)}
                 </div>
-                <Button><Link to={"/profile"}>프로필</Link></Button>
             </div>
             <Footer/>
         </div>

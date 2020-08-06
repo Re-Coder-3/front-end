@@ -7,10 +7,11 @@ const LaterButton = styled.button`
 width:100px;
 height:50px;
 color:gray;
+margin-left:1300px;
 `;
 
 const NextButton = styled.button`
-margin:10px;
+margin-left:1300px;
 width:100px;
 height:50px;
 color:gray;

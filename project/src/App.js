@@ -5,10 +5,12 @@ import Profile from "./page/Profile";
 
 function App() {
   return (
+      <switch>
     <div>
-        <Route path="/" component={Main}/>
+        <Route path="/" component={Main} exact={true}/>
         <Route path="/profile"  component={Profile} />
     </div>
+      </switch>
   );
 }
 
