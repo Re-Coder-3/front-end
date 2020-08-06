@@ -8,7 +8,7 @@ left: 771px;
 top: 290px;
 font-size: 18px;
 padding: 10px;
-margin-left:700px;
+margin-left:40%;
 border: none;
 border-bottom: 1.5px solid #f04244 ;
 `;

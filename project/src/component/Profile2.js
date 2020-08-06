@@ -5,9 +5,16 @@ import styled from "styled-components";
 
 const LaterButton = styled.button`
 width:100px;
-height:50px;
-color:gray;
-margin-left:1300px;
+height:100px;
+color: gray;
+margin-left:80%;
+background:none;
+border:none;
+A {text-decoration: none; color: gray;} 
+A:visited { text-decoration: none; }
+A:hover { text-decoration: none; }
+A:focus { text-decoration: none; }
+A:hover, a:active { text-decoration: none; }
 `;
 
 const ProButton = styled.button`
@@ -17,14 +24,28 @@ height : 70px;
 color: black;
 background: none;
 border:0px;
-font-size: 30px;
+
+font-family: Noto Sans KR;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 29px;
+text-decoration-line: underline;
+color: #5B5B5B;
 `;
 
 const NextButton = styled.button`
-margin-left:1300px;
+margin-left:80%;
 width:100px;
-height:50px;
+height:100px;
+color:gray;
 border:0px;
+background:none;
+A {text-decoration: none; color: gray;} 
+A:visited { text-decoration: none; }
+A:hover { text-decoration: none; }
+A:focus { text-decoration: none; }
+A:hover, a:active { text-decoration: none; }
 `;
 
 const H1 = styled.h1`
@@ -49,6 +70,7 @@ padding: 10px;
 margin-left:700px;
 border: none;
 border-bottom: 1.5px solid #f04244 ;
+background: none;
 `;
 
 const H3 = styled.h3`
@@ -108,7 +130,7 @@ const Profile2 = () => {
                 <LaterButton>
                     <Link to={"/"}>다음에 하기</Link>
                 </LaterButton>
-                <H1>거의 다 됐어요!</H1>
+                <H1>거의 다 됐어요!  🤗</H1>
             </div>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div>
@@ -155,14 +177,14 @@ const Profile2 = () => {
                     onChange={myLocation}
                 />
                 <br/><br/><br/><br/>
-                <ProButton><u>혹시 프로세요...?</u></ProButton>
+                <ProButton>혹시 프로세요...?</ProButton>
                 <H5>{check}이메일 등 프로모션 알림 수신 동의</H5>
             </div>
 
             <br/><br/><br/><br/><br/><br/>
             <div>
                 <NextButton>
-                    <Link to={"/profile3"}><FaArrowRight size="50px"/> <br/>다음 단계</Link>
+                    <Link to={"/profileportfolio"}><FaArrowRight size="50px"/> <br/>다음 단계</Link>
                 </NextButton>
             </div>
 

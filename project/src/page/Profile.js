@@ -5,7 +5,7 @@ import Profile1 from "../component/Profile1";
 import Profile2 from "../component/Profile2";
 import profile from "../img/profile.png";
 
-const Section1 = styled.div`
+const Section = styled.div`
   border: 0px;
   background-image: url(${profile});
   background-repeat: no-repeat;
@@ -16,13 +16,13 @@ const Section1 = styled.div`
 const Profile = () => {
     return(
         <div>
-            <Section1>
+            <Section>
                 <Join></Join>
                 <br /><br /><br />
                 <Profile1></Profile1>
                 <br /><br /><br />
                 <Profile2></Profile2>
-            </Section1>
+            </Section>
         </div>
     );
 };

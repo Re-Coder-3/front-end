@@ -12,9 +12,16 @@ margin-top: 50px;
 
 const LaterButton = styled.button`
 width:100px;
-height:50px;
-color:gray;
-margin-left:1300px;
+height:100px;
+color: gray;
+margin-left:80%;
+background:none;
+border:none;
+A {text-decoration: none; color: gray;} 
+A:visited { text-decoration: none; }
+A:hover { text-decoration: none; }
+A:focus { text-decoration: none; }
+A:hover, a:active { text-decoration: none; }
 `;
 
 const SelectButton = styled.button`
@@ -29,10 +36,17 @@ border:0px;
 `;
 
 const NextButton = styled.button`
-margin-left:1300px;
+margin-left:80%;
 width:100px;
 height:100px;
+color:gray;
 border:0px;
+background:none;
+A {text-decoration: none; color: gray;} 
+A:visited { text-decoration: none; }
+A:hover { text-decoration: none; }
+A:focus { text-decoration: none; }
+A:hover, a:active { text-decoration: none; }
 `;
 
 const H1 = styled.h1`
@@ -66,20 +80,26 @@ color: #363636;
 
 const Profile1 = () => {
     const [category,setCategory] = useState([]);
-    const myCategory = (e) => {
-        const newCategory = [...category];
+    const myCategory = useCallback ((e) => {
+        setCategory(category.concat(JSON.parse(e.target.value)));
+        /*
+                let copy = [];
+                copy = category.concat(...category,setCategory);
+                /*
+                if (e.property==true){
+                    e.property = false;
+                    //배열에서 삭제
+                }
+                else{
+                    e.property = true;
+                    newCategory.push(e.target.id);
+                }
 
-        if (e.property==true){
-            e.property = false;
-            //배열에서 삭제
-        }
-        else{
-            e.property = true;
-            newCategory.push(e.target.id);
-        }
-        setCategory(myCategory);
-        console.log(category);
-    };
+
+        copy.forEach(s => console.log(s));*/
+
+    });
+    console.log(category);
 
     return(
         <div>
@@ -87,38 +107,51 @@ const Profile1 = () => {
                 <LaterButton>
                     <Link to={"/"}>다음에 하기</Link>
                 </LaterButton>
-                <H1>간단한 프로필 작성하고 가세요!</H1>
+                <H1>간단한 프로필 작성하고 가세요!  🤗 </H1>
             </div>
 
             <ButtonDiv>
                 <SelectButton
                     id = "beauty"
+                    value = "beauty"
                     property = "false"
+                    onClick={myCategory}
                 >
                     <FaApple size="1x"  />뷰티
                 </SelectButton>
 
                 <SelectButton
                     id = "education"
+                    value = "education"
                     property = "false"
+                    onClick={myCategory}
                 >
                     <FaApple size="1x"  />교육
                 </SelectButton>
 
                 <SelectButton
                     id = "shot"
+                    value = "shot"
+                    property = "false"
+                    onClick={myCategory}
                 >
                     <FaApple size="1x"  />촬영
                 </SelectButton>
 
                 <SelectButton
                     id = "medical"
+                    value = "medical"
+                    property = "false"
+                    onClick={myCategory}
                 >
                     <FaApple size="1x"  />의료
                 </SelectButton>
 
                 <SelectButton
                     id = "etc"
+                    value = "etc"
+                    property = "false"
+                    onClick={myCategory}
                 >
                     <FaApple size="1x"  />기타
                 </SelectButton>
