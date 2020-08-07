@@ -12,8 +12,8 @@ const WholeBanner = styled.div`
   padding-left: 10%;
 `
 const CategoryCircles = styled.div`
-  margin-top: 6%;
-  height: 5vw;
+  margin-top: 5%;
+  height: 6vw;
   background-color: orange;
 `
 const TextBox = styled.div`
