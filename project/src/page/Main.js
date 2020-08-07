@@ -25,8 +25,9 @@ const ContentTitle = styled.div`
 
 const ContentMore = styled.div`
   display: inline-block;
-  font-size: 2vw;
+  font-size: 1.5vw;
   float:right;
+  margin-top:0.5vw;
 `
 
 const Main = () => {
