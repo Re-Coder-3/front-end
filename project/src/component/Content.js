@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const ContentBox = styled.div`
-  height: 259px;
-  width: 262px;
+  width: 18vw;
+  height: 18vw;
   background-color: blue;
+  margin-left: 1%;
   display: inline-block;
+  border-radius: 5%;
 `
 
 const Content = ({title, tags}) => {

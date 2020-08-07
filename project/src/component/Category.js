@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const CategoryCircle = styled.div`
-  background-color: gray;
+  background-color: white;
   height: 6vw;
   width: 6vw;
   display: inline-block;
