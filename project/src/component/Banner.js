@@ -7,11 +7,14 @@ const WholeBanner = styled.div`
   background-image: url(${banner});
   background-repeat: no-repeat;
   background-size: cover;
-  height: 200%;
+  height:30vw;
   padding-top: 5%;
   padding-left: 10%;
 `
 const CategoryCircles = styled.div`
+  margin-top: 6%;
+  height: 5vw;
+  background-color: orange;
 `
 const TextBox = styled.div`
   color: white;
