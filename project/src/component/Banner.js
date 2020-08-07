@@ -7,26 +7,21 @@ const WholeBanner = styled.div`
   background-image: url(${banner});
   background-repeat: no-repeat;
   background-size: cover;
-  height: 509px;
-  position: relative;
+  height: 200%;
+  padding-top: 5%;
+  padding-left: 10%;
 `
 const CategoryCircles = styled.div`
-  position: absolute;
-  top: 382px;
-  left: 165px;
 `
 const TextBox = styled.div`
-  position: absolute;
-  top: 67px;
-  left: 163px;
   color: white;
-  font-size: 2rem;
-  line-height: 3rem;
+  font-size: 2vw;
+  line-height: 3vw;
 `
 const BoldText = styled.div`
   font-weight: bold;
-  font-size: 3rem;
-  line-height: 4rem;
+  font-size: 3vw;
+  line-height: 4vw;
 `
 const NumberText = styled.span`
   font-weight: bold;
