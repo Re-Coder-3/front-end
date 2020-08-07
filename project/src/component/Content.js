@@ -5,7 +5,9 @@ const ContentBox = styled.div`
   width: 18vw;
   height: 18vw;
   background-color: blue;
-  margin-left: 1%;
+  &:not(:last-child) {
+    margin-right: 1.5%;
+  }
   display: inline-block;
   border-radius: 5%;
 `

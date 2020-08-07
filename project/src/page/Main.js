@@ -3,6 +3,31 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import Content from "../component/Content";
+import styled from "styled-components";
+import banner from "../img/banner.png";
+
+const MainContents = styled.div`
+  width:75.5vw;
+  margin-left: auto;
+  margin-right: auto;
+`
+
+const ContentWrapper = styled.div`
+  margin-top:5%;
+  margin-bottom: 5%;
+`
+
+const ContentTitle = styled.div`
+ font-size: 2.5vw;
+ display: inline-block;
+ margin-bottom: 1vw;
+`
+
+const ContentMore = styled.div`
+  display: inline-block;
+  font-size: 2vw;
+  float:right;
+`
 
 const Main = () => {
     const name = "김아영"
@@ -31,16 +56,18 @@ const Main = () => {
         <div>
             <Header/>
             <Banner/>
-            <div className="mainContents">
-                <div>
-                    {recommend} 더보기<br/>
+            <MainContents>
+                <ContentWrapper>
+                    <ContentTitle>{recommend}</ContentTitle>
+                    <ContentMore>더보기></ContentMore><br/>
                     {contentList(sampleContentText)}
-                </div>
-                <div>
-                    {recommend} 더보기<br/>
+                </ContentWrapper>
+                <ContentWrapper>
+                    <ContentTitle>{recommend}</ContentTitle>
+                    <ContentMore>더보기</ContentMore><br/>
                     {contentList(sampleContentText)}
-                </div>
-            </div>
+                </ContentWrapper>
+            </MainContents>
             <Footer/>
         </div>
     );

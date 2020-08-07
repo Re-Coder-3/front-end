@@ -6,7 +6,9 @@ const CategoryCircle = styled.div`
   height: 6vw;
   width: 6vw;
   display: inline-block;
-  margin-right: 1%;
+   &:not(:last-child) {
+    margin-right: 1%;
+  }
   border-radius: 100%;
 `
 
