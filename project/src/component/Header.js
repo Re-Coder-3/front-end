@@ -3,7 +3,7 @@ import Search from "./Search";
 import styled from "styled-components";
 
 const Head = styled.div`
-  height: 64px;
+  height: 4vw;
 `
 
 const Header = () => {

@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const CategoryCircle = styled.div`
   background-color: gray;
-  height: 100%;
-  width: 5vw;
+  height: 5.5vw;
+  width: 5.5vw;
   display: inline-block;
   margin-right: 1%;
-  
+  border-radius: 100%;
 `
 
 const Category = ({text}) => {

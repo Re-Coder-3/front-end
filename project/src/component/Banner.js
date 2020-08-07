@@ -18,12 +18,12 @@ const CategoryCircles = styled.div`
 `
 const TextBox = styled.div`
   color: white;
-  font-size: 2vw;
+  font-size: 2.5vw;
   line-height: 3vw;
 `
 const BoldText = styled.div`
   font-weight: bold;
-  font-size: 3vw;
+  font-size: 3.5vw;
   line-height: 4vw;
 `
 const NumberText = styled.span`
