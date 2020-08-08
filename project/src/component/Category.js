@@ -10,6 +10,7 @@ const CategoryCircle = styled.div`
     margin-right: 1%;
   }
   border-radius: 100%;
+  font-size: 1vw;
 `
 
 const Category = ({text}) => {

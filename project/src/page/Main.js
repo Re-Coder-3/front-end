@@ -3,7 +3,7 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import Content from "../component/Content";
-import styled from "styled-components";
+import styled, {createGlobalStyle} from "styled-components";
 import { useQuery, gql } from '@apollo/client';
 
 
@@ -30,6 +30,13 @@ const ContentMore = styled.div`
   float:right;
   margin-top:0.5vw;
 `
+
+const GlobalStyle = createGlobalStyle`
+	body {
+		padding: 0;
+		margin: 0;
+	}
+`;
 
 const CONTENT_QUERY = gql`
     query{
@@ -90,6 +97,7 @@ const Main = () => {
 
     return (
         <div>
+            <GlobalStyle/>
             <Header/>
             <Banner/>
             <MainContents>

@@ -5,6 +5,7 @@ import banner from "../img/banner.png";
 import { useQuery, gql } from '@apollo/client';
 
 
+
 const CATEGORY_QUERY = gql`
     query{
         findCategory{
@@ -33,8 +34,8 @@ const WholeBanner = styled.div`
   background-image: url(${banner});
   background-repeat: no-repeat;
   background-size: cover;
-  height:30vw;
-  padding-top: 5%;
+  height:31vw;
+  padding-top: 9%;
   padding-left: 10%;
 `
 const CategoryCircles = styled.div`
