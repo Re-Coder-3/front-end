@@ -8,7 +8,9 @@ const Head = styled.div`
   width: 100%;
   position: fixed;
   background-color: white;
-  display: flex
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `
 const Login = styled.div`
   width: 7vw;
@@ -16,6 +18,7 @@ const Login = styled.div`
 
 const SearchDiv = styled.div`
   height: 2vw;
+  width: 27vw;
 `
 
 const Header = () => {
