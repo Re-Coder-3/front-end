@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Search from "./Search";
-import login from "../img/loginIcon.png";
+import login from "../img/loginIcon.PNG";
 
 const Head = styled.div`
   height: 4vw;
