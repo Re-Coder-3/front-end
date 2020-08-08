@@ -56,9 +56,15 @@ const CONTENT_QUERY = gql`
 const Main = () => {
 
     const { loading, error, data } = useQuery(CONTENT_QUERY);
-    const [ContentState, setContentState] = useState([]);
-    if(loading) return <p>loading</p>
-    console.log(data.rows);
+    const [contentState, setContentState] = useState([]);
+    useEffect(() => {
+        if (data.rows) {
+            console.log(data.rows);
+            setContentState(data.rows);
+        }
+        console.log(contentState);
+        // setCategory(data);
+    }, [data, contentState]);
 
 
     const name = "김아영"
