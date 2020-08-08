@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Banner from "../component/Banner";
@@ -42,7 +42,6 @@ const CONTENT_QUERY = gql`
           value:""
         }
       }){
-       count
        rows{
         post_idx
         post_title
@@ -57,8 +56,10 @@ const CONTENT_QUERY = gql`
 const Main = () => {
 
     const { loading, error, data } = useQuery(CONTENT_QUERY);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+    const [ContentState, setContentState] = useState([]);
+    if(loading) return <p>loading</p>
+    console.log(data.rows);
+
 
     const name = "김아영"
     // 서버에서 받아오기 전 임시로 쓰는 변수.
