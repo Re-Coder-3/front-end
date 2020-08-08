@@ -57,11 +57,10 @@ const NumberText = styled.span`
 `
 
 const Banner = () => {
-    const currentArticle = 363
-    //실제 글 갯수를 서버에서 받아오기 전 임시로 사용할 변수. 구현하고 나면 지우자.
 
     const { data } = useQuery(CATEGORY_QUERY);
     const { data: dataNum } = useQuery(POST_NUMBER);
+    const currentArticle = dataNum && dataNum.findPost.count
 
     return (
         <WholeBanner>
@@ -72,7 +71,7 @@ const Banner = () => {
                 </BoldText>
                 <br/>
                 기타 내용 등 아무내용 넣기<br/>
-                <NumberText>{dataNum && dataNum.findPost.count}개</NumberText> 글이 있습니다
+                <NumberText>{currentArticle}개</NumberText> 글이 있습니다
             </TextBox>
             <CategoryCircles>
                 {data &&
