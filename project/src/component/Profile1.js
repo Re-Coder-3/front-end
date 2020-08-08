@@ -80,12 +80,14 @@ color: #363636;
 
 const Profile1 = () => {
     const [category,setCategory] = useState([]);
-    const myCategory = useCallback ((e) => {
-        setCategory(category.concat(JSON.parse(e.target.value)));
+
+    const onClick = (e) => {
+        e.preventDefault();
+        setCategory([...category,e.target.id]);
+        console.log(category);
+    };
+    
         /*
-                let copy = [];
-                copy = category.concat(...category,setCategory);
-                /*
                 if (e.property==true){
                     e.property = false;
                     //배열에서 삭제
@@ -95,11 +97,10 @@ const Profile1 = () => {
                     newCategory.push(e.target.id);
                 }
 
+           */
 
-        copy.forEach(s => console.log(s));*/
 
-    });
-    console.log(category);
+
 
     return(
         <div>
@@ -115,7 +116,7 @@ const Profile1 = () => {
                     id = "beauty"
                     value = "beauty"
                     property = "false"
-                    onClick={myCategory}
+                    onClick={onClick}
                 >
                     <FaApple size="1x"  />뷰티
                 </SelectButton>
@@ -124,7 +125,7 @@ const Profile1 = () => {
                     id = "education"
                     value = "education"
                     property = "false"
-                    onClick={myCategory}
+                    onClick={onClick}
                 >
                     <FaApple size="1x"  />교육
                 </SelectButton>
@@ -133,7 +134,7 @@ const Profile1 = () => {
                     id = "shot"
                     value = "shot"
                     property = "false"
-                    onClick={myCategory}
+                    onClick={onClick}
                 >
                     <FaApple size="1x"  />촬영
                 </SelectButton>
@@ -142,7 +143,7 @@ const Profile1 = () => {
                     id = "medical"
                     value = "medical"
                     property = "false"
-                    onClick={myCategory}
+                    onClick={onClick}
                 >
                     <FaApple size="1x"  />의료
                 </SelectButton>
@@ -151,7 +152,7 @@ const Profile1 = () => {
                     id = "etc"
                     value = "etc"
                     property = "false"
-                    onClick={myCategory}
+                    onClick={onClick}
                 >
                     <FaApple size="1x"  />기타
                 </SelectButton>
