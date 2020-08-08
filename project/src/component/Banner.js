@@ -13,6 +13,21 @@ const CATEGORY_QUERY = gql`
         }
     }
 `
+const POST_NUMBER = gql`
+    query{
+      findPost(args:{
+        offset:0
+        limit:0
+        filter:{
+          field:""
+          operator:""
+          value:""
+        }
+      }){
+       count
+      } 
+    }
+`
 
 const WholeBanner = styled.div`
   background-image: url(${banner});
@@ -45,7 +60,8 @@ const Banner = () => {
     const currentArticle = 363
     //실제 글 갯수를 서버에서 받아오기 전 임시로 사용할 변수. 구현하고 나면 지우자.
 
-    const { data1 } = useQuery(CATEGORY_QUERY);
+    const { data } = useQuery(CATEGORY_QUERY);
+    const { data: dataNum } = useQuery(POST_NUMBER);
 
     return (
         <WholeBanner>
@@ -56,11 +72,11 @@ const Banner = () => {
                 </BoldText>
                 <br/>
                 기타 내용 등 아무내용 넣기<br/>
-                <NumberText>{currentArticle}개</NumberText> 글이 있습니다
+                <NumberText>{dataNum && dataNum.findPost.count}개</NumberText> 글이 있습니다
             </TextBox>
             <CategoryCircles>
-                {data1 &&
-                    data1.findCategory.map((t) => (
+                {data &&
+                    data.findCategory.map((t) => (
                         <Category key={t.category_idx} text={t.category_name}/>
                     ))
                 }
