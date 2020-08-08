@@ -1,12 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 
-
+const SearchInp = styled.input`
+  height: 100%;
+  width: 100%;
+  border-radius: 20%;
+`
 
 const Search = () => {
     return (
         <>
-            <input/>
-        </>
+            <SearchInp />
+            </>
     );
 }
 

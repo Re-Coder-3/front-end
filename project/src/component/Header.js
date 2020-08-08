@@ -15,6 +15,7 @@ const Login = styled.div`
 `
 
 const SearchDiv = styled.div`
+  height: 2vw;
 `
 
 const Header = () => {
