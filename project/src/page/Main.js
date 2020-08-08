@@ -55,12 +55,12 @@ const CONTENT_QUERY = gql`
 
 const Main = () => {
 
-    const { loading, error, data } = useQuery(CONTENT_QUERY);
+    const { data } = useQuery(CONTENT_QUERY);
     const [contentState, setContentState] = useState([]);
     useEffect(() => {
-        if (data.rows) {
-            console.log(data.rows);
-            setContentState(data.rows);
+        if (data) {
+            console.log(data.findPost);
+            setContentState(data.findPost);
         }
         console.log(contentState);
         // setCategory(data);
