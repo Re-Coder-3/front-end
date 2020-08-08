@@ -4,7 +4,8 @@ import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import Content from "../component/Content";
 import styled from "styled-components";
-import banner from "../img/banner.png";
+import { useQuery, gql } from '@apollo/client';
+
 
 const MainContents = styled.div`
   width:75.5vw;
@@ -30,7 +31,35 @@ const ContentMore = styled.div`
   margin-top:0.5vw;
 `
 
+const CONTENT_QUERY = gql`
+    query{
+      findPost(args:{
+        offset:0
+        limit:4
+        filter:{
+          field:""
+          operator:""
+          value:""
+        }
+      }){
+       count
+       rows{
+        post_idx
+        post_title
+        hashtag{
+          hashtag_name
+        }
+      } 
+      }
+    }
+`
+
 const Main = () => {
+
+    const { loading, error, data } = useQuery(CONTENT_QUERY);
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
     const name = "김아영"
     // 서버에서 받아오기 전 임시로 쓰는 변수.
     const recommend = name + "님을 위한 추천"
