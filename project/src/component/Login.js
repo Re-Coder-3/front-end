@@ -92,13 +92,11 @@ width: 60px;
 height: 32px;
 left: 772px;
 top: 478px;
-
 font-family: Roboto;
 font-style: normal;
 font-weight: normal;
 font-size: 24px;
 line-height: 28px;
-
 color: #8C8C8C;
 `;
 

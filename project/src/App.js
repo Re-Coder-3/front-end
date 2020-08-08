@@ -8,7 +8,7 @@ function App() {
     <>
       <GlobalStyles />
       <Router>
-        <Routes LoggedBool={true} />
+        <Routes LoggedBool={false} />
       </Router>
     </>
   );
