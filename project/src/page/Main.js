@@ -1,49 +1,67 @@
-import React from "react";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
-import Banner from "../component/Banner";
-import Content from "../component/Content";
+import React, { useState, useEffect, useRef } from "react";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  overflow: hidden;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: grey;
+`;
+
+const Item = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  &:nth-child(2) {
+    background-color: lightgrey;
+  }
+  &:nth-child(3) {
+    background-color: lightblue;
+  }
+  &:nth-child(4) {
+    background-color: lightcoral;
+  }
+`;
+
+const Button = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
 
 const Main = () => {
-    const name = "김아영"
-    // 서버에서 받아오기 전 임시로 쓰는 변수.
-    const recommend = name + "님을 위한 추천"
-    // 첫번째 컴포넌트에 들어갈 텍스트. 어디 둘지 몰라서 여기 둡니다..
-    const sampleContentText = [
-        {
-            title: "제목 칸 무료 타투...",
-            tags: ["#미용", "#타투", "#서울"]
-        }, {
-            title:"이렇게 구현해놨는데",
-            tags: ["#IT", "#노동", "#서울"]
-        }, {
-            title: "서버측에서 다르게",
-            tags: ["#IT", "#서울"]
-        }, {
-            title: "주면 어떡하지",
-            tags: ["#IT", "#부산"]
-        }]
-    // content 컴포넌트에 담을 데이터 예시. 서버에서 주면 그걸로 교체한다.
-
-    const contentList = (contenttext) => contenttext.map(text => <Content title={text.title} tags={text.tags} />);
-
-    return (
-        <div>
-            <Header/>
-            <Banner/>
-            <div className="mainContents">
-                <div>
-                    {recommend} 더보기
-                    {contentList(sampleContentText)}
-                </div>
-                <div>
-                    {recommend} 더보기
-                    {contentList(sampleContentText)}
-                </div>
-            </div>
-            <Footer/>
-        </div>
-    );
-}
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideRef = useRef(null);
+  const nextSlide = () => {
+    if (currentSlide >= 2) {
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(currentSlide + 1);
+    }
+  };
+  useEffect(() => {
+    slideRef.current.style.transition = "all 0.5s ease-in-out";
+    slideRef.current.style.transform = `translateY(-${currentSlide}00%)`;
+  }, [currentSlide]);
+  return (
+    <Wrapper>
+      <Container ref={slideRef}>
+        <Item>
+          <Button onClick={nextSlide}>Click</Button>
+        </Item>
+        <Item>
+          <Button onClick={nextSlide}>Click</Button>
+        </Item>
+        <Item>
+          <Button onClick={nextSlide}>Click</Button>
+        </Item>
+      </Container>
+    </Wrapper>
+  );
+};
 
 export default Main;
