@@ -16,7 +16,7 @@ const LoggedOutPage = () => (
 
 const LoggedInPage = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
+    <Route exact path="/" component={Main} />
     <Redirect from="*" to="/" />
   </Switch>
 );
