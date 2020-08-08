@@ -2,6 +2,17 @@ import React from "react";
 import Category from "./Category";
 import styled from "styled-components";
 import banner from "../img/banner.png";
+import { useQuery, gql } from '@apollo/client';
+
+
+const CATEGORY_QUERY = gql`
+    query{
+        findCategory{
+            category_idx
+            category_name
+        }
+    }
+`
 
 const WholeBanner = styled.div`
   background-image: url(${banner});
@@ -34,6 +45,8 @@ const Banner = () => {
     const currentArticle = 363
     //실제 글 갯수를 서버에서 받아오기 전 임시로 사용할 변수. 구현하고 나면 지우자.
 
+    const { data1 } = useQuery(CATEGORY_QUERY);
+
     return (
         <WholeBanner>
             <TextBox>
@@ -46,11 +59,11 @@ const Banner = () => {
                 <NumberText>{currentArticle}개</NumberText> 글이 있습니다
             </TextBox>
             <CategoryCircles>
-                <Category text="카테고리1" />
-                <Category text="카테고리2" />
-                <Category text="카테고리3" />
-                <Category text="카테고리4" />
-                <Category text="카테고리5" />
+                {data1 &&
+                    data1.findCategory.map((t) => (
+                        <Category key={t.category_idx} text={t.category_name}/>
+                    ))
+                }
             </CategoryCircles>
         </WholeBanner>
     );

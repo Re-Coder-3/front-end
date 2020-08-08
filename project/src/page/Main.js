@@ -87,7 +87,6 @@ const Main = () => {
         }]
     // content 컴포넌트에 담을 데이터 예시. 서버에서 주면 그걸로 교체한다.
 
-    const contentList = (contenttext) => contenttext.rows.map(text => <Content title={text.post_title} tags="임시" />);
 
     return (
         <div>
@@ -99,15 +98,15 @@ const Main = () => {
                     <ContentMore>더보기></ContentMore><br/>
                     {contentState &&
                     contentState.map((c) => (
-                        <Content key={c.post_idx} title={c.post_title} tags="임시"/>
+                        <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name}/>
                     ))}
                 </ContentWrapper>
                 <ContentWrapper>
                     <ContentTitle>{recommend}</ContentTitle>
                     <ContentMore>더보기</ContentMore><br/>
-                    {contentState &&
-                    contentState.map((c) => (
-                        <Content key={c.post_idx} title={c.post_title} tags="임시"/>
+                    {data &&
+                    data.findPost.rows.map((c) => (
+                        <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name}/>
                     ))}
                 </ContentWrapper>
             </MainContents>
