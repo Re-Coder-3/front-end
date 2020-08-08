@@ -59,8 +59,8 @@ const Main = () => {
     const [contentState, setContentState] = useState([]);
     useEffect(() => {
         if (data) {
-            console.log(data.findPost);
-            setContentState(data.findPost);
+            console.log(data.findPost.rows);
+            setContentState(data.findPost.rows);
         }
         console.log(contentState);
         // setCategory(data);
@@ -97,12 +97,18 @@ const Main = () => {
                 <ContentWrapper>
                     <ContentTitle>{recommend}</ContentTitle>
                     <ContentMore>더보기></ContentMore><br/>
-                    {contentList(contentState)}
+                    {contentState &&
+                    contentState.map((c) => (
+                        <Content key={c.post_idx} title={c.post_title} tags="임시"/>
+                    ))}
                 </ContentWrapper>
                 <ContentWrapper>
                     <ContentTitle>{recommend}</ContentTitle>
                     <ContentMore>더보기</ContentMore><br/>
-                    {contentList(contentState)}
+                    {contentState &&
+                    contentState.map((c) => (
+                        <Content key={c.post_idx} title={c.post_title} tags="임시"/>
+                    ))}
                 </ContentWrapper>
             </MainContents>
             <Footer/>
