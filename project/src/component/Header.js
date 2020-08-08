@@ -1,13 +1,35 @@
 import React from "react";
+import styled from "styled-components";
 import Search from "./Search";
+import login from "../img/login.PNG";
+
+const Head = styled.div`
+  height: 4vw;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`
+const Login = styled.div`
+  width: 7vw;
+`
+
+const SearchDiv = styled.div`
+  height: 2vw;
+  width: 27vw;
+`
 
 const Header = () => {
     return (
-        <div>
+        <Head>
             로고
-            <Search/>
-            로그인
-        </div>
+            <SearchDiv>
+                <Search/>
+            </SearchDiv>
+            <Login><img src={login} width="100%" alt="로그인"/></Login>
+        </Head>
     );
 }
 
