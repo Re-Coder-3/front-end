@@ -7,7 +7,6 @@ import Main from "../page/Main";
 const LoggedOutPage = () => (
   <Switch>
     <Route path="/auth" component={Auth} />
-    <Route path="/slide" component={Main} />
 
     {/* <Route path="/extraAuth" component={ExtraAuth} /> */}
     <Redirect from="*" to="/" />
