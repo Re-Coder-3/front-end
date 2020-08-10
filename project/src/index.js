@@ -5,10 +5,11 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 
 import { InMemoryCache } from "@apollo/client";
+import ClientState, { defaults, resolvers } from "./component/ClientState";
 
 const client = new ApolloClient({
   uri: "http://localhost:5000/",
-  cache: new InMemoryCache(),
+  clientState: ClientState,
 });
 
 ReactDOM.render(
