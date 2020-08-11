@@ -1,26 +1,87 @@
 import React from "react";
-import img1 from "../img/test1.jpeg";
 import Category from "./Category";
-import {Link, Route} from 'react-router-dom';
+import styled from "styled-components";
+import banner from "../img/banner.png";
+import { useQuery, gql } from '@apollo/client';
 
+
+
+const CATEGORY_QUERY = gql`
+    query{
+        findCategory{
+            category_idx
+            category_name
+        }
+    }
+`
+const POST_NUMBER = gql`
+    query{
+      findPost(args:{
+        offset:0
+        limit:0
+        filter:{
+          field:""
+          operator:""
+          value:""
+        }
+      }){
+       count
+      } 
+    }
+`
+
+const WholeBanner = styled.div`
+  background-image: url(${banner});
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:31vw;
+  padding-top: 9%;
+  padding-left: 10%;
+`
+const CategoryCircles = styled.div`
+  margin-top: 5%;
+  height: 6vw;
+`
+const TextBox = styled.div`
+  color: white;
+  font-size: 2.5vw;
+  line-height: 3vw;
+`
+const BoldText = styled.div`
+  font-weight: bold;
+  font-size: 3.5vw;
+  line-height: 4vw;
+`
+const NumberText = styled.span`
+  font-weight: bold;
+  text-decoration: underline;
+`
 
 const Banner = () => {
-    const currentArticle = 363
-    //실제 글 갯수를 서버에서 받아오기 전 임시로 사용할 변수. 구현하고 나면 지우자.
+
+    const { data } = useQuery(CATEGORY_QUERY);
+    const { data: dataNum } = useQuery(POST_NUMBER);
+    const currentArticle = dataNum && dataNum.findPost.count
 
     return (
-        <div>
-            <div>
-                <Link to="/"><img src={img1}/></Link>
-            </div>
-            <div>
-                <Category text="카테고리1" />
-                <Category text="카테고리2" />
-                <Category text="카테고리3" />
-                <Category text="카테고리4" />
-                <Category text="카테고리5" />
-            </div>
-        </div>
+        <WholeBanner>
+            <TextBox>
+                <BoldText>
+                    커리어스팟은~~~<br/>
+                    지금 하고 있습니다
+                </BoldText>
+                <br/>
+                기타 내용 등 아무내용 넣기<br/>
+                <NumberText>{currentArticle}개</NumberText> 글이 있습니다
+            </TextBox>
+            <CategoryCircles>
+                {data &&
+                    data.findCategory.map((t) => (
+                        <Category key={t.category_idx} text={t.category_name}/>
+                    ))
+                }
+            </CategoryCircles>
+        </WholeBanner>
     );
 }
 

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import AuthImage from "../img/Auth.jpg";
 import useInput from "../Hooks/useInput";
 import Input from "../component/Input";
+import { gql } from "apollo-boost";
+import { useMutation } from "@apollo/react-hooks";
 
 /*
 import { gql } from "apollo-boost";
@@ -95,12 +97,76 @@ const H = styled.h2`
   color: #8c8c8c;
 `;
 
+const LOGIN = gql`
+  mutation loginUser($user_email: String!, $user_password: String!) {
+    loginUser(user_email: $user_email, user_password: $user_password) {
+      data
+      error
+      status
+    }
+  }
+`;
+
+const CREATE_USER = gql`
+  mutation createUser($user_email: String!, $user_password: String!) {
+    createUser(user_email: $user_email, user_password: $user_password) {
+      error
+      status
+    }
+  }
+`;
+
 const Auth = () => {
   const [formType, setFormType] = useState("login");
-  console.log(formType);
+
   const email = useInput("");
   const password = useInput("");
   const password2 = useInput("");
+  const [createUser] = useMutation(CREATE_USER, {
+    variables: { user_email: email.value, user_password: password.value },
+  });
+  const [loginUser] = useMutation(LOGIN, {
+    variables: { user_email: email.value, user_password: password.value },
+  });
+
+  const LOG_IN = gql`
+    mutation loginState($token: String!) {
+      loginState(token: $token) @client
+    }
+  `;
+  const [loginStateMutation] = useMutation(LOG_IN);
+
+  const signInClick = async (event) => {
+    event.preventDefault();
+    const result = await loginUser();
+    if (result) {
+      const {
+        data: {
+          loginUser: { data: token, status, error },
+        },
+      } = result;
+      console.log(token, error, status);
+      if (status === 200) {
+        loginStateMutation({ variables: { token } });
+      }
+    }
+  };
+
+  const signUpClick = async (event) => {
+    event.preventDefault();
+    const result = await createUser();
+    if (result) {
+      const {
+        data: {
+          createUser: { status, error },
+        },
+      } = result;
+      if (status === 200) {
+        alert("회원가입 성공했따");
+        setFormType("login");
+      }
+    }
+  };
 
   return (
     <Container>
@@ -115,15 +181,24 @@ const Auth = () => {
             {formType === "login" ? (
               <>
                 <Input placeholder={"이메일을 입력해주세요."} {...email} />
-                <Input placeholder={"비밀번호를 입력해주세요."} {...password} />
+                <Input
+                  placeholder={"비밀번호를 입력해주세요."}
+                  {...password}
+                  type={"password"}
+                />
               </>
             ) : formType === "auth" ? (
               <>
-                <Input placeholder={"이메일을 입력해주세요."} {...email} />
-                <Input placeholder={"비밀번호를 입력해주세요."} {...password} />
+                <Input placeholder={"email"} {...email} />
                 <Input
-                  placeholder={"비밀번호를 다시 입력해주세요."}
+                  placeholder={"password"}
+                  {...password}
+                  type={"password"}
+                />
+                <Input
+                  placeholder={"password2"}
                   {...password2}
+                  type={"password"}
                 />
               </>
             ) : (
@@ -131,9 +206,9 @@ const Auth = () => {
             )}
           </InputWrapper>
           {formType === "login" ? (
-            <Button>로그인</Button>
+            <Button onClick={signInClick}>로그인</Button>
           ) : formType === "auth" ? (
-            <Button>회원가입</Button>
+            <Button onClick={signUpClick}>회원가입</Button>
           ) : (
             <Button>메일로 비밀번호 발급받기</Button>
           )}

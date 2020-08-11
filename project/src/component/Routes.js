@@ -7,7 +7,6 @@ import Main from "../page/Main";
 const LoggedOutPage = () => (
   <Switch>
     <Route path="/auth" component={Auth} />
-    <Route path="/slide" component={Main} />
 
     {/* <Route path="/extraAuth" component={ExtraAuth} /> */}
     <Redirect from="*" to="/" />
@@ -16,7 +15,7 @@ const LoggedOutPage = () => (
 
 const LoggedInPage = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
+    <Route exact path="/" component={Main} />
     <Redirect from="*" to="/" />
   </Switch>
 );
