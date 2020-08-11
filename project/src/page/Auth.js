@@ -4,8 +4,10 @@ import AuthImage from "../img/Auth.jpg";
 import useInput from "../Hooks/useInput";
 import Input from "../component/Input";
 
+/*
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
+*/
 
 const Container = styled.div`
   width: 100%;
