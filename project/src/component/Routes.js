@@ -4,6 +4,7 @@ import Auth from "../page/Auth";
 import Home from "../page/Home";
 import Main from "../page/Main";
 import Search from "../page/Search";
+import Header1 from "./Header1";
 
 const LoggedOutPage = () => (
   <Switch>
@@ -16,11 +17,14 @@ const LoggedOutPage = () => (
 );
 
 const LoggedInPage = () => (
-  <Switch>
-    <Route exact path="/" component={Main} />
-    <Route path="/search" component={Search} />
-    <Redirect from="*" to="/" />
-  </Switch>
+  <>
+    <Header1 />
+    <Switch>
+      <Route exact path="/" component={Main} />
+      <Route path="/search" component={Search} />
+      <Redirect from="*" to="/" />
+    </Switch>
+  </>
 );
 
 export default ({ LoggedBool }) =>
