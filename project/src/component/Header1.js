@@ -12,6 +12,7 @@ const Container = styled.div`
   min-height: 50px;
   padding: 0 11%;
   position: fixed;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
