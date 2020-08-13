@@ -3,7 +3,8 @@ import styled from "styled-components";
 import useInput from "../Hooks/useInput";
 import Input from "../component/Input";
 import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import Modal from "../component/Modal";
 
 const Container = styled.div`
   width: 100%;
@@ -37,10 +38,33 @@ const ContentWrapper = styled.div`
   background-color: blue;
 `;
 
+const CHECK_USER = gql`
+  query {
+    checkUser
+  }
+`;
+const UPLOAD_FILE = gql`
+  mutation($file: Upload!) {
+    singleUpload(file: $file)
+  }
+`;
+
 const Search = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   const [type, setType] = useState("all");
+  const title = useInput("");
+  const hashtag = useInput("");
+  const content = useInput("");
+  const [upload] = useMutation(UPLOAD_FILE);
+
   const onClick = (e) => {
     setType(e.target.id);
+  };
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
   };
   return (
     <Container>
@@ -55,7 +79,21 @@ const Search = () => {
           분야
         </Text>
       </ClassificationBox>
-      <ContentWrapper></ContentWrapper>
+      <ContentWrapper>
+        <button onClick={openModal}>글쓰기</button>
+        {modalVisible && (
+          <Modal
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+          >
+            <Input placeholder={"title"} {...title}></Input>
+            <Input placeholder={"hashtag"} {...hashtag}></Input>
+            <Input placeholder={"content"} {...content}></Input>
+          </Modal>
+        )}
+      </ContentWrapper>
     </Container>
   );
 };
