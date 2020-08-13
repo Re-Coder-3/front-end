@@ -10,6 +10,9 @@ import ClientState, { defaults, resolvers } from "./component/ClientState";
 const client = new ApolloClient({
   uri: "http://localhost:5000/",
   clientState: ClientState,
+  headers: {
+    Authorization: `${localStorage.getItem("TOKEN")}`,
+  },
 });
 
 ReactDOM.render(

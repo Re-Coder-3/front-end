@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useInput from "../Hooks/useInput";
 import Input from "../component/Input";
 import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 
 const Container = styled.div`
   width: 100%;
@@ -37,10 +37,20 @@ const ContentWrapper = styled.div`
   background-color: blue;
 `;
 
+const CHECK_USER = gql`
+  query {
+    checkUser
+  }
+`;
+
 const Search = () => {
   const [type, setType] = useState("all");
+  const { data } = useQuery(CHECK_USER);
   const onClick = (e) => {
     setType(e.target.id);
+  };
+  const c = async () => {
+    console.log(data);
   };
   return (
     <Container>
@@ -55,7 +65,9 @@ const Search = () => {
           분야
         </Text>
       </ClassificationBox>
-      <ContentWrapper></ContentWrapper>
+      <ContentWrapper>
+        <button onClick={c}>check</button>
+      </ContentWrapper>
     </Container>
   );
 };
