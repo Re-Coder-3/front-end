@@ -22,6 +22,9 @@ const ContentWrapper = styled.div`
 const ContentInnerWrapper = styled.div`
   overflow-x: scroll;
   white-space: nowrap;
+  &:: -webkit-scrollbar{
+  display:none;
+  }
 `
 
 const ContentTitle = styled.div`
@@ -59,6 +62,9 @@ const CONTENT_QUERY = gql`
        rows{
         post_idx
         post_title
+        image{
+          image_url
+        }
         hashtag{
           hashtag_name
         }
@@ -112,19 +118,21 @@ const Main = () => {
                     <ContentTitle>{recommend}</ContentTitle>
                     <ContentMore>더보기></ContentMore><br/>
                     <ContentInnerWrapper>
-                    {contentState &&
+                        {contentState &&
                     contentState.map((c) => (
-                        <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name} img={imgimg}/>
+                        <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name} image={c.image.image_url}/>
                     ))}
                     </ContentInnerWrapper>
                 </ContentWrapper>
                 <ContentWrapper>
                     <ContentTitle>{recommend}</ContentTitle>
                     <ContentMore>더보기</ContentMore><br/>
-                    {data &&
-                    data.findPost.rows.map((c) => (
-                        <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name}/>
-                    ))}
+                    <ContentInnerWrapper>
+                        {data &&
+                        data.findPost.rows.map((c) => (
+                            <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name} image={c.image.image_url}/>
+                        ))}
+                    </ContentInnerWrapper>
                 </ContentWrapper>
             </MainContents>
             <Footer/>

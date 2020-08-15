@@ -5,7 +5,7 @@ import imgimgimg from "../img/test3.jpeg";
 const ContentBox = styled.div`
   width: 13vw;
   height: 13vw;
-  background-image: url(${props => props.img || imgimgimg});
+  background-image: url(${props => props.image || imgimgimg});
   background-size: cover;
   &:not(:last-child) {
     margin-right: 3%;
@@ -32,9 +32,9 @@ const TextOverTag = styled.div`
   overflow: hidden;
 `
 
-const Content = ({title, tags, img}) => {
+const Content = ({title, tags, image}) => {
     return (
-        <ContentBox>
+        <ContentBox image={image}>
             <TextOverTitle>{title}</TextOverTitle>
             <TextOverTag>{tags}</TextOverTag>
         </ContentBox>
