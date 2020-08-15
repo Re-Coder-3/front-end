@@ -5,6 +5,7 @@ import Input from "../component/Input";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import Modal from "../component/Modal";
+import MyDropzone from "../component/MyDropzone";
 
 const Container = styled.div`
   width: 100%;
@@ -93,6 +94,7 @@ const Search = () => {
             <Input placeholder={"content"} {...content}></Input>
           </Modal>
         )}
+        <MyDropzone></MyDropzone>
       </ContentWrapper>
     </Container>
   );
