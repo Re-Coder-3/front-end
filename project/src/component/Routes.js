@@ -4,21 +4,24 @@ import Auth from "../page/Auth";
 import Home from "../page/Home";
 import Main from "../page/Main";
 import Search from "../page/Search";
-import Header1 from "./Header1";
+import Header from "./Header";
 
 const LoggedOutPage = () => (
-  <Switch>
-    <Route exact path="/" component={Main} />
-    <Route path="/auth" component={Auth} />
-    <Route path="/search" component={Search} />
-    {/* <Route path="/extraAuth" component={ExtraAuth} /> */}
-    <Redirect from="*" to="/" />
-  </Switch>
+    <>
+        <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/auth" component={Auth} />
+        <Route path="/search" component={Search} />
+        {/* <Route path="/extraAuth" component={ExtraAuth} /> */}
+        <Redirect from="*" to="/" />
+      </Switch>
+        </>
 );
 
 const LoggedInPage = () => (
   <>
-    <Header1 />
+    <Header />
     <Switch>
       <Route exact path="/" component={Main} />
       <Route path="/search" component={Search} />

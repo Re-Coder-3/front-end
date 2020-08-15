@@ -1,35 +1,74 @@
 import React from "react";
 import styled from "styled-components";
-import Search from "./Search";
-import login from "../img/loginIcon.PNG";
+import Search from "./SearchBar";
+import {TitleLogo, Heart, LoginIcon, Pencil, Profile} from "./Icons";
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+import useInput from "../Hooks/useInput";
 
-const Head = styled.div`
-  height: 4vw;
+const HeaderWrapper = styled.div`
+  height: 64px;
   width: 100%;
   position: fixed;
   background-color: white;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-`
-const Login = styled.div`
-  width: 7vw;
 `
 
 const SearchDiv = styled.div`
-  height: 2vw;
+  height: 32px;
   width: 27vw;
 `
+const Logo = styled.div`
+  font-size: 25px;
+  font-weight: bold;
+   display: flex;
+  align-items: center;
+`
+const Icons = styled.div`
+   & > div{
+  
+    display: inline-block;
+ 
+    &:not(:last-child) {
+      margin-right: 30px;
+     }
+   }
+`
+
+const QUERY = gql`
+  {
+    LoggedBool @client
+  }
+`;
 
 const Header = () => {
+    const {
+        data: { LoggedBool },
+    } = useQuery(QUERY);
+    const search = useInput("");
+
     return (
-        <Head>
-            로고
+        <HeaderWrapper>
+            <Logo><TitleLogo/>  커리어스팟</Logo>
             <SearchDiv>
                 <Search/>
             </SearchDiv>
-            <Login><img src={login} width="100%" alt="로그인"/></Login>
-        </Head>
+            <Icons>
+                {LoggedBool ? (
+                    <><div>
+                        <Pencil />
+                    </div>
+                        <div><Heart /></div>
+                        <div><Profile /></div>
+
+                    </>
+                ) : (
+                    <LoginIcon/>
+                )}
+            </Icons>
+        </HeaderWrapper>
     );
 }
 

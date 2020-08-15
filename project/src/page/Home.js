@@ -17,7 +17,6 @@ const CATEGORY_LIST = gql`
 
 const Container = styled.div`
   width: 100%;
-  max-width: 1440;
   height: 1740px;
   display: flex;
   flex-direction: column;
@@ -64,7 +63,7 @@ const Button = styled.div`
 const Banner = styled.div`
   width: 100%;
   height: 100%;
-  max-height: 573px;
+  max-height: 80vh;
   padding-left: 5%;
   padding-top: 12%;
   background: url(${BannerImg}) no-repeat center center;

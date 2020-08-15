@@ -1,22 +1,42 @@
 import React from "react";
 import styled from "styled-components";
+import imgimgimg from "../img/test3.jpeg";
 
 const ContentBox = styled.div`
-  width: 18vw;
-  height: 18vw;
-  background-color: blue;
+  width: 13vw;
+  height: 13vw;
+  background-image: url(${props => props.image || imgimgimg});
+  background-size: cover;
   &:not(:last-child) {
-    margin-right: 1.5%;
+    margin-right: 3%;
   }
   display: inline-block;
   border-radius: 5%;
 `
+const TextOverTitle = styled.div`
+  color: white;
+  position: relative;
+  top:65%;
+  left: 10%;
+  font-size: 1.5vw;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+const TextOverTag = styled.div`
+  color: white;
+  position: relative;
+  top:70%;
+  left: 10%;
+  font-size: 1.1vw;
+  overflow: hidden;
+`
 
-const Content = ({title, tags}) => {
+const Content = ({title, tags, image}) => {
     return (
-        <ContentBox>
-            <div>{title}</div>
-            <div>{tags}</div>
+        <ContentBox image={image}>
+            <TextOverTitle>{title}</TextOverTitle>
+            <TextOverTag>{tags}</TextOverTag>
         </ContentBox>
     );
 }
