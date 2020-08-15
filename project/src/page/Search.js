@@ -9,8 +9,7 @@ import Modal from "../component/Modal";
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: 64px;
-  padding: 0 11%;
+  padding: 64px 0 0 0;
 `;
 
 const ClassificationBox = styled.div`

@@ -12,7 +12,6 @@ const SearchInp = styled.input`
     outline: none;
   }
   padding: 0 20px 0 35px;
-  
 `
 
 const SizeForm = styled.form`
@@ -32,7 +31,7 @@ const InvisibleButton = styled.button`
   background: none;
 `
 
-const Search = () =>{
+const SearchBar = () =>{
     const [text, setText] = useState('');
 
     const onChangeText = e =>{
@@ -53,4 +52,4 @@ const Search = () =>{
 
 // 검색창이 될 부분.
 
-export default Search;
+export default SearchBar;

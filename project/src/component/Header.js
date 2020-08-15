@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Search from "./Search";
+import Search from "./SearchBar";
 import {TitleLogo, Heart, LoginIcon, Pencil, Profile} from "./Icons";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
