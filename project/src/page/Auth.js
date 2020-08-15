@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import AuthImage from "../img/Auth.jpg";
+import AuthImage from "../img/profile.png";
 import useInput from "../Hooks/useInput";
 import Input from "../component/Input";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
-
-/*
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
-*/
 
 const Container = styled.div`
   width: 100%;
@@ -116,6 +111,16 @@ const CREATE_USER = gql`
   }
 `;
 
+const FIND_USER = gql`
+  mutation findUser($user_email: String!) {
+    findUser(user_email: $user_email) {
+      data
+      error
+      status
+    }
+  }
+`;
+
 const Auth = () => {
   const [formType, setFormType] = useState("login");
 
@@ -128,6 +133,9 @@ const Auth = () => {
   const [loginUser] = useMutation(LOGIN, {
     variables: { user_email: email.value, user_password: password.value },
   });
+  const [findUser] = useMutation(FIND_USER, {
+    variables: { user_email: email.value },
+  });
 
   const LOG_IN = gql`
     mutation loginState($token: String!) {
@@ -135,6 +143,13 @@ const Auth = () => {
     }
   `;
   const [loginStateMutation] = useMutation(LOG_IN);
+
+  const FIND = gql`
+    mutation findState($token: String!) {
+      findState(token: $token) @client
+    }
+  `;
+  const [findStateMutation] = useMutation(FIND);
 
   const signInClick = async (event) => {
     event.preventDefault();
@@ -168,6 +183,22 @@ const Auth = () => {
     }
   };
 
+  const findClick = async (event) => {
+    event.preventDefault();
+    const result = await findUser();
+    if (result) {
+      const {
+        data: {
+          findUser: { data: token, status, error },
+        },
+      } = result;
+      console.log(token, error, status);
+      if (status === 200) {
+        findStateMutation({ variables: { token } });
+      }
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -189,14 +220,14 @@ const Auth = () => {
               </>
             ) : formType === "auth" ? (
               <>
-                <Input placeholder={"email"} {...email} />
+                <Input placeholder={"이메일을 입력해주세요."} {...email} />
                 <Input
-                  placeholder={"password"}
+                  placeholder={"비밀번호를 입력해주세요."}
                   {...password}
                   type={"password"}
                 />
                 <Input
-                  placeholder={"password2"}
+                  placeholder={"비밀번호를 다시 입력해주세요."}
                   {...password2}
                   type={"password"}
                 />
@@ -210,7 +241,7 @@ const Auth = () => {
           ) : formType === "auth" ? (
             <Button onClick={signUpClick}>회원가입</Button>
           ) : (
-            <Button>메일로 비밀번호 발급받기</Button>
+            <Button onClick={findClick}>메일로 비밀번호 발급받기</Button>
           )}
           <SocialAuth>
             <br />

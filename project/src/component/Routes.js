@@ -3,11 +3,12 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Auth from "../page/Auth";
 import Home from "../page/Home";
 import Main from "../page/Main";
+import Profile from "../page/Profile";
 
 const LoggedOutPage = () => (
   <Switch>
     <Route path="/auth" component={Auth} />
-
+    <Route path="/profile" component={Profile} />
     {/* <Route path="/extraAuth" component={ExtraAuth} /> */}
     <Redirect from="*" to="/" />
   </Switch>
@@ -16,6 +17,7 @@ const LoggedOutPage = () => (
 const LoggedInPage = () => (
   <Switch>
     <Route exact path="/" component={Main} />
+
     <Redirect from="*" to="/" />
   </Switch>
 );

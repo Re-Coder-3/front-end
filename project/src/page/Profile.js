@@ -1,30 +1,116 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import Join from "../component/Join";
+import profileImg from "../img/profile.png";
+import profile3Img from "../img/profile3.png";
+import Auth from "./Auth.js";
 import Profile1 from "../component/Profile1";
 import Profile2 from "../component/Profile2";
-import profile from "../img/profile.png";
+import Profile3 from "../component/Profile3";
+import { FaArrowRight } from "react-icons/fa";
 
-const Section = styled.div`
+//가장 밖(1)
+const Wrapper = styled.div`
+  overflow: hidden;
+`;
+//2
+const Container = styled.div`
+  width: 100%;
+  height: 120vh;
+`;
+//3 Slide
+const SlideBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 120vh;
+  &:nth-child(-n + 3) {
+    background: url(${profileImg}) no-repeat;
+    background-size: cover;
+  }
+  &:nth-child(3) {
+    background: url(${profile3Img}) no-repeat;
+    background-size: cover;
+  }
+`;
+
+//4 slide 안
+const Item = () => {};
+
+//다음단계
+const NextButton = styled.button`
+  margin-left: 85%;
   border: 0px;
-  background-image: url(${profile});
-  background-repeat: no-repeat;
-  background-size: cover;
-`
+  position: absolute;
+  background: none;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 41px;
+  color: #676767;
+`;
 
+//다음에 하기
+const LaterButton = styled.button`
+  margin-top: 2%;
+  margin-left: 85%;
+  border: 0px;
+  position: absolute;
+  background: none;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 41px;
+  color: #999999;
+`;
 
 const Profile = () => {
-    return(
-        <div>
-            <Section>
-                <Join></Join>
-                <br /><br /><br />
-                <Profile1></Profile1>
-                <br /><br /><br />
-                <Profile2></Profile2>
-            </Section>
-        </div>
-    );
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideRef = useRef(null);
+  const nextSlide = () => {
+    if (currentSlide >= 4) {
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(currentSlide + 1);
+    }
+  };
+  useEffect(() => {
+    slideRef.current.style.transition = "all 0.5s ease-in-out";
+    slideRef.current.style.transform = `translateY(-${currentSlide}00%)`;
+  }, [currentSlide]);
+
+  return (
+    <Wrapper>
+      <Container ref={slideRef}>
+        <SlideBox>
+          <LaterButton onClick={nextSlide}>다음에 하기</LaterButton>
+          <Profile1></Profile1>
+          <NextButton onClick={nextSlide}>
+            <FaArrowRight size="50px" /> <br />
+            다음 단계
+          </NextButton>
+        </SlideBox>
+
+        <SlideBox>
+          <LaterButton onClick={nextSlide}>다음에 하기</LaterButton>
+          <Profile2></Profile2>
+          <NextButton onClick={nextSlide}>
+            <FaArrowRight size="50px" /> <br />
+            다음 단계
+          </NextButton>
+        </SlideBox>
+
+        <SlideBox>
+          <LaterButton onClick={nextSlide}>다음에 하기</LaterButton>
+          <Profile3></Profile3>
+          <NextButton onClick={nextSlide}>
+            <FaArrowRight size="50px" /> <br />
+            완료 하기
+          </NextButton>
+        </SlideBox>
+      </Container>
+    </Wrapper>
+  );
 };
 
 export default Profile;

@@ -1,185 +1,123 @@
-import React, {useCallback, useState} from 'react';
-import {Link, Route} from 'react-router-dom';
-import {FaArrowRight} from 'react-icons/fa';
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import profileImage from "../img/profile3.png";
+import axios from "axios";
 
-const LaterButton = styled.button`
-width:100px;
-height:100px;
-color: #ffffff;
-margin-left:80%;
-background:none;
-border:none;
-A {text-decoration: none; color: white;} 
-A:visited { text-decoration: none; }
-A:hover { text-decoration: none; }
-A:focus { text-decoration: none; }
-A:hover, a:active { text-decoration: none; }
+const HeaderDiv = styled.div`
+  padding-top: 5%;
+  padding-left: 30%;
 `;
 
-const NextButton = styled.button`
-margin-left:80%;
-width:100px;
-height:100px;
-color:gray;
-border:0px;
-background:none;
-A {text-decoration: none; color: white;} 
-A:visited { text-decoration: none; }
-A:hover { text-decoration: none; }
-A:focus { text-decoration: none; }
-A:hover, a:active { text-decoration: none; }
+const ContentDiv = styled.div`
+  position: absolute;
+`;
 
+const H1 = styled.h1`
+  font-family: Kohinoor Gujarati;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  line-height: 72px;
+  color: #ffffff;
 `;
 
 const Input = styled.input`
-width: 450px;
-height: 30px;
-border: none;
-border-bottom: 1.5px solid #ffffff ;
-font-family: Noto Sans KR;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-background: none;
-::placeholder {
-  color: white;
-}
-color: #EEEEEE;
-`;
-
-const Section = styled.div`
-  margin: 0px;
-  border: 0px;
-  background-image: url(${profileImage});
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
-
-const Content = styled.div`
-left:10%;
+  width: 400px;
+  margin-bottom: 30%;
+  border: none;
+  border-bottom: 1.5px solid #ffffff;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  background: none;
+  ::placeholder {
+    color: white;
+  }
+  color: #eeeeee;
 `;
 
 const InputSection = styled.div`
-margin-left: 15%;
-margin-right: 15%;
-border:none;
-float:left;
+  width: 10%;
+  margin-left: 15%;
+  float: left;
 `;
 const ImageSection = styled.div`
-margin:5%;
-border:none;
-
+  width: 50%;
+  margin-top: 4%;
+  margin-left: 25%;
+  float: left;
 `;
 
-
-
-
-const H1 = styled.h1`
-color:white;
-margin-left: 40%;
+const ProfileImage = styled.div`
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 40% 0% 40% 85%;
 `;
 
 const OutsideImageBox = styled.input`
-right:10%;
-width:170px;
-height:170px;
-border:5px solid #ffffff ;
-background:none;
-`
-
-const ProfileImage = styled.button`
-height: 200px;
-width: 200px;
-background-color: #ffffff;
-border:none;
-border-radius: 50%;
-display: inline-block;
-margin-left:35%;
-
+  width: 120px;
+  height: 120px;
+  border: 5px solid #ffffff;
+  background: none;
 `;
 
-
 const Profile3 = () => {
+  const [picture, setPicture] = useState(null);
+  const [imgData, setImgData] = useState(null);
+  const onChangePicture = (e) => {
+    if (e.target.files[0]) {
+      setPicture(e.target.files[0]);
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        setImgData(reader.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
 
-    return(
-        <Section>
-            <div>
-                <LaterButton>
-                    <Link to={"/"}>다음에 하기</Link>
-                </LaterButton>
-                <H1>(선택)프로필을 채워주세요!  🤗</H1>
-            </div>
-            <br/><br/><br/><br/><br/>
+  return (
+    <div>
+      <HeaderDiv>
+        <H1>(선택)프로필을 채워주세요! 🤗</H1>
+      </HeaderDiv>
 
-            <Content>
-                <InputSection>
-                    <ProfileImage>
-                        <input type = "file" name = "file_upload" />
-                    </ProfileImage>
-                    <br/>
-                <Input
-                    type="text"
-                    size="60"
-                    placeholder="이력을 입력해주세요."
-                />
-                <br/><br/><br/><br/><br/><br/>
-                <Input
-                    type="text"
-                    size="60"
-                    placeholder="학력을 입력해주세요."
-                />
-               <br/><br/><br/><br/><br/><br/>
-                <Input
-                    type="text"
-                    size="60"
-                    placeholder="간단한 소개를 해주세요. "
-                />
-                </InputSection>
+      <ContentDiv>
+        <InputSection>
+          <ProfileImage>
+            <input id="profilePic" type="file" onChange={onChangePicture} />
+            <img
+              src={imgData}
+              style={{
+                height: 120,
+                width: 120,
+                borderRadius: 50,
+                // overflow: "hidden",
+              }}
+            />
+          </ProfileImage>
 
+          <Input type="text" size="60" placeholder="이력을 입력해주세요." />
+          <Input type="text" size="60" placeholder="학력을 입력해주세요." />
+          <Input type="text" size="60" placeholder="간단한 소개를 해주세요." />
+        </InputSection>
 
-                <ImageSection>
-                <OutsideImageBox
-                    type="img"
-                />
-                <OutsideImageBox
-                    type="img"
-                />
-                <OutsideImageBox
-                    type="img"
-                />
-                <br/>
-                    <OutsideImageBox
-                        type="img"
-                    />
-                    <OutsideImageBox
-                        type="img"
-                    />
-                    <OutsideImageBox
-                        type="img"
-                    />
-                    <br/>
-                    <OutsideImageBox
-                        type="img"
-                    />
-                    <OutsideImageBox
-                        type="img"
-                    />
-                    <OutsideImageBox
-                        type="img"
-                    />
-            </ImageSection>
-            </Content>
-
-
-            <div>
-                <NextButton>
-                    <Link to={"/"}><FaArrowRight size="50px"/> <br/>완료 하기</Link>
-                </NextButton>
-            </div>
-        </Section>
-    );
+        <ImageSection>
+          <OutsideImageBox type="file" />
+          <OutsideImageBox type="file" />
+          <OutsideImageBox type="file" />
+          <br />
+          <OutsideImageBox type="file" />
+          <OutsideImageBox type="file" />
+          <OutsideImageBox type="file" />
+          <br />
+          <OutsideImageBox type="file" />
+          <OutsideImageBox type="file" />
+          <OutsideImageBox type="file" />
+        </ImageSection>
+      </ContentDiv>
+    </div>
+  );
 };
 
 export default Profile3;
