@@ -209,3 +209,10 @@ export const LoginIcon = () => (
     </defs>
   </svg>
 );
+
+export const SearchIcon = () => (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle r="6" transform="matrix(-1 0 0 1 6.5 6.5)" stroke="#F04E44"/>
+      <rect width="7.39908" height="1" rx="0.5" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 16 15.2319)" fill="#F04E44"/>
+    </svg>
+);
