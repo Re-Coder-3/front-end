@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import {SearchIcon} from "./Icons";
 
@@ -12,7 +12,14 @@ const SearchInp = styled.input`
     outline: none;
   }
   padding: 0 20px 0 35px;
+  
 `
+
+const SizeForm = styled.form`
+  height: 100%;
+  width: 100%;
+`
+
 const Icon = styled.div`
   position: relative;
   top: -23px;
@@ -20,14 +27,27 @@ const Icon = styled.div`
   width:16px;
 `
 
-const Search = () => {
+const InvisibleButton = styled.button`
+  border: none;
+  background: none;
+`
+
+const Search = () =>{
+    const [text, setText] = useState('');
+
+    const onChangeText = e =>{
+        setText(e.target.value);
+    };
+
     return (
         <>
-            <SearchInp />
+            <SizeForm>
+                <SearchInp value={text} placeholder="검색창" onChange={onChangeText}/>
             <Icon>
-                <SearchIcon/>
+                <InvisibleButton type='submit'><SearchIcon/></InvisibleButton>
             </Icon>
-            </>
+            </SizeForm>
+        </>
     );
 }
 
