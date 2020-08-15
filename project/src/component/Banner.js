@@ -36,7 +36,7 @@ const WholeBanner = styled.div`
   background-size: cover;
   height:31vw;
   padding-top: 9%;
-  padding-left: 10%;
+  padding-left: 15.5%;
 `
 const CategoryCircles = styled.div`
   margin-top: 5%;
@@ -44,12 +44,12 @@ const CategoryCircles = styled.div`
 `
 const TextBox = styled.div`
   color: white;
-  font-size: 2.5vw;
+  font-size: 2vw;
   line-height: 3vw;
 `
 const BoldText = styled.div`
   font-weight: bold;
-  font-size: 3.5vw;
+  font-size: 3vw;
   line-height: 4vw;
 `
 const NumberText = styled.span`

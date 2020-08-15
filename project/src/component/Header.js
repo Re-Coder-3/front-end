@@ -9,7 +9,7 @@ const Head = styled.div`
   position: fixed;
   background-color: white;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 `
 const Login = styled.div`

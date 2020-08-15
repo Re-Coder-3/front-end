@@ -5,10 +5,11 @@ import Banner from "../component/Banner";
 import Content from "../component/Content";
 import styled, {createGlobalStyle} from "styled-components";
 import { useQuery, gql } from '@apollo/client';
+import imgimg from "../img/test2.jpeg";
 
 
 const MainContents = styled.div`
-  width:75.5vw;
+  width:68vw;
   margin-left: auto;
   margin-right: auto;
 `
@@ -18,10 +19,16 @@ const ContentWrapper = styled.div`
   margin-bottom: 5%;
 `
 
+const ContentInnerWrapper = styled.div`
+  overflow-x: scroll;
+  white-space: nowrap;
+`
+
 const ContentTitle = styled.div`
- font-size: 2.5vw;
+ font-size: 2vw;
  display: inline-block;
  margin-bottom: 1vw;
+ font-weight: bold;
 `
 
 const ContentMore = styled.div`
@@ -42,7 +49,7 @@ const CONTENT_QUERY = gql`
     query{
       findPost(args:{
         offset:0
-        limit:4
+        limit:5
         filter:{
           field:""
           operator:""
@@ -104,10 +111,12 @@ const Main = () => {
                 <ContentWrapper>
                     <ContentTitle>{recommend}</ContentTitle>
                     <ContentMore>더보기></ContentMore><br/>
+                    <ContentInnerWrapper>
                     {contentState &&
                     contentState.map((c) => (
-                        <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name}/>
+                        <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name} img={imgimg}/>
                     ))}
+                    </ContentInnerWrapper>
                 </ContentWrapper>
                 <ContentWrapper>
                     <ContentTitle>{recommend}</ContentTitle>

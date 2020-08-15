@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const CategoryCircle = styled.div`
   background-color: white;
-  height: 6vw;
-  width: 6vw;
+  height: 5vw;
+  width: 5vw;
   display: inline-block;
    &:not(:last-child) {
     margin-right: 1%;
