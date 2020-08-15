@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 const uploadFileMutation = gql`
-  mutation singleUpload($file: Upload!) {
+  mutation UploadFile($file: Upload!) {
     singleUpload(file: $file)
   }
 `;
@@ -12,8 +12,9 @@ const uploadFileMutation = gql`
 export default () => {
   const [uploadFile] = useMutation(uploadFileMutation);
   const onDrop = useCallback(
-    ([file]) => {
-      uploadFile({ variables: { file } });
+    async ([file]) => {
+      await uploadFile({ variables: { file } });
+      console.log(file);
     },
     [uploadFile]
   );

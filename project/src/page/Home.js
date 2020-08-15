@@ -23,6 +23,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+  overflow: hidden;
 `;
 
 const Header = styled.div`
@@ -113,6 +114,9 @@ const ContentWrapper = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   display: flex;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Content = styled.div`
