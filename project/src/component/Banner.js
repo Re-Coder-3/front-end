@@ -34,8 +34,8 @@ const WholeBanner = styled.div`
   background-image: url(${banner});
   background-repeat: no-repeat;
   background-size: cover;
-  height:31vw;
-  padding-top: 9%;
+  height:37vw;
+  padding-top: 6%;
   padding-left: 15.5%;
 `
 const CategoryCircles = styled.div`
