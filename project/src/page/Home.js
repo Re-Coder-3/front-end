@@ -17,12 +17,12 @@ const CATEGORY_LIST = gql`
 
 const Container = styled.div`
   width: 100%;
-  max-width: 1440;
   height: 1740px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+  overflow: hidden;
 `;
 
 const Header = styled.div`
@@ -63,7 +63,7 @@ const Button = styled.div`
 const Banner = styled.div`
   width: 100%;
   height: 100%;
-  max-height: 573px;
+  max-height: 80vh;
   padding-left: 5%;
   padding-top: 12%;
   background: url(${BannerImg}) no-repeat center center;
@@ -113,6 +113,9 @@ const ContentWrapper = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   display: flex;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Content = styled.div`

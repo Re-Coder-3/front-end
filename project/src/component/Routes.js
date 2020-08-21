@@ -3,23 +3,31 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Auth from "../page/Auth";
 import Home from "../page/Home";
 import Main from "../page/Main";
-import Profile from "../page/Profile";
+import Search from "../page/Search";
+import Header from "./Header";
 
 const LoggedOutPage = () => (
-  <Switch>
-    <Route path="/auth" component={Auth} />
-    <Route path="/profile" component={Profile} />
-    {/* <Route path="/extraAuth" component={ExtraAuth} /> */}
-    <Redirect from="*" to="/" />
-  </Switch>
+  <>
+    <Header />
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/auth" component={Auth} />
+      <Route path="/search" component={Search} />
+      {/* <Route path="/extraAuth" component={ExtraAuth} /> */}
+      <Redirect from="*" to="/" />
+    </Switch>
+  </>
 );
 
 const LoggedInPage = () => (
-  <Switch>
-    <Route exact path="/" component={Main} />
-
-    <Redirect from="*" to="/" />
-  </Switch>
+  <>
+    <Header />
+    <Switch>
+      <Route exact path="/" component={Main} />
+      <Route path="/search" component={Search} />
+      <Redirect from="*" to="/" />
+    </Switch>
+  </>
 );
 
 export default ({ LoggedBool }) =>
