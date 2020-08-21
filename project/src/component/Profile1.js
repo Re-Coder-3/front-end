@@ -4,6 +4,10 @@ import styled from "styled-components";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 
+const Content = styled.div`
+  width: 85%;
+`;
+
 const HeaderDiv = styled.div`
   padding-top: 5%;
   padding-left: 30%;
@@ -84,7 +88,7 @@ const Profile1 = () => {
   };
 
   return (
-    <div>
+    <Content>
       <HeaderDiv>
         <H1>간단한 프로필 작성하고 가세요! 🤗 </H1>
       </HeaderDiv>
@@ -132,11 +136,13 @@ const Profile1 = () => {
 
       <CommentDiv>
         <H21>
-          하나 이상의 관심분야를 선택해 주세요. <br />
-          적합한 컨텐츠를 추천해 드리는 데 도움이 됩니다!
+          하나 이상의{" "}
+          <p style={{ display: "inline", color: "#F04E44" }}>관심분야</p>를
+          선택해 주세요.{" "}
         </H21>
+        <H21>적합한 컨텐츠를 추천해 드리는 데 도움이 됩니다!</H21>
       </CommentDiv>
-    </div>
+    </Content>
   );
 };
 

@@ -20,12 +20,25 @@ const H1 = styled.h1`
   color: #353535;
 `;
 
-const Input = styled.input`
+const Inputul = styled.input`
   font-size: 18px;
   padding: 10px;
   border: none;
   border-bottom: 1.5px solid #f04244;
   background: none;
+`;
+
+const Inputbox = styled.input`
+  font-size: 18px;
+  margin-left: 3%;
+  border-top: 1px solid #f04e44;
+  border-left: 1px solid #f04e44;
+  border-bottom: 1px solid #ffe143;
+  border-right: 1px solid #ffe143;
+  border-radius: 10px;
+  background: none;
+  width: 13%;
+  height: 5%;
 `;
 
 const H2 = styled.h1`
@@ -34,12 +47,12 @@ const H2 = styled.h1`
   font-weight: normal;
   font-size: 20px;
   line-height: 29px;
-  margin: 1%;
+  margin: 2%;
   color: black;
 `;
 
 const ProButton = styled.button`
-  padding-left: 45%;
+  margin-left: 45%;
   padding-top: 3%;
   background: none;
   border: 0px;
@@ -54,7 +67,7 @@ const ProButton = styled.button`
 const H3 = styled.h1`
   position: absolute;
   padding-top: 2%;
-  padding-left: 35%;
+  margin-left: 35%;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
@@ -98,37 +111,37 @@ const Profile2 = () => {
 
       <InputDiv>
         <H2>프로필 이름을 입력해주세요.</H2>
-        <Input
+        <Inputul
           type="text"
           size="40"
           placeholder="닉네임 또는 성함을 입력해주세요."
           onChange={myName}
         />
         <H2>생년월일을 입력해주세요.</H2>
-        <Input
+        <Inputbox
           name="year"
           type="text"
-          size="5"
+          maxLength="4"
           placeholder="년(4자)"
           onChange={myYear}
         />
-        <Input
+        <Inputbox
           name="month"
           type="text"
-          size="5"
+          maxLength="2"
           placeholder="월"
           onChange={myMonth}
         />
-        <Input
+        <Inputbox
           name="day"
           type="text"
-          size="5"
+          maxLength="2"
           placeholder="일"
           onChange={myDay}
         />
 
         <H2>위치를 설정해주세요.</H2>
-        <Input
+        <Inputul
           type="text"
           size="40"
           placeholder="구까지 주활동지 주소 입력해주세요."

@@ -1,14 +1,19 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
+
+const Wrapper = styled.div`
+  width: 100%;
+`;
 
 const HeaderDiv = styled.div`
+  width: 100%;
   padding-top: 5%;
   padding-left: 30%;
 `;
 
 const ContentDiv = styled.div`
   position: absolute;
+  width: 100%;
 `;
 
 const H1 = styled.h1`
@@ -37,14 +42,16 @@ const Input = styled.input`
 `;
 
 const InputSection = styled.div`
+  display: inline-block;
   width: 10%;
   margin-left: 15%;
   float: left;
 `;
 const ImageSection = styled.div`
-  width: 50%;
+  display: inline-block;
+  width: 30%;
   margin-top: 4%;
-  margin-left: 25%;
+  margin-left: 30%;
   float: left;
 `;
 
@@ -58,7 +65,7 @@ const ProfileImage = styled.div`
 const OutsideImageBox = styled.input`
   width: 120px;
   height: 120px;
-  border: 5px solid #ffffff;
+  border: 1px solid #ffffff;
   background: none;
 `;
 
@@ -77,7 +84,7 @@ const Profile3 = () => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <HeaderDiv>
         <H1>(선택)프로필을 채워주세요! 🤗</H1>
       </HeaderDiv>
@@ -85,14 +92,18 @@ const Profile3 = () => {
       <ContentDiv>
         <InputSection>
           <ProfileImage>
-            <input id="profilePic" type="file" onChange={onChangePicture} />
+            <input
+              id="profilePic"
+              type="file"
+              onChange={onChangePicture}
+            ></input>
             <img
               src={imgData}
               style={{
                 height: 120,
                 width: 120,
-                borderRadius: 50,
-                // overflow: "hidden",
+                borderRadius: 100,
+                overflow: "hidden" /* 넘친 부분 잘려서 보이지 않음 */,
               }}
             />
           </ProfileImage>
@@ -106,17 +117,15 @@ const Profile3 = () => {
           <OutsideImageBox type="file" />
           <OutsideImageBox type="file" />
           <OutsideImageBox type="file" />
-          <br />
           <OutsideImageBox type="file" />
           <OutsideImageBox type="file" />
           <OutsideImageBox type="file" />
-          <br />
           <OutsideImageBox type="file" />
           <OutsideImageBox type="file" />
           <OutsideImageBox type="file" />
         </ImageSection>
       </ContentDiv>
-    </div>
+    </Wrapper>
   );
 };
 

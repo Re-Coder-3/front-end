@@ -15,13 +15,13 @@ const Wrapper = styled.div`
 //2
 const Container = styled.div`
   width: 100%;
-  height: 120vh;
+  height: 100vh;
 `;
 //3 Slide
 const SlideBox = styled.div`
   position: relative;
   width: 100%;
-  height: 120vh;
+  height: 100vh;
   &:nth-child(-n + 3) {
     background: url(${profileImg}) no-repeat;
     background-size: cover;
@@ -32,14 +32,19 @@ const SlideBox = styled.div`
   }
 `;
 
-//4 slide 안
-const Item = () => {};
+//4 slide content
+const Item = styled.div``;
+
+//5 Slide later/next button
+const Scroll = styled.div`
+  width: 10%;
+  margin-left: 85%;
+  border: none;
+`;
 
 //다음단계
 const NextButton = styled.button`
-  margin-left: 85%;
   border: 0px;
-  position: absolute;
   background: none;
   font-family: Noto Sans KR;
   font-style: normal;
@@ -51,10 +56,8 @@ const NextButton = styled.button`
 
 //다음에 하기
 const LaterButton = styled.button`
-  margin-top: 2%;
-  margin-left: 85%;
+  margin-top: 30%;
   border: 0px;
-  position: absolute;
   background: none;
   font-family: Noto Sans KR;
   font-style: normal;
@@ -83,12 +86,14 @@ const Profile = () => {
     <Wrapper>
       <Container ref={slideRef}>
         <SlideBox>
-          <LaterButton onClick={nextSlide}>다음에 하기</LaterButton>
           <Profile1></Profile1>
-          <NextButton onClick={nextSlide}>
-            <FaArrowRight size="50px" /> <br />
-            다음 단계
-          </NextButton>
+          <Scroll>
+            <LaterButton onClick={nextSlide}>다음에 하기</LaterButton>
+            <NextButton onClick={nextSlide}>
+              <FaArrowRight size="50px" /> <br />
+              다음 단계
+            </NextButton>
+          </Scroll>
         </SlideBox>
 
         <SlideBox>
@@ -101,7 +106,9 @@ const Profile = () => {
         </SlideBox>
 
         <SlideBox>
-          <LaterButton onClick={nextSlide}>다음에 하기</LaterButton>
+          <LaterButton onClick={nextSlide} style={{ color: "white" }}>
+            다음에 하기
+          </LaterButton>
           <Profile3></Profile3>
           <NextButton onClick={nextSlide}>
             <FaArrowRight size="50px" /> <br />
