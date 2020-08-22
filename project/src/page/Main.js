@@ -109,7 +109,6 @@ const Main = () => {
                     </ContentInnerWrapper>
                 </ContentWrapper>
             </MainContents>
-            <Footer/>
         </Page>
     );
 }
