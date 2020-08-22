@@ -5,6 +5,7 @@ import Home from "../page/Home";
 import Main from "../page/Main";
 import Search from "../page/Search";
 import Header from "./Header";
+import Footer from "./Footer";
 import Profile from "../page/Profile";
 import MyPage from "../page/MyPage";
 
@@ -20,6 +21,7 @@ const LoggedOutPage = () => (
       {/* <Route path="/extraAuth" component={ExtraAuth} /> */}
       <Redirect from="*" to="/" />
     </Switch>
+    <Footer/>
   </>
 );
 
@@ -32,6 +34,7 @@ const LoggedInPage = () => (
       <Route path="/mypage" component={MyPage} />
       <Redirect from="*" to="/" />
     </Switch>
+      <Footer/>
   </>
 );
 
