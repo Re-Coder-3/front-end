@@ -8,9 +8,10 @@ import Modal from "../component/Modal";
 import MyDropzone from "../component/MyDropzone";
 
 const Container = styled.div`
-  width: 100%;
+  width: 72%;
   height: 100%;
   padding: 64px 0 0 0;
+  margin:0px auto;
 `;
 
 const ClassificationBox = styled.div`
@@ -38,6 +39,13 @@ const ContentWrapper = styled.div`
   background-color: blue;
 `;
 
+const SearchResultText = styled.div`
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: gray;
+`;
+
 const CHECK_USER = gql`
   query {
     checkUser
@@ -57,6 +65,9 @@ const Search = () => {
   const content = useInput("");
   const [upload] = useMutation(UPLOAD_FILE);
 
+  const SearchText = "이것"
+  // 백엔드 연결 전에 임시로 쓰는 데이터
+
   const onClick = (e) => {
     setType(e.target.id);
   };
@@ -68,6 +79,9 @@ const Search = () => {
   };
   return (
     <Container>
+      <SearchResultText>
+        '{SearchText}'을(를) 포함한 포스팅입니다.
+      </SearchResultText>
       <ClassificationBox>
         <Text id={"all"} type={type === "all"} onClick={onClick}>
           전체
