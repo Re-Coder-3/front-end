@@ -6,6 +6,7 @@ import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import Modal from "../component/Modal";
 import MyDropzone from "../component/MyDropzone";
+import SearchPost from "../component/SearchPost";
 
 const Container = styled.div`
   width: 72%;
@@ -109,6 +110,11 @@ const Search = () => {
         )}
         <MyDropzone></MyDropzone>
       </ContentWrapper>
+      <SearchPost/>
+      <SearchPost/>
+      <SearchPost/>
+      <SearchPost/>
+      <SearchPost/>
     </Container>
   );
 };
