@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TestImg from "../img/test1.jpeg";
-import Heart from "../img/heart.png";
-import Share from "../img/share.png";
+import { HeartIcon } from "../component/Icons";
+import { ShareIcon } from "../component/Icons";
 
 //상단 프로필 부분
 const Containter = styled.div`
@@ -79,28 +79,12 @@ const Additional = styled.div`
   overflow: hidden;
 `;
 
-const Likes = styled.button`
-  float: left;
-  margin: 0% 0% 0% 50%;
-  background: url(${Heart}) no-repeat;
+const Button = styled.button`
+  margin: 0% 0% 0% 4%;
+  float: right;
   border: 0;
-  height: 30px;
-  width: 33px;
-`;
-
-const Shared = styled.button`
-  float: left;
-  margin: 0% 0% 0% 60%;
-  background: url(${Share}) no-repeat;
-  border: 0;
-  height: 30px;
-  width: 33px;
-`;
-
-const Report = styled.button`
-  float: left;
-  margin: 0% 0% 0% 80%;
-  border: 0;
+  background: none;
+  font-size: 15px;
 `;
 
 //밑부분
@@ -170,11 +154,13 @@ const MyPage = () => {
               />
             </ProfileImg>
             <Additional>
-              {/* <Likes></Likes> 1,247
-              <Shared></Shared> 공유 */}
-              <img src={Heart} /> 1,247
-              <img src={Share} /> 공유
-              <Report>신고</Report>
+              <Button>신고</Button>
+              <Button>
+                <ShareIcon></ShareIcon> 공유
+              </Button>
+              <Button>
+                <HeartIcon></HeartIcon>1,247
+              </Button>
             </Additional>
             <ProfileBox2>
               <ProfileName>우왕좌왕</ProfileName>
