@@ -6,19 +6,22 @@ const Foot = styled.div`
   height: 7vw;
   border-top: solid 1px #747474;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
 `
 
 const FootText = styled.div`
   font-size: 1.4vw;
   color: grey;
+  flex-grow:2;
 `
 const Logo = styled.div`
   font-size: 25px;
   font-weight: bold;
    display: flex;
   align-items: center;
+  justify-content: center;
+  FLEX-GROW: 1.5;
 `
 
 const Footer = () => {
