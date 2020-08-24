@@ -38,6 +38,20 @@ const ModalInner = styled.div`
   overflow: hidden;
   padding: 30px;
 `;
+const ButtonWrapper = styled.div`
+  width: 100%;
+  font-size: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 2%;
+  & > div:first-child {
+    color: grey;
+  }
+  & > div:last-child {
+    font-weight: 600;
+  }
+`;
 
 const Modal = ({
   className,
@@ -70,12 +84,11 @@ const Modal = ({
         visible={visible}
       >
         <ModalInner tabIndex="0" className="modal-inner">
-          {/* {closable && (
-            <button className="modal-close" onClick={close}>
-              x
-            </button>
-          )} */}
           {children}
+          <ButtonWrapper>
+            {closable && <div onClick={close}>닫기</div>}
+            <div>등록</div>
+          </ButtonWrapper>
         </ModalInner>
       </ModalWrapper>
     </>

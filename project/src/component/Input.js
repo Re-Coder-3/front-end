@@ -5,7 +5,6 @@ import styled from "styled-components";
 const InputBox = styled.input`
   border: 0;
   border-bottom: 1px solid #f04e44;
-  margin-top: 20px;
   width: 400px;
   height: 35px;
   font-size: 18px;
