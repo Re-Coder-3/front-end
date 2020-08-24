@@ -31,9 +31,9 @@ const ModalInner = styled.div`
   background-color: white;
   border-radius: 20px;
   width: 100%;
-  height: 70%;
+  height: ${(props) => (props.size.width > 900 ? "70%" : "100%")};
   max-width: 1200px;
-  top: 10%;
+  top: ${(props) => (props.size.width > 900 ? "10%" : "0")};
   margin: 0 auto;
   overflow: hidden;
   padding: 30px;
@@ -60,6 +60,7 @@ const Modal = ({
   closable,
   visible,
   children,
+  size,
 }) => {
   const onMaskClick = (e) => {
     // * event.target 은 현재 타겟
@@ -83,7 +84,7 @@ const Modal = ({
         tabIndex="-1"
         visible={visible}
       >
-        <ModalInner tabIndex="0" className="modal-inner">
+        <ModalInner tabIndex="0" className="modal-inner" size={size}>
           {children}
           <ButtonWrapper>
             {closable && <div onClick={close}>닫기</div>}

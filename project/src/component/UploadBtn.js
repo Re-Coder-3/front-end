@@ -7,24 +7,25 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import Modal from "./Modal";
 import MyDropzone from "./MyDropzone";
 import { Pencil } from "./Icons";
+import useWindowSize from "../Hooks/useWindowSize";
 
 const MContentWrapper = styled.div`
   padding: 3% 5% 0 5%;
   width: 100%;
   height: 90%;
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.size.width > 900 ? "row" : "column")};
 `;
 
 const MInputBox = styled.div`
-  width: 60%;
+  width: ${(props) => (props.size.width > 900 ? "60%" : "90%")};
   height: 100%;
 `;
 
 const UploadBox = styled.div`
-  width: 40%;
+  width: ${(props) => (props.size.width > 900 ? "40%" : "90%")};
   height: 90%;
-  margin-left: 50px;
+  margin-left: ${(props) => (props.size.width > 900 ? "50px" : "0")};
   margin-top: 3%;
   padding: 4px;
   background: linear-gradient(
@@ -35,7 +36,8 @@ const UploadBox = styled.div`
     #f04e44;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${(props) =>
+    props.size.width > 900 ? "repeat(3, 1fr)" : "none"};
   grid-gap: 4px;
 `;
 
@@ -55,7 +57,7 @@ const Textarea = styled.textarea`
     #f04e44 23px,
     white 23px
   );
-  margin-top: 25%;
+  margin-top: ${(props) => (props.size.width > 900 ? "25%" : "10%")};
   border-style: none;
   outline: none;
   background-size: 100% 23px;
@@ -81,6 +83,7 @@ const UPLOAD_FILE = gql`
 `;
 
 export default () => {
+  const size = useWindowSize();
   const [modalVisible, setModalVisible] = useState(false);
   const title = useInput("");
   const hashtag = useInput("");
@@ -111,24 +114,28 @@ export default () => {
           closable={true}
           maskClosable={true}
           onClose={closeModal}
+          size={size}
         >
-          <MContentWrapper>
-            <MInputBox>
+          <MContentWrapper size={size}>
+            <MInputBox size={size}>
               <MInput placeholder={"제목을 써주세요"} {...title}></MInput>
               <MInput
                 placeholder={"분야, 장소 등 조건을 써주세요"}
                 {...hashtag}
               ></MInput>
               <Textarea
+                size={size}
                 rows={"7"}
                 placeholder={"설명글을 입력해주세요"}
                 onChange={onChange}
               ></Textarea>
             </MInputBox>
-            <UploadBox>
-              {UPLOAD_BOX_COUNT.map(() => (
+            <UploadBox size={size}>
+              {size.width > 900 ? (
+                UPLOAD_BOX_COUNT.map(() => <MyDropzone></MyDropzone>)
+              ) : (
                 <MyDropzone></MyDropzone>
-              ))}
+              )}
             </UploadBox>
           </MContentWrapper>
         </Modal>
