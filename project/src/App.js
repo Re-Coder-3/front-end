@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import GlobalStyles from "./component/GlobalStyles";
@@ -18,7 +19,9 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Routes LoggedBool={LoggedBool} />
+      <Router>
+        <Routes LoggedBool={LoggedBool} />
+      </Router>
     </>
   );
 }

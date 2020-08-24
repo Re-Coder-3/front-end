@@ -1,5 +1,6 @@
 {
   "name": "project",
+  "homepage": "https://xenodochial-torvalds-a4c684.netlify.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
