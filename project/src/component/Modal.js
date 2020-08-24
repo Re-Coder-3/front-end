@@ -29,13 +29,28 @@ const ModalInner = styled.div`
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: white;
-  border-radius: 15px;
+  border-radius: 20px;
   width: 100%;
-  height: 50vh;
-  max-width: 800px;
-  top: 20%;
+  height: ${(props) => (props.size.width > 900 ? "70%" : "100%")};
+  max-width: 1200px;
+  top: ${(props) => (props.size.width > 900 ? "10%" : "0")};
   margin: 0 auto;
-  padding: 20px;
+  overflow: hidden;
+  padding: 30px;
+`;
+const ButtonWrapper = styled.div`
+  width: 100%;
+  font-size: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 2%;
+  & > div:first-child {
+    color: grey;
+  }
+  & > div:last-child {
+    font-weight: 600;
+  }
 `;
 
 const Modal = ({
@@ -45,6 +60,7 @@ const Modal = ({
   closable,
   visible,
   children,
+  size,
 }) => {
   const onMaskClick = (e) => {
     // * event.target 은 현재 타겟
@@ -68,13 +84,12 @@ const Modal = ({
         tabIndex="-1"
         visible={visible}
       >
-        <ModalInner tabIndex="0" className="modal-inner">
-          {/* {closable && (
-            <button className="modal-close" onClick={close}>
-              x
-            </button>
-          )} */}
+        <ModalInner tabIndex="0" className="modal-inner" size={size}>
           {children}
+          <ButtonWrapper>
+            {closable && <div onClick={close}>닫기</div>}
+            <div>등록</div>
+          </ButtonWrapper>
         </ModalInner>
       </ModalWrapper>
     </>
