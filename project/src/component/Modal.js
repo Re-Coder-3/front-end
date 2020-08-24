@@ -29,13 +29,14 @@ const ModalInner = styled.div`
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: white;
-  border-radius: 15px;
+  border-radius: 20px;
   width: 100%;
-  height: 50vh;
-  max-width: 800px;
-  top: 20%;
+  height: 70%;
+  max-width: 1200px;
+  top: 10%;
   margin: 0 auto;
-  padding: 20px;
+  overflow: hidden;
+  padding: 30px;
 `;
 
 const Modal = ({

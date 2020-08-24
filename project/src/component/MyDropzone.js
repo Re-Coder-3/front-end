@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
@@ -7,6 +8,13 @@ const uploadFileMutation = gql`
   mutation UploadFile($file: Upload!) {
     singleUpload(file: $file)
   }
+`;
+
+const DropBox = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
+  background-color: white;
 `;
 
 export default () => {
@@ -21,13 +29,9 @@ export default () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()}>
+    <DropBox {...getRootProps()}>
       <input {...getInputProps()} />
-      {isDragActive ? (
-        <p>Drop the files here ...</p>
-      ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      )}
-    </div>
+      {isDragActive ? <div></div> : <div></div>}
+    </DropBox>
   );
 };

@@ -38,6 +38,77 @@ const ContentWrapper = styled.div`
   background-color: blue;
 `;
 
+const MContentWrapper = styled.div`
+  padding: 3% 5% 0 5%;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+`;
+
+const MInputBox = styled.div`
+  width: 60%;
+  height: 100%;
+`;
+
+const UploadBox = styled.div`
+  width: 40%;
+  height: 90%;
+  margin-left: 50px;
+  margin-top: 3%;
+  padding: 4px;
+  background: linear-gradient(
+      311.48deg,
+      #ffe143 -3.24%,
+      rgba(255, 255, 255, 0) 78.93%
+    ),
+    #f04e44;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 4px;
+`;
+
+const MInput = styled(Input)`
+  width: 100%;
+  font-size: 20px;
+  margin-top: 10px;
+`;
+
+const Textarea = styled.textarea`
+  overflow: auto;
+  resize: none;
+  background-image: linear-gradient(
+    white,
+    white 22px,
+    #f04e44 22px,
+    #f04e44 23px,
+    white 23px
+  );
+  margin-top: 25%;
+  border-style: none;
+  outline: none;
+  background-size: 100% 23px;
+  border-radius: 8px;
+  line-height: 23px;
+  width: 100%;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+  }
+`;
+const ButtonWrapper = styled.div`
+  width: 100%;
+  font-size: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 2%;
+  & > div:first-child {
+    color: grey;
+  }
+`;
+
 const CHECK_USER = gql`
   query {
     checkUser
@@ -48,6 +119,8 @@ const UPLOAD_FILE = gql`
     singleUpload(file: $file)
   }
 `;
+
+const UPLOAD_BOX_COUNT = new Array(9).fill(0);
 
 const Search = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -88,12 +161,30 @@ const Search = () => {
             maskClosable={true}
             onClose={closeModal}
           >
-            <Input placeholder={"title"} {...title}></Input>
-            <Input placeholder={"hashtag"} {...hashtag}></Input>
-            <Input placeholder={"content"} {...content}></Input>
+            <MContentWrapper>
+              <MInputBox>
+                <MInput placeholder={"제목을 써주세요"} {...title}></MInput>
+                <MInput
+                  placeholder={"분야, 장소 등 조건을 써주세요"}
+                  {...hashtag}
+                ></MInput>
+                <Textarea
+                  rows={"7"}
+                  placeholder={"설명글을 입력해주세요"}
+                ></Textarea>
+              </MInputBox>
+              <UploadBox>
+                {UPLOAD_BOX_COUNT.map((box) => (
+                  <MyDropzone></MyDropzone>
+                ))}
+              </UploadBox>
+            </MContentWrapper>
+            <ButtonWrapper>
+              <div>취소</div>
+              <div>올리기</div>
+            </ButtonWrapper>
           </Modal>
         )}
-        <MyDropzone></MyDropzone>
       </ContentWrapper>
     </Container>
   );
