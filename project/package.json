@@ -1,6 +1,5 @@
 {
   "name": "project",
-  "homepage": "https://xenodochial-mahavira-837002.netlify.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
