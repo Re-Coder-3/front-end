@@ -19,12 +19,12 @@ const MContentWrapper = styled.div`
 
 const MInputBox = styled.div`
   width: ${(props) => (props.size.width > 900 ? "60%" : "90%")};
-  height: 100%;
+  height: ${(props) => (props.size.width > 900 ? "90%" : "60%")};
 `;
 
 const UploadBox = styled.div`
   width: ${(props) => (props.size.width > 900 ? "40%" : "90%")};
-  height: 90%;
+  height: ${(props) => (props.size.width > 900 ? "90%" : "30%")};
   margin-left: ${(props) => (props.size.width > 900 ? "50px" : "0")};
   margin-top: 3%;
   padding: 4px;
@@ -35,10 +35,11 @@ const UploadBox = styled.div`
     ),
     #f04e44;
   border-radius: 10px;
-  display: grid;
+  display: ${(props) => (props.size.width > 900 ? "grid" : "flex")};
   grid-template-columns: ${(props) =>
     props.size.width > 900 ? "repeat(3, 1fr)" : "none"};
   grid-gap: 4px;
+  overflow-x: scroll;
 `;
 
 const MInput = styled(Input)`
@@ -131,11 +132,9 @@ export default () => {
               ></Textarea>
             </MInputBox>
             <UploadBox size={size}>
-              {size.width > 900 ? (
-                UPLOAD_BOX_COUNT.map(() => <MyDropzone></MyDropzone>)
-              ) : (
-                <MyDropzone></MyDropzone>
-              )}
+              {size.width > 900
+                ? UPLOAD_BOX_COUNT.map(() => <MyDropzone></MyDropzone>)
+                : UPLOAD_BOX_COUNT.map(() => <MyDropzone></MyDropzone>)}
             </UploadBox>
           </MContentWrapper>
         </Modal>
