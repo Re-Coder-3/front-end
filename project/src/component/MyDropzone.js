@@ -12,6 +12,8 @@ const uploadFileMutation = gql`
 
 const DropBox = styled.div`
   width: 100%;
+  min-width: 150px;
+  min-height: 150px;
   height: 100%;
   border: 1px solid white;
   background-color: white;
