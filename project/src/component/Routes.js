@@ -7,7 +7,6 @@ import Search from "../page/Search";
 import Header from "./Header";
 import Profile from "../page/Profile";
 import MyPage from "../page/MyPage";
-import Header1 from "./Header1";
 
 const LoggedOutPage = () => (
   <>
@@ -26,7 +25,7 @@ const LoggedOutPage = () => (
 
 const LoggedInPage = () => (
   <>
-    <Header1 />
+    <Header />
     <Switch>
       <Route exact path="/" component={Main} />
       <Route path="/search" component={Search} />
