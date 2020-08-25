@@ -5,6 +5,8 @@ import { gql } from "apollo-boost";
 import { TitleLogo, Pencil, Profile, Heart, LoginIcon } from "./Icons";
 import useInput from "../Hooks/useInput";
 import Input from "./Input";
+import UploadBtn from "./UploadBtn";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -81,9 +83,13 @@ const Header1 = () => {
       <HeaderColumn>
         {LoggedBool ? (
           <>
-            <Pencil />
-            <Heart />
-            <Profile />
+            <UploadBtn />
+            <Link to="/mypage">
+              <Heart />
+            </Link>
+            <Link to="/search">
+              <Profile />
+            </Link>
           </>
         ) : (
           <LoginIcon />

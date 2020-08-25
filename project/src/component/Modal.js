@@ -85,11 +85,23 @@ const Modal = ({
         visible={visible}
       >
         <ModalInner tabIndex="0" className="modal-inner" size={size}>
-          {children}
-          <ButtonWrapper>
-            {closable && <div onClick={close}>닫기</div>}
-            <div>등록</div>
-          </ButtonWrapper>
+          {size.width > 900 ? (
+            <>
+              {children}
+              <ButtonWrapper>
+                {closable && <div onClick={close}>닫기</div>}
+                <div>등록</div>
+              </ButtonWrapper>
+            </>
+          ) : (
+            <>
+              <ButtonWrapper>
+                {closable && <div onClick={close}>닫기</div>}
+                <div>등록</div>
+              </ButtonWrapper>
+              {children}
+            </>
+          )}
         </ModalInner>
       </ModalWrapper>
     </>
