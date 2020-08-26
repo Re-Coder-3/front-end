@@ -8,24 +8,38 @@ import Modal from "./Modal";
 import MyDropzone from "./MyDropzone";
 import { Pencil } from "./Icons";
 import useWindowSize from "../Hooks/useWindowSize";
+import { device } from "../styles/responsive";
 
 const MContentWrapper = styled.div`
   padding: 3% 5% 0 5%;
   width: 100%;
   height: 90%;
   display: flex;
-  flex-direction: ${(props) => (props.size.width > 900 ? "row" : "column")};
+  @media ${device.tablet} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const MInputBox = styled.div`
-  width: ${(props) => (props.size.width > 900 ? "60%" : "90%")};
-  height: ${(props) => (props.size.width > 900 ? "90%" : "60%")};
+  width: 60%;
+  height: 90%;
+  @media ${device.tablet} {
+    width: 80%;
+    height: 75%;
+  }
+  @media ${device.mobileS} {
+    width: 90%;
+    height: 60%;
+  }
 `;
 
 const UploadBox = styled.div`
-  width: ${(props) => (props.size.width > 900 ? "40%" : "90%")};
-  height: ${(props) => (props.size.width > 900 ? "90%" : "30%")};
-  margin-left: ${(props) => (props.size.width > 900 ? "50px" : "0")};
+  width: 40%;
+  height: 90%;
+  margin-left: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 3%;
   padding: 4px;
   background: linear-gradient(
@@ -35,11 +49,22 @@ const UploadBox = styled.div`
     ),
     #f04e44;
   border-radius: 10px;
-  display: ${(props) => (props.size.width > 900 ? "grid" : "flex")};
-  grid-template-columns: ${(props) =>
-    props.size.width > 900 ? "repeat(3, 1fr)" : "none"};
   grid-gap: 4px;
   overflow-x: scroll;
+  @media ${device.tablet} {
+    width: 70%;
+    height: 70%;
+    margin-left: 0;
+    margin-top: 2%;
+    display: flex;
+    overflow-x: scroll;
+    max-height: 123px;
+  }
+  @media ${device.mobileS} {
+    width: 90%;
+    height: 50%;
+    max-height: 93px;
+  }
 `;
 
 const MInput = styled(Input)`
@@ -58,7 +83,7 @@ const Textarea = styled.textarea`
     #f04e44 23px,
     white 23px
   );
-  margin-top: ${(props) => (props.size.width > 900 ? "25%" : "10%")};
+  margin-top: 25%;
   border-style: none;
   outline: none;
   background-size: 100% 23px;
@@ -68,6 +93,12 @@ const Textarea = styled.textarea`
   font-size: 14px;
   &:focus {
     outline: none;
+  }
+  @media ${device.tablet} {
+    margin-top: 15%;
+  }
+  @media ${device.mobileS} {
+    margin-top: 10%;
   }
 `;
 
@@ -117,24 +148,23 @@ export default () => {
           onClose={closeModal}
           size={size}
         >
-          <MContentWrapper size={size}>
-            <MInputBox size={size}>
+          <MContentWrapper>
+            <MInputBox>
               <MInput placeholder={"제목을 써주세요"} {...title}></MInput>
               <MInput
                 placeholder={"분야, 장소 등 조건을 써주세요"}
                 {...hashtag}
               ></MInput>
               <Textarea
-                size={size}
                 rows={"7"}
                 placeholder={"설명글을 입력해주세요"}
                 onChange={onChange}
               ></Textarea>
             </MInputBox>
-            <UploadBox size={size}>
-              {size.width > 900
-                ? UPLOAD_BOX_COUNT.map(() => <MyDropzone></MyDropzone>)
-                : UPLOAD_BOX_COUNT.map(() => <MyDropzone></MyDropzone>)}
+            <UploadBox>
+              {UPLOAD_BOX_COUNT.map(() => (
+                <MyDropzone></MyDropzone>
+              ))}
             </UploadBox>
           </MContentWrapper>
         </Modal>

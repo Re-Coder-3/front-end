@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { device } from "../styles/responsive";
 
 const ModalWrapper = styled.div`
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -31,25 +32,38 @@ const ModalInner = styled.div`
   background-color: white;
   border-radius: 20px;
   width: 100%;
-  height: ${(props) => (props.size.width > 900 ? "70%" : "100%")};
+  height: 70%;
+  top: 10%;
   max-width: 1200px;
-  top: ${(props) => (props.size.width > 900 ? "10%" : "0")};
   margin: 0 auto;
   overflow: hidden;
   padding: 30px;
+  @media ${device.tablet} {
+    height: 80%;
+  }
+  @media ${device.mobileS} {
+    top: 0;
+    height: 100%;
+  }
 `;
 const ButtonWrapper = styled.div`
   width: 100%;
-  font-size: 28px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 2%;
+  font-size: 28px;
   & > div:first-child {
     color: grey;
   }
   & > div:last-child {
     font-weight: 600;
+  }
+  @media ${device.tablet} {
+    font-size: 24px;
+  }
+  @media ${device.mobileS} {
+    font-size: 20px;
   }
 `;
 
@@ -84,8 +98,8 @@ const Modal = ({
         tabIndex="-1"
         visible={visible}
       >
-        <ModalInner tabIndex="0" className="modal-inner" size={size}>
-          {size.width > 900 ? (
+        <ModalInner tabIndex="0" className="modal-inner">
+          {size.width > 768 ? (
             <>
               {children}
               <ButtonWrapper>

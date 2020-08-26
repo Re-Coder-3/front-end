@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
+import { device } from "../styles/responsive";
 
 const uploadFileMutation = gql`
   mutation UploadFile($file: Upload!) {
@@ -13,8 +14,21 @@ const uploadFileMutation = gql`
 const DropBox = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid white;
   background-color: white;
+  @media ${device.tablet} {
+    height: none;
+    min-width: 120px;
+    &:after {
+      padding-bottom: 100%;
+    }
+  }
+  @media ${device.mobileS} {
+    height: none;
+    min-width: 90px;
+    &:after {
+      padding-bottom: 100%;
+    }
+  }
 `;
 
 export default () => {
