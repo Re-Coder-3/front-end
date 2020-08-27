@@ -3,15 +3,13 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const InputBox = styled.input`
-  border: 0;  
-  border-bottom: 1px solid pink;
-  margin-top: 20px;
+  border: 0;
+  border-bottom: 1px solid #f04e44;
   width: 400px;
   height: 35px;
   font-size: 18px;
   padding: 0px 15px;
   color: grey;
-
 `;
 
 const Input = ({

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { device } from "../styles/responsive";
 
 const ModalWrapper = styled.div`
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -29,13 +30,41 @@ const ModalInner = styled.div`
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: white;
-  border-radius: 15px;
+  border-radius: 20px;
   width: 100%;
-  height: 50vh;
-  max-width: 800px;
-  top: 20%;
+  height: 70%;
+  top: 10%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  overflow: hidden;
+  padding: 30px;
+  @media ${device.tablet} {
+    height: 80%;
+  }
+  @media ${device.mobileS} {
+    top: 0;
+    height: 100%;
+  }
+`;
+const ButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 2%;
+  font-size: 28px;
+  & > div:first-child {
+    color: grey;
+  }
+  & > div:last-child {
+    font-weight: 600;
+  }
+  @media ${device.tablet} {
+    font-size: 24px;
+  }
+  @media ${device.mobileS} {
+    font-size: 20px;
+  }
 `;
 
 const Modal = ({
@@ -45,6 +74,7 @@ const Modal = ({
   closable,
   visible,
   children,
+  size,
 }) => {
   const onMaskClick = (e) => {
     // * event.target 은 현재 타겟
@@ -69,12 +99,23 @@ const Modal = ({
         visible={visible}
       >
         <ModalInner tabIndex="0" className="modal-inner">
-          {/* {closable && (
-            <button className="modal-close" onClick={close}>
-              x
-            </button>
-          )} */}
-          {children}
+          {size.width > 768 ? (
+            <>
+              {children}
+              <ButtonWrapper>
+                {closable && <div onClick={close}>닫기</div>}
+                <div>등록</div>
+              </ButtonWrapper>
+            </>
+          ) : (
+            <>
+              <ButtonWrapper>
+                {closable && <div onClick={close}>닫기</div>}
+                <div>등록</div>
+              </ButtonWrapper>
+              {children}
+            </>
+          )}
         </ModalInner>
       </ModalWrapper>
     </>
