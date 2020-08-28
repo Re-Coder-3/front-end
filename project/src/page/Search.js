@@ -6,6 +6,7 @@ import Modal from "../component/Modal";
 import MyDropzone from "../component/MyDropzone";
 import SearchPost from "../component/SearchPost";
 import UploadBtn from "../component/UploadBtn";
+import ReviewBtn from "../component/ReviewBtn";
 
 const Container = styled.div`
   width: 72%;
@@ -79,6 +80,7 @@ const Search = () => {
       </ClassificationBox>
       <ContentWrapper>
         <UploadBtn></UploadBtn>
+        <ReviewBtn></ReviewBtn>
       </ContentWrapper>
       <SearchPost/>
       <SearchPost/>
