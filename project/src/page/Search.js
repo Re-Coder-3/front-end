@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { gql } from "apollo-boost";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import UploadBtn from "../component/UploadBtn";
+import ReviewBtn from "../component/ReviewBtn";
 
 const Container = styled.div`
   width: 100%;
@@ -62,6 +63,7 @@ const Search = () => {
       </ClassificationBox>
       <ContentWrapper>
         <UploadBtn></UploadBtn>
+        <ReviewBtn></ReviewBtn>
       </ContentWrapper>
     </Container>
   );

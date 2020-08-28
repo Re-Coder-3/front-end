@@ -32,7 +32,7 @@ const ModalInner = styled.div`
   background-color: white;
   border-radius: 20px;
   width: 100%;
-  height: 70%;
+  height: ${(props) => (props.type === "review" ? "45%" : "70%")};
   top: 10%;
   max-width: 1200px;
   margin: 0 auto;
@@ -75,6 +75,7 @@ const Modal = ({
   visible,
   children,
   size,
+  type,
 }) => {
   const onMaskClick = (e) => {
     // * event.target 은 현재 타겟
@@ -98,8 +99,16 @@ const Modal = ({
         tabIndex="-1"
         visible={visible}
       >
-        <ModalInner tabIndex="0" className="modal-inner">
+        <ModalInner tabIndex="0" className="modal-inner" type={type}>
           {size.width > 768 ? (
+            <>
+              {children}
+              <ButtonWrapper>
+                {closable && <div onClick={close}>닫기</div>}
+                <div>등록</div>
+              </ButtonWrapper>
+            </>
+          ) : type === "review" ? (
             <>
               {children}
               <ButtonWrapper>
