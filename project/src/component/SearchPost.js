@@ -16,12 +16,12 @@ const Content = styled.div`
   padding: 1vw 2vw;
   display: grid;
   grid-template-rows:2fr 1.5fr 1fr 4.5fr;
-  grid-template-columns:1fr 5fr;
+  grid-template-columns:1fr 5fr 1fr;
   grid-template-areas:
-  "profile Title"
-  "profile Tags"
-  "profile Etc"
-  "ContentText ContentText";
+  "profile Title Icons"
+  "profile Tags Icons"
+  "profile Etc Etc"
+  "ContentText ContentText ContentText";
 `
 const ImgWrapper = styled.div`
   background-color: #333aaa;
@@ -65,6 +65,9 @@ height: 70%;
 border: solid 1px black;
 margin: 0 auto;
 `
+const PostIcons = styled.div`
+grid-area: Icons;
+`
 
 const SearchPost = () => {
     return (
@@ -73,6 +76,7 @@ const SearchPost = () => {
                 <Profile><ProfileImgWrapper><Image src={testimg} /></ProfileImgWrapper> <Name>사람이름</Name></Profile>
                 <Title>제목</Title>
                 <Tags>태그</Tags>
+                <PostIcons>좋아요 공유</PostIcons>
                 <Etc>지역 분야 필수조건</Etc>
                 <ContentText>글내용미리보기</ContentText>
             </Content>
