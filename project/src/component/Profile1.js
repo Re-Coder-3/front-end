@@ -56,6 +56,7 @@ const H21 = styled.h1`
 `;
 
 const Profile1 = () => {
+  const [formType, setFormType] = useState("login");
   const [category, setCategory] = useState([]);
   const onClick = (e) => {
     e.preventDefault();
@@ -70,28 +71,32 @@ const Profile1 = () => {
   };
 
   const LIKE_CATEGORY = gql`
-    mutation categoryUser($category: Array!) {
-      categoryUser(category: $category)
+    mutation updateUserProfile($user_like_category: String) {
+      updateUserProfile(user_like_category: $user_like_category) {
+        error
+        status
+      }
     }
   `;
-  const [categoryUser, { data }] = useMutation(LIKE_CATEGORY, {
-    variables: { category: category },
+
+  const [updateUserProfile] = useMutation(LIKE_CATEGORY, {
+    variables: {
+      user_like_categry: category,
+    },
   });
 
-  const [categoryMutation] = useMutation(LIKE_CATEGORY);
-
-  const NextClick = async (event) => {
+  //페이지 넘어갈 때
+  const SaveData = async (event) => {
     event.preventDefault();
-    const result = await categoryUser();
+    const result = await updateUserProfile();
     if (result) {
       const {
         data: {
-          categoryUser: { data: token, status, error },
+          updateUserProfile: { status, error },
         },
       } = result;
-      console.log(token, error, status);
       if (status === 200) {
-        categoryMutation({ variables: { token } });
+        setFormType("login");
       }
     }
   };

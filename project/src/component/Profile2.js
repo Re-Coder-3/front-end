@@ -87,10 +87,11 @@ const H3 = styled.h1`
 `;
 
 const Profile2 = () => {
+  const [formType, setFormType] = useState("login");
   const [name, setName] = useState("");
-  const [year, setYear] = useState();
-  const [month, setMonth] = useState();
-  const [day, setDay] = useState();
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
   const [location, setLocation] = useState("");
 
   const myName = useCallback((e) => {
@@ -112,28 +113,46 @@ const Profile2 = () => {
   let check = React.createElement("input", { type: "checkbox", value: false });
 
   const User_Data = gql`
-    mutation UserData(
-      $name: String!
-      $year: Int!
-      $month: Int!
-      $day: Int!
-      $location: String!
+    mutation updateUserProfile(
+      $user_name: String!
+      $user_location: String
+      $user_birthday: String
     ) {
-      post(
-        name: $name
-        year: $year
-        month: $month
-        day: $day
-        location: $location
+      updateUserProfile(
+        user_name: $user_name
+        user_birthday: $user_birthday
+        user_location: $user_location
       ) {
-        name
-        year
-        month
-        day
-        location
+        error
+        status
       }
     }
   `;
+
+  const [updateUserProfile] = useMutation(User_Data, {
+    variables: {
+      user_name: name,
+      user_birthday: `${year}/${month}/${day}`,
+      user_location: location,
+    },
+  });
+
+  //페이지 넘어갈 때
+  const SaveData = async (event) => {
+    event.preventDefault();
+    const result = await updateUserProfile();
+    if (result) {
+      const {
+        data: {
+          updateUserProfile: { status, error },
+        },
+      } = result;
+      if (status === 200) {
+        setFormType("login");
+      }
+    }
+  };
+
   return (
     <div>
       <Content>
@@ -181,7 +200,7 @@ const Profile2 = () => {
           />
         </InputDiv>
 
-        <ProButton>혹시 프로세요...?</ProButton>
+        <ProButton onClick={SaveData}>혹시 프로세요...?</ProButton>
         <H3>{check}이벤트 등 프로모션 알림 메일 받을래요?</H3>
       </Content>
     </div>
