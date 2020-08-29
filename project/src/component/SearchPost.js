@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import testimg from "../img/test1.jpeg"
+import {LikeIconEmpty, ShareIconBlack} from "./Icons";
 
 const Post = styled.div`
   background-color: #F2F2F2;
@@ -68,6 +69,14 @@ margin: 0 auto;
 const PostIcons = styled.div`
 grid-area: Icons;
 `
+const OneIcon = styled.div`
+  display: inline-block;
+  text-align: center;
+  &:not(:last-child) {
+    margin-right: 20%;
+  }
+  font-size: 0.7vw;
+`
 
 const SearchPost = () => {
     return (
@@ -76,7 +85,7 @@ const SearchPost = () => {
                 <Profile><ProfileImgWrapper><Image src={testimg} /></ProfileImgWrapper> <Name>사람이름</Name></Profile>
                 <Title>제목</Title>
                 <Tags>태그</Tags>
-                <PostIcons>좋아요 공유</PostIcons>
+                <PostIcons><OneIcon><LikeIconEmpty/><br/>좋아요</OneIcon><OneIcon><ShareIconBlack/><br/>공유</OneIcon></PostIcons>
                 <Etc>지역 분야 필수조건</Etc>
                 <ContentText>글내용미리보기</ContentText>
             </Content>
