@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AuthImage from "../img/profile.png";
 import useInput from "../Hooks/useInput";
 import Input from "../component/Input";
+import { Link } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 

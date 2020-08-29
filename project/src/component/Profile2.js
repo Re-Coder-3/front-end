@@ -1,21 +1,29 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
+import { gql } from "apollo-boost";
+import { useMutation } from "@apollo/react-hooks";
+
+const Content = styled.div`
+  width: 85%;
+  height: 100%;
+  float: left;
+`;
 
 const HeaderDiv = styled.div`
-  padding-top: 5%;
-  padding-left: 40%;
+  padding-top: 6%;
+  padding-left: 45%;
 `;
 
 const InputDiv = styled.div`
   padding-top: 3%;
-  padding-left: 35%;
+  padding-left: 40%;
 `;
 
 const H1 = styled.h1`
   font-family: Kohinoor Gujarati;
   font-style: normal;
   font-weight: normal;
-  font-size: 35px;
+  font-size: 2.2rem;
   line-height: 72px;
   color: #353535;
 `;
@@ -29,7 +37,7 @@ const Inputul = styled.input`
 `;
 
 const Inputbox = styled.input`
-  font-size: 18px;
+  font-size: 1rem;
   margin-left: 3%;
   border-top: 1px solid #f04e44;
   border-left: 1px solid #f04e44;
@@ -52,7 +60,7 @@ const H2 = styled.h1`
 `;
 
 const ProButton = styled.button`
-  margin-left: 45%;
+  margin-left: 50%;
   padding-top: 3%;
   background: none;
   border: 0px;
@@ -79,10 +87,10 @@ const H3 = styled.h1`
 `;
 
 const Profile2 = () => {
-  const [name, setName] = useState();
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
-  const [day, setDay] = useState("");
+  const [name, setName] = useState("");
+  const [year, setYear] = useState();
+  const [month, setMonth] = useState();
+  const [day, setDay] = useState();
   const [location, setLocation] = useState("");
 
   const myName = useCallback((e) => {
@@ -103,54 +111,79 @@ const Profile2 = () => {
 
   let check = React.createElement("input", { type: "checkbox", value: false });
 
+  const User_Data = gql`
+    mutation UserData(
+      $name: String!
+      $year: Int!
+      $month: Int!
+      $day: Int!
+      $location: String!
+    ) {
+      post(
+        name: $name
+        year: $year
+        month: $month
+        day: $day
+        location: $location
+      ) {
+        name
+        year
+        month
+        day
+        location
+      }
+    }
+  `;
   return (
     <div>
-      <HeaderDiv>
-        <H1>거의 다 됐어요! 🤗</H1>
-      </HeaderDiv>
+      <Content>
+        <HeaderDiv>
+          <H1>거의 다 됐어요! 🤗</H1>
+        </HeaderDiv>
 
-      <InputDiv>
-        <H2>프로필 이름을 입력해주세요.</H2>
-        <Inputul
-          type="text"
-          size="40"
-          placeholder="닉네임 또는 성함을 입력해주세요."
-          onChange={myName}
-        />
-        <H2>생년월일을 입력해주세요.</H2>
-        <Inputbox
-          name="year"
-          type="text"
-          maxLength="4"
-          placeholder="년(4자)"
-          onChange={myYear}
-        />
-        <Inputbox
-          name="month"
-          type="text"
-          maxLength="2"
-          placeholder="월"
-          onChange={myMonth}
-        />
-        <Inputbox
-          name="day"
-          type="text"
-          maxLength="2"
-          placeholder="일"
-          onChange={myDay}
-        />
+        <InputDiv>
+          <H2>프로필 이름을 입력해주세요.</H2>
+          <Inputul
+            type="text"
+            size="40"
+            placeholder="닉네임 또는 성함을 입력해주세요."
+            onChange={myName}
+          />
+          <H2>생년월일을 입력해주세요.</H2>
+          <Inputbox
+            name="year"
+            type="text"
+            maxLength="4"
+            placeholder="년(4자)"
+            onChange={myYear}
+          />
+          <Inputbox
+            name="month"
+            type="text"
+            maxLength="2"
+            placeholder="월"
+            onChange={myMonth}
+          />
+          <Inputbox
+            name="day"
+            type="text"
+            maxLength="2"
+            placeholder="일"
+            onChange={myDay}
+          />
 
-        <H2>위치를 설정해주세요.</H2>
-        <Inputul
-          type="text"
-          size="40"
-          placeholder="구까지 주활동지 주소 입력해주세요."
-          onChange={myLocation}
-        />
-      </InputDiv>
+          <H2>위치를 설정해주세요.</H2>
+          <Inputul
+            type="text"
+            size="40"
+            placeholder="구까지 주활동지 주소 입력해주세요."
+            onChange={myLocation}
+          />
+        </InputDiv>
 
-      <ProButton>혹시 프로세요...?</ProButton>
-      <H3>{check}이벤트 등 프로모션 알림 메일 받을래요?</H3>
+        <ProButton>혹시 프로세요...?</ProButton>
+        <H3>{check}이벤트 등 프로모션 알림 메일 받을래요?</H3>
+      </Content>
     </div>
   );
 };
