@@ -231,8 +231,8 @@ export const SearchIcon = () => (
 
 export const HeartIcon = () => (
   <svg
-    width="38"
-    height="34"
+    width="35"
+    height="30"
     viewBox="0 0 38 34"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -269,8 +269,8 @@ export const HeartIcon = () => (
 
 export const ShareIcon = () => (
   <svg
-    width="21"
-    height="26"
+    width="35"
+    height="30"
     viewBox="0 0 21 26"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -312,5 +312,20 @@ export const Star = ({ selected }) => (
     fill={selected ? "blue" : "yello"}
   >
     <path d="M12 5.173l2.335 4.817 5.305.732-3.861 3.71.942 5.27-4.721-2.524-4.721 2.525.942-5.27-3.861-3.71 5.305-.733 2.335-4.817zm0-4.586l-3.668 7.568-8.332 1.151 6.064 5.828-1.48 8.279 7.416-3.967 7.416 3.966-1.48-8.279 6.064-5.827-8.332-1.15-3.668-7.569z" />
+  </svg>
+);
+
+export const AddImg = () => (
+  <svg
+    width="25"
+    height="26"
+    viewBox="0 0 25 26"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M14.4531 10.376H24.3652V14.6484H14.4531V25.8789H9.91211V14.6484H0V10.376H9.91211V0H14.4531V10.376Z"
+      fill="white"
+    />
   </svg>
 );

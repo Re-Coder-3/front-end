@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import profileImg from "../img/profile.png";
 import profile3Img from "../img/profile3.png";
-import Auth from "./Auth.js";
 import Profile1 from "../component/Profile1";
 import Profile2 from "../component/Profile2";
 import Profile3 from "../component/Profile3";
@@ -15,13 +15,13 @@ const Wrapper = styled.div`
 //2
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 120vh;
 `;
 //3 Slide
 const SlideBox = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   &:nth-child(-n + 3) {
     background: url(${profileImg}) no-repeat;
     background-size: cover;
@@ -32,19 +32,17 @@ const SlideBox = styled.div`
   }
 `;
 
-//4 slide content
-const Item = styled.div``;
-
 //5 Slide later/next button
 const Scroll = styled.div`
-  width: 10%;
-  margin-left: 85%;
-  border: none;
+  width: 15%;
+  height: 100%;
+  float: right;
 `;
 
 //다음단계
 const NextButton = styled.button`
   border: 0px;
+  width: 100%;
   background: none;
   font-family: Noto Sans KR;
   font-style: normal;
@@ -56,7 +54,9 @@ const NextButton = styled.button`
 
 //다음에 하기
 const LaterButton = styled.button`
-  margin-top: 30%;
+  width: 100%;
+  margin-top: 20%;
+  margin-bottom: 200%;
   border: 0px;
   background: none;
   font-family: Noto Sans KR;
@@ -88,7 +88,9 @@ const Profile = () => {
         <SlideBox>
           <Profile1></Profile1>
           <Scroll>
-            <LaterButton onClick={nextSlide}>다음에 하기</LaterButton>
+            <Link to="/">
+              <LaterButton> 다음에 하기</LaterButton>
+            </Link>
             <NextButton onClick={nextSlide}>
               <FaArrowRight size="50px" /> <br />
               다음 단계
@@ -97,23 +99,29 @@ const Profile = () => {
         </SlideBox>
 
         <SlideBox>
-          <LaterButton onClick={nextSlide}>다음에 하기</LaterButton>
           <Profile2></Profile2>
-          <NextButton onClick={nextSlide}>
-            <FaArrowRight size="50px" /> <br />
-            다음 단계
-          </NextButton>
+          <Scroll>
+            <Link to="/">
+              <LaterButton> 다음에 하기</LaterButton>
+            </Link>
+            <NextButton onClick={nextSlide}>
+              <FaArrowRight size="50px" /> <br />
+              완료 하기
+            </NextButton>
+          </Scroll>
         </SlideBox>
 
         <SlideBox>
-          <LaterButton onClick={nextSlide} style={{ color: "white" }}>
-            다음에 하기
-          </LaterButton>
           <Profile3></Profile3>
-          <NextButton onClick={nextSlide}>
-            <FaArrowRight size="50px" /> <br />
-            완료 하기
-          </NextButton>
+          <Scroll>
+            <Link to="/">
+              <LaterButton style={{ color: "white" }}>다음에 하기</LaterButton>{" "}
+            </Link>
+            <NextButton onClick={nextSlide}>
+              <FaArrowRight size="50px" /> <br />
+              완료 하기
+            </NextButton>
+          </Scroll>
         </SlideBox>
       </Container>
     </Wrapper>

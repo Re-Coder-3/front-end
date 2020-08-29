@@ -4,45 +4,58 @@ import TestImg from "../img/test1.jpeg";
 import { HeartIcon } from "../component/Icons";
 import { ShareIcon } from "../component/Icons";
 
-//상단 프로필 부분
-const Containter = styled.div`
-  height: 300px;
+//상단 부분
+const Up = styled.div`
   width: 100%;
+  overflow: hidden;
 `;
 
 //옅은 회색 프로필 박스
 const Profile = styled.div`
-  position: absolute;
-  margin: 10%;
   width: 80%;
-  height: 300px;
+  margin: 10%;
+  border: 0;
   background: #fafafa;
   border-radius: 20px;
 `;
 
-//프로필 이미지, 이름, 분야, 하트/공유/신고 버튼 박스
-const ProfileBox1 = styled.div`
-  overflow: hidden;
+//프로필 이름, 분야
+const Box1 = styled.div`
+  width: 35%;
+  margin-top: 5%;
+  margin-left: 2%;
+  padding: 0;
+  border: 0;
+  float: left;
+`;
+
+//좋아요,공유,신고 버튼 부분
+const Box2 = styled.div`
+  margin-top: 2%;
+  border: 0;
+  width: 25%;
+  float: right;
+`;
+
+//프로필 설명
+const Box3 = styled.div`
+  width: 80%;
+  margin-left: 10%;
+
+  border: 0;
 `;
 
 //프로필 이미지
 const ProfileImg = styled.div`
-  width: 80px;
-  height: 80px;
-  margin: 3% 0% 0% 3%;
+  margin: 3%;
+  width: 10%;
+  border: 0;
   border-radius: 50%;
   float: left;
 `;
 
-const ProfileBox2 = styled.div`
-  overflow: hidden;
-`;
-
 //프로필 이름
 const ProfileName = styled.h1`
-  float: left;
-  margin: 4% 0% 0% 8%;
-  border: none;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -53,8 +66,8 @@ const ProfileName = styled.h1`
 
 //프로필 분야
 const ProfileField = styled.h1`
-  float: bottom;
-  margin: 10% 0% 0% 8%;
+  margin-top: 5%;
+  border: 0;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
@@ -65,34 +78,29 @@ const ProfileField = styled.h1`
 
 //프로필 소개
 const ProfileIntroduction = styled.h1`
-  margin: 3% 0% 0% 10%;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 1rem;
   line-height: 29px;
   color: #4a4a4a;
-`;
-
-//좋아요,공유,신고 버튼 부분
-const Additional = styled.div`
-  overflow: hidden;
+  padding-top: 23%;
 `;
 
 const Button = styled.button`
-  margin: 0% 0% 0% 4%;
-  float: right;
+  margin: 2%;
   border: 0;
   background: none;
-  font-size: 15px;
+  font-size: 0.8rem;
+  font-style: bold;
 `;
 
 //밑부분
 const Content = styled.div`
   position: absolute;
-  margin: 15% 10% 10% 10%;
+  margin: 0% 10% 10% 10%;
   width: 80%;
-  height: 80%;
+  height: 50%;
   border-radius: 20px;
 `;
 
@@ -119,18 +127,19 @@ const Li = styled.li`
     text-decoration: none;
   }
   a:hover:not(.active) {
-    font-style: normal;
-  }
-  .active {
-    font-style: bold;
-    border-bottom: 5px solid;
-    border-image-slice: linear-gradient(
+    border-bottom: 4px solid;
+    border-image: linear-gradient(
         311.48deg,
         #ffe143 -3.24%,
         rgba(255, 255, 255, 0) 78.93%
       ),
       #f04e44;
     border-image-slice: 1;
+    background-color: #4caf50;
+    font-style: normal;
+  }
+  .active {
+    background-color: #4caf50;
   }
 `;
 
@@ -139,43 +148,47 @@ const MyPage = () => {
 
   return (
     <div>
-      <Containter>
+      <Up>
         <Profile>
-          <ProfileBox1>
-            <ProfileImg>
-              <img
-                src={TestImg}
-                style={{
-                  height: 120,
-                  width: 120,
-                  borderRadius: 100,
-                  overflow: "hidden" /* 넘친 부분 잘려서 보이지 않음 */,
-                }}
-              />
-            </ProfileImg>
-            <Additional>
-              <Button>신고</Button>
-              <Button>
-                <ShareIcon></ShareIcon> 공유
-              </Button>
-              <Button>
-                <HeartIcon></HeartIcon>1,247
-              </Button>
-            </Additional>
-            <ProfileBox2>
-              <ProfileName>우왕좌왕</ProfileName>
-              <ProfileField>뷰티, 헤어 디자이너</ProfileField>
-            </ProfileBox2>
-          </ProfileBox1>
-          <ProfileIntroduction>
-            100% 책임시술!!!, 홍대입구역 9번 출구 도보 5분 거리
-            <br />
-            저렴하게 커트, 염색, 펌 하세요~~ 소정의 약값이 발생할 수 있습니다.
-            <br />
-            코로나 매일매일 소독완료!
-          </ProfileIntroduction>
+          <ProfileImg>
+            <img
+              src={TestImg}
+              style={{
+                height: 120,
+                width: 120,
+                borderRadius: 100,
+                overflow: "hidden" /* 넘친 부분 잘려서 보이지 않음 */,
+              }}
+            />
+          </ProfileImg>
+
+          <Box1>
+            <ProfileName>우왕좌왕</ProfileName>
+            <ProfileField>뷰티, 헤어 디자이너</ProfileField>
+          </Box1>
+
+          <Box2>
+            <Button>
+              <HeartIcon />
+              1,247
+            </Button>
+            <Button>
+              <ShareIcon /> 공유
+            </Button>
+            <Button style={{ color: "#9e9e9e" }}>신고</Button>
+          </Box2>
+
+          <Box3>
+            <ProfileIntroduction>
+              100% 책임시술!!!, 홍대입구역 9번 출구 도보 5분 거리
+              <br />
+              저렴하게 커트, 염색, 펌 하세요~~ 소정의 약값이 발생할 수 있습니다.
+              <br />
+              코로나 매일매일 소독완료!
+            </ProfileIntroduction>
+          </Box3>
         </Profile>
-      </Containter>
+      </Up>
 
       <Content>
         <Ul>
