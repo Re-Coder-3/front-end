@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import gql from "graphql-tag";
@@ -31,12 +31,31 @@ const DropBox = styled.div`
   }
 `;
 
+const Box = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const Image = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${(props) =>
+    props.image ? `url(${props.image}) center center` : "white"};
+  background-size: cover;
+`;
+
 export default () => {
   const [uploadFile] = useMutation(uploadFileMutation);
+  const [droppedImage, setDroppedImage] = useState();
   const onDrop = useCallback(
     async ([file]) => {
-      await uploadFile({ variables: { file } });
-      console.log(file);
+      const {
+        data: { singleUpload: a },
+      } = await uploadFile({ variables: { file } });
+      setDroppedImage(a);
     },
     [uploadFile]
   );
@@ -44,8 +63,8 @@ export default () => {
 
   return (
     <DropBox {...getRootProps()}>
-      <input {...getInputProps()} />
-      {isDragActive ? <div></div> : <div></div>}
+      <input {...getInputProps()} accept="image/*" />
+      {isDragActive ? <Box>+</Box> : <Image image={droppedImage}></Image>}
     </DropBox>
   );
 };
