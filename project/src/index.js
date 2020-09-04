@@ -26,6 +26,7 @@ const client = new ApolloClient({
 cache.writeData({
   data: {
     LoggedBool: localStorage.getItem("TOKEN") ? true : false,
+    UrlArr: [],
   },
 });
 

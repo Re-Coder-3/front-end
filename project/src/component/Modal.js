@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { device } from "../styles/responsive";
+import { gql } from "apollo-boost";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 
 const ModalWrapper = styled.div`
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -66,6 +68,11 @@ const ButtonWrapper = styled.div`
     font-size: 20px;
   }
 `;
+const QUERY = gql`
+  {
+    UrlArr @client
+  }
+`;
 
 const Modal = ({
   className,
@@ -77,18 +84,38 @@ const Modal = ({
   size,
   type,
 }) => {
-  const onMaskClick = (e) => {
+  const {
+    data: { UrlArr },
+  } = useQuery(QUERY);
+  const REMOVE_URL = gql`
+    mutation removeUrl($bool: String) {
+      removeUrl(bool: $bool) @client
+    }
+  `;
+  const [removeUrlMutation] = useMutation(REMOVE_URL);
+
+  const onMaskClick = async (e) => {
     // * event.target 은 현재 타겟
     // * event.currentTarget 은 현재 타겟을 바인딩 하고있는 요소가 있으면 그것을 의미.
     if (e.target === e.currentTarget) {
       onClose();
+      const bool = "bool";
+      await removeUrlMutation({ variables: { bool } });
     }
   };
 
-  const close = (e) => {
+  const close = async (e) => {
     if (onClose) {
       onClose();
+      const bool = "bool";
+      await removeUrlMutation({ variables: { bool } });
     }
+  };
+
+  const onClick = async () => {
+    const bool = "bool";
+    await removeUrlMutation({ variables: { bool } });
+    setTimeout(1000);
   };
   return (
     <>
@@ -105,7 +132,7 @@ const Modal = ({
               {children}
               <ButtonWrapper>
                 {closable && <div onClick={close}>닫기</div>}
-                <div>등록</div>
+                <div onClick={onClick}>등록</div>
               </ButtonWrapper>
             </>
           ) : type === "review" ? (
@@ -113,14 +140,14 @@ const Modal = ({
               {children}
               <ButtonWrapper>
                 {closable && <div onClick={close}>닫기</div>}
-                <div>등록</div>
+                <div onClick={onClick}>등록</div>
               </ButtonWrapper>
             </>
           ) : (
             <>
               <ButtonWrapper>
                 {closable && <div onClick={close}>닫기</div>}
-                <div>등록</div>
+                <div onClick={onClick}>등록</div>
               </ButtonWrapper>
               {children}
             </>

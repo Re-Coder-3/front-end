@@ -50,12 +50,19 @@ const Image = styled.div`
 export default () => {
   const [uploadFile] = useMutation(uploadFileMutation);
   const [droppedImage, setDroppedImage] = useState();
+  const ADD_URL = gql`
+    mutation addUrl($url: String) {
+      addUrl(url: $url) @client
+    }
+  `;
+  const [addUrlMutation] = useMutation(ADD_URL);
   const onDrop = useCallback(
     async ([file]) => {
       const {
-        data: { singleUpload: a },
+        data: { singleUpload: url },
       } = await uploadFile({ variables: { file } });
-      setDroppedImage(a);
+      setDroppedImage(url);
+      addUrlMutation({ variables: { url } });
     },
     [uploadFile]
   );
