@@ -55,9 +55,6 @@ const CHECK_USER = gql`
 const Search = ({match}) => {
   const [type, setType] = useState("all");
 
-  const SearchText = "이것"
-  // 백엔드 연결 전에 임시로 쓰는 데이터
-
   const onClick = (e) => {
     setType(e.target.id);
   };
