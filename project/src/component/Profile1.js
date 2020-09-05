@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { FaApple } from "react-icons/fa";
 import styled from "styled-components";
 import { gql } from "apollo-boost";
@@ -56,17 +56,22 @@ const H21 = styled.h1`
 `;
 
 const Profile1 = () => {
-  const [formType, setFormType] = useState("login");
-  const [category, setCategory] = useState([]);
+  const category = [];
+
   const onClick = (e) => {
     e.preventDefault();
+    e.target.property = !e.target.property;
     {
-      e.target.property === true
-        ? (e.target.property = false)
-        : (e.target.property = true);
-      setCategory([...category, e.target.id]);
+      if (e.target.property === true) {
+        e.target.style.color = "#F04E44";
+        if (category.includes(e.target.id) === false)
+          category.push(e.target.id);
+      } else {
+        e.target.style.color = "#000000";
+        if (category.includes(e.target.id) === true)
+          category.splice(category.indexOf(e.target.id), 1);
+      }
     }
-
     console.log(category);
   };
 
@@ -96,7 +101,7 @@ const Profile1 = () => {
         },
       } = result;
       if (status === 200) {
-        setFormType("login");
+        console.log("관심분야 설정 완료");
       }
     }
   };
@@ -114,8 +119,7 @@ const Profile1 = () => {
             property="false"
             onClick={onClick}
           >
-            <FaApple size="1x" />
-            패션&뷰티
+            <FaApple size="1x"></FaApple>패션&뷰티
           </SelectButton>
 
           <SelectButton

@@ -104,10 +104,12 @@ const Profile = () => {
             <Link to="/">
               <LaterButton> 다음에 하기</LaterButton>
             </Link>
-            <NextButton onClick={nextSlide}>
-              <FaArrowRight size="50px" /> <br />
-              완료 하기
-            </NextButton>
+            <Link to="/mypage">
+              <NextButton>
+                <FaArrowRight size="50px" /> <br />
+                완료 하기
+              </NextButton>
+            </Link>
           </Scroll>
         </SlideBox>
 

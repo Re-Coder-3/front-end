@@ -1,6 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AddImg } from "../component/Icons";
+import { gql } from "apollo-boost";
+import { useMutation } from "@apollo/react-hooks";
 
 const Wrapper = styled.div`
   width: 85%;
@@ -73,20 +75,20 @@ const OutsideImageBox = styled.input`
 `;
 
 const Profile3 = () => {
-  const [A, setA] = useState("");
-  const [B, setB] = useState("");
-  const [C, setC] = useState("");
+  const [career, setCareer] = useState("");
+  const [education, setEducation] = useState("");
+  const [profile, setProfile] = useState("");
 
-  const a = (e) => {
-    setA(e.target.value);
+  const careerData = (e) => {
+    setCareer(e.target.value);
   };
 
-  const b = (e) => {
-    setB(e.target.value);
+  const educationData = (e) => {
+    setEducation(e.target.value);
   };
 
-  const c = (e) => {
-    setC(e.target.value);
+  const profileData = (e) => {
+    setProfile(e.target.value);
   };
 
   const [picture, setPicture] = useState(null);
@@ -112,53 +114,67 @@ const Profile3 = () => {
         <ContentDiv>
           <InputSection>
             <ProfileImage>
-              <input
-                id="profilePic"
-                type="file"
-                onChange={onChangePicture}
-              ></input>
-              <img
-                src={imgData}
-                style={{
-                  height: 120,
-                  width: 120,
-                  borderRadius: 100,
-                  overflow: "hidden" /* 넘친 부분 잘려서 보이지 않음 */,
-                }}
-              />
+              <form
+                action="http://localhost:5000/api/upload"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={onChangePicture}
+                ></input>
+                <img
+                  src={imgData}
+                  style={{
+                    height: 120,
+                    width: 120,
+                    borderRadius: 100,
+                    overflow: "hidden" /* 넘친 부분 잘려서 보이지 않음 */,
+                  }}
+                />
+                <input type="submit"></input>
+              </form>
             </ProfileImage>
 
             <Input
               type="text"
               size="60"
               placeholder="이력을 입력해주세요."
-              onClick={a}
+              onClick={careerData}
             />
             <Input
               type="text"
               size="60"
               placeholder="학력을 입력해주세요."
-              onClick={b}
+              onClick={educationData}
             />
             <Input
               type="text"
               size="60"
               placeholder="간단한 소개를 해주세요."
-              onClick={c}
+              onClick={profileData}
             />
           </InputSection>
           <AddImg />
           <ImageSection>
-            <OutsideImageBox type="file" />
-            <OutsideImageBox type="file" />
-            <OutsideImageBox type="file" />
-
-            <OutsideImageBox />
-            <OutsideImageBox />
-            <OutsideImageBox />
-            <OutsideImageBox />
-            <OutsideImageBox />
-            <OutsideImageBox />
+            <form
+              action="http://localhost:5000/api/upload"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <OutsideImageBox type="file" name="image" accept="image/*" />
+              <input type="submit"></input>
+            </form>
           </ImageSection>
         </ContentDiv>
       </Wrapper>
@@ -167,3 +183,34 @@ const Profile3 = () => {
 };
 
 export default Profile3;
+
+// const LIKE_CATEGORY = gql`
+//     mutation updateUserProfile($user_like_category: String) {
+//       updateUserProfile(user_like_category: $user_like_category) {
+//         error
+//         status
+//       }
+//     }
+//   `;
+
+//   const [updateUserProfile] = useMutation(LIKE_CATEGORY, {
+//     variables: {
+//       user_like_categry: category,
+//     },
+//   });
+
+//   //페이지 넘어갈 때
+//   const SaveData = async (event) => {
+//     event.preventDefault();
+//     const result = await updateUserProfile();
+//     if (result) {
+//       const {
+//         data: {
+//           updateUserProfile: { status, error },
+//         },
+//       } = result;
+//       if (status === 200) {
+//         console.log("관심분야 설정 완료");
+//       }
+//     }
+//   };

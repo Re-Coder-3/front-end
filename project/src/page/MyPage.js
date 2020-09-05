@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import TestImg from "../img/test1.jpeg";
 import { HeartIcon } from "../component/Icons";
 import { ShareIcon } from "../component/Icons";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
 //상단 부분
 const Up = styled.div`
@@ -135,7 +137,7 @@ const Li = styled.li`
       ),
       #f04e44;
     border-image-slice: 1;
-    background-color: #4caf50;
+    background-color: #ffffff;
     font-style: normal;
   }
   .active {
@@ -145,6 +147,21 @@ const Li = styled.li`
 
 const MyPage = () => {
   // 이미지 서버에서 받아와야할 부분
+  const GET_PROFILE = gql`
+    type Profile {
+      profile_idx: Int
+      user_idx: Int
+      user_name: String
+      user_location: String
+      user_education: String
+      user_profile_img: Int
+      user_like_category_idx: Int
+      user_career: String
+      category: Category
+      user: User
+      image: Image
+    }
+  `;
 
   return (
     <div>
@@ -211,6 +228,7 @@ const MyPage = () => {
           </Li>
         </Ul>
       </Content>
+      <div></div>
     </div>
   );
 };

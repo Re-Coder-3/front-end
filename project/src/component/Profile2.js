@@ -87,7 +87,6 @@ const H3 = styled.h1`
 `;
 
 const Profile2 = () => {
-  const [formType, setFormType] = useState("login");
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
@@ -148,7 +147,7 @@ const Profile2 = () => {
         },
       } = result;
       if (status === 200) {
-        setFormType("login");
+        console.log("기본 회원 정보 입력 완료");
       }
     }
   };
@@ -201,6 +200,7 @@ const Profile2 = () => {
         </InputDiv>
 
         <ProButton onClick={SaveData}>혹시 프로세요...?</ProButton>
+
         <H3>{check}이벤트 등 프로모션 알림 메일 받을래요?</H3>
       </Content>
     </div>
