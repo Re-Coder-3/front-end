@@ -30,7 +30,8 @@ const LoggedInPage = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={Main} />
-      <Route path="/search" component={Search} />
+      <Route exact path="/search" component={Search}/>
+      <Route path="/search/:searchText" component={Search} />
       <Route path="/mypage" component={MyPage} />
       <Redirect from="*" to="/" />
     </Switch>

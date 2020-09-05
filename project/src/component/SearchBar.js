@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import {SearchIcon} from "./Icons";
+import { Link } from 'react-router-dom';
 
 const SearchInp = styled.input`
   height: 100%;
@@ -38,9 +39,14 @@ const SearchBar = () =>{
         setText(e.target.value);
     };
 
+    const submitLink = (e) =>{
+        e.preventDefault();
+        window.location.replace(`/search/${text}`);
+    }
+
     return (
         <>
-            <SizeForm>
+            <SizeForm onSubmit={submitLink}>
                 <SearchInp value={text} placeholder="검색창" onChange={onChangeText}/>
             <Icon>
                 <InvisibleButton type='submit'><SearchIcon/></InvisibleButton>

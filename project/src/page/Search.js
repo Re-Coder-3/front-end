@@ -52,7 +52,7 @@ const CHECK_USER = gql`
   }
 `;
 
-const Search = () => {
+const Search = ({match}) => {
   const [type, setType] = useState("all");
 
   const SearchText = "이것"
@@ -65,7 +65,7 @@ const Search = () => {
   return (
     <Container>
       <SearchResultText>
-        '{SearchText}'을(를) 포함한 포스팅입니다.
+        '{match.params.searchText}'을(를) 포함한 포스팅입니다.
       </SearchResultText>
       <ClassificationBox>
         <Text id={"all"} type={type === "all"} onClick={onClick}>
