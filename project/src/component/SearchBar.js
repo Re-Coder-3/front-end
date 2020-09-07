@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import {SearchIcon} from "./Icons";
-import { Link } from 'react-router-dom';
 
 const SearchInp = styled.input`
   height: 100%;
