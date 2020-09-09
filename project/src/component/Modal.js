@@ -73,6 +73,31 @@ const QUERY = gql`
     UrlArr @client
   }
 `;
+const CREATE_POST = gql`
+  mutation createPost1(
+    $image_url: [String]
+    $post_title: String!
+    $post_content: String!
+    $post_location: String
+    $hashtag_name: String
+  ) {
+    createPost1(
+      image_url: $image_url
+      post_title: $post_title
+      post_content: $post_content
+      post_location: $post_location
+      hashtag_name: $hashtag_name
+    ) {
+      error
+      status
+    }
+  }
+`;
+const URL = gql`
+  {
+    UrlArr @client
+  }
+`;
 
 const Modal = ({
   className,
@@ -83,6 +108,9 @@ const Modal = ({
   children,
   size,
   type,
+  post_title,
+  post_content,
+  hashtag_name,
 }) => {
   const {
     data: { UrlArr },
@@ -93,6 +121,7 @@ const Modal = ({
     }
   `;
   const [removeUrlMutation] = useMutation(REMOVE_URL);
+  const [createPost] = useMutation(CREATE_POST);
 
   const onMaskClick = async (e) => {
     // * event.target 은 현재 타겟
@@ -114,8 +143,21 @@ const Modal = ({
 
   const onClick = async () => {
     const bool = "bool";
-    await removeUrlMutation({ variables: { bool } });
+
+    console.log(UrlArr);
+    console.log(post_title.value, post_content, hashtag_name);
+    const a = await createPost({
+      variables: {
+        image_url: UrlArr,
+        post_title: post_title.value,
+        post_content,
+        hashtag_name: hashtag_name.value,
+      },
+    });
+    console.log(a);
+
     setTimeout(1000);
+    await removeUrlMutation({ variables: { bool } });
   };
   return (
     <>
