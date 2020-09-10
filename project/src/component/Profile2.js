@@ -2,6 +2,8 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 const Content = styled.div`
   width: 85%;
@@ -86,6 +88,40 @@ const H3 = styled.h1`
   color: #585858;
 `;
 
+const Scroll = styled.div`
+  width: 15%;
+  height: 100%;
+  float: right;
+`;
+
+//다음단계
+const NextButton = styled.button`
+  border: 0px;
+  width: 100%;
+  background: none;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 41px;
+  color: #676767;
+`;
+
+//다음에 하기
+const LaterButton = styled.button`
+  width: 100%;
+  margin-top: 30%;
+  margin-bottom: 200%;
+  border: 0px;
+  background: none;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 41px;
+  color: #999999;
+`;
+
 const Profile2 = () => {
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
@@ -110,47 +146,7 @@ const Profile2 = () => {
   }, []);
 
   let check = React.createElement("input", { type: "checkbox", value: false });
-
-  const User_Data = gql`
-    mutation updateUserProfile(
-      $user_name: String!
-      $user_location: String
-      $user_birthday: String
-    ) {
-      updateUserProfile(
-        user_name: $user_name
-        user_birthday: $user_birthday
-        user_location: $user_location
-      ) {
-        error
-        status
-      }
-    }
-  `;
-
-  const [updateUserProfile] = useMutation(User_Data, {
-    variables: {
-      user_name: name,
-      user_birthday: `${year}/${month}/${day}`,
-      user_location: location,
-    },
-  });
-
-  //페이지 넘어갈 때
-  const SaveData = async (event) => {
-    event.preventDefault();
-    const result = await updateUserProfile();
-    if (result) {
-      const {
-        data: {
-          updateUserProfile: { status, error },
-        },
-      } = result;
-      if (status === 200) {
-        console.log("기본 회원 정보 입력 완료");
-      }
-    }
-  };
+  let checkState = check.value;
 
   return (
     <div>
@@ -199,10 +195,24 @@ const Profile2 = () => {
           />
         </InputDiv>
 
-        <ProButton onClick={SaveData}>혹시 프로세요...?</ProButton>
+        <ProButton>
+          <Link to="/profile3">혹시 프로세요...?</Link>
+        </ProButton>
 
         <H3>{check}이벤트 등 프로모션 알림 메일 받을래요?</H3>
       </Content>
+
+      <Scroll>
+        <Link to="/">
+          <LaterButton> 다음에 하기</LaterButton>
+        </Link>
+        <Link to="/mypage">
+          <NextButton>
+            <FaArrowRight size="50px" /> <br />
+            완료 하기
+          </NextButton>
+        </Link>
+      </Scroll>
     </div>
   );
 };

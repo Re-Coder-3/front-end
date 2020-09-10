@@ -148,18 +148,17 @@ const Li = styled.li`
 const MyPage = () => {
   // 이미지 서버에서 받아와야할 부분
   const GET_PROFILE = gql`
-    type Profile {
-      profile_idx: Int
-      user_idx: Int
-      user_name: String
-      user_location: String
-      user_education: String
-      user_profile_img: Int
-      user_like_category_idx: Int
-      user_career: String
-      category: Category
-      user: User
-      image: Image
+    query {
+      meProfile {
+        data {
+          user_name
+          user_location
+          user_education
+          user_profile_img
+          user_like_category_idx
+          user_career
+        }
+      }
     }
   `;
 

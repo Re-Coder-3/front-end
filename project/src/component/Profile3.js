@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { AddImg } from "../component/Icons";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 const Wrapper = styled.div`
   width: 85%;
@@ -72,6 +74,40 @@ const OutsideImageBox = styled.input`
   height: 120px;
   border: 1px solid #ffffff;
   background: none;
+`;
+
+const Scroll = styled.div`
+  width: 15%;
+  height: 100%;
+  float: right;
+`;
+
+//다음단계
+const NextButton = styled.button`
+  border: 0px;
+  width: 100%;
+  background: none;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 41px;
+  color: #676767;
+`;
+
+//다음에 하기
+const LaterButton = styled.button`
+  width: 100%;
+  margin-top: 30%;
+  margin-bottom: 200%;
+  border: 0px;
+  background: none;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 41px;
+  color: #999999;
 `;
 
 const Profile3 = () => {
@@ -178,6 +214,16 @@ const Profile3 = () => {
           </ImageSection>
         </ContentDiv>
       </Wrapper>
+
+      <Scroll>
+        <Link to="/">
+          <LaterButton style={{ color: "white" }}>다음에 하기</LaterButton>{" "}
+        </Link>
+        <NextButton>
+          <FaArrowRight size="50px" /> <br />
+          완료 하기
+        </NextButton>
+      </Scroll>
     </div>
   );
 };
