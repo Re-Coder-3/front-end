@@ -5,6 +5,7 @@ import {TitleLogo, Heart, LoginIcon, Pencil, Profile} from "./Icons";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import useInput from "../Hooks/useInput";
+import {Link} from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   height: 64px;
@@ -51,7 +52,7 @@ const Header = () => {
 
     return (
         <HeaderWrapper>
-            <Logo><TitleLogo/>  커리어스팟</Logo>
+            <Link to={"/"} style={{ textDecoration: 'none', color:"black"}}><Logo><TitleLogo/>  커리어스팟</Logo></Link>
             <SearchDiv>
                 <Search/>
             </SearchDiv>
