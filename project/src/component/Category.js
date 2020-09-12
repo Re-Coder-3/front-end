@@ -19,9 +19,14 @@ const CategoryImage = styled.img`
 `
 
 const Category = ({text, image}) => {
+
+    const onClick = () => {
+        window.location.replace(`/search/${text}?class=field`);
+    }
+
     return (
         <CategoryCircle>
-            <CategoryImage src={image} alt={text}/>
+            <CategoryImage src={image} alt={text} onClick={onClick}/>
         </CategoryCircle>
     );
 }
