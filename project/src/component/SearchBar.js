@@ -40,7 +40,7 @@ const SearchBar = () =>{
 
     const submitLink = (e) =>{
         e.preventDefault();
-        window.location.replace(`/search/${text}`);
+        window.location.replace(`/search/${text}?class=all`);
     }
 
     return (
