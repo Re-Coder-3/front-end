@@ -8,11 +8,17 @@ import { useQuery, gql } from '@apollo/client';
 
 const CATEGORY_QUERY = gql`
     query{
-        findCategory{
-            category_idx
-            category_name
-        }
+  findCategory{
+    count
+    rows{
+      category_name
+      category_idx
+      image{
+        image_url
+      }
     }
+  }
+}
 `
 const POST_NUMBER = gql`
     query{
@@ -76,8 +82,8 @@ const Banner = () => {
             </TextBox>
             <CategoryCircles>
                 {data &&
-                    data.findCategory.map((t) => (
-                        <Category key={t.category_idx} text={t.category_name}/>
+                    data.findCategory.rows.map((t) => (
+                        <Category key={t.category_idx} text={t.category_name} image={t.image.image_url}/>
                     ))
                 }
             </CategoryCircles>

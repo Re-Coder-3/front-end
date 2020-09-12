@@ -13,10 +13,15 @@ const CategoryCircle = styled.div`
   font-size: 1vw;
 `
 
-const Category = ({text}) => {
+const CategoryImage = styled.img`
+  height: 100%;
+  width: 100%;
+`
+
+const Category = ({text, image}) => {
     return (
         <CategoryCircle>
-            {text}
+            <CategoryImage src={image} alt={text}/>
         </CategoryCircle>
     );
 }
