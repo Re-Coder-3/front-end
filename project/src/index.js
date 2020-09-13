@@ -13,7 +13,7 @@ import { createUploadLink } from "apollo-upload-client";
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/",
+  uri: "http://ec2-52-79-180-113.ap-northeast-2.compute.amazonaws.com:5000/",
   headers: {
     Authorization: `${localStorage.getItem("TOKEN")}`,
   },
