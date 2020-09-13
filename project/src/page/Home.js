@@ -9,8 +9,13 @@ import { useQuery } from "@apollo/react-hooks";
 const CATEGORY_LIST = gql`
   query {
     findCategory {
-      category_idx
-      category_name
+      rows{
+        category_idx,
+        category_name,
+        image{
+          image_url
+        }
+      }
     }
   }
 `;
@@ -151,7 +156,7 @@ const Home = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.findCategory);
+      console.log("이거어어어", data.findCategory);
       setCategory(data.findCategory);
     }
     console.log(category);
@@ -192,10 +197,11 @@ const Home = () => {
           <div>실수로 카테고리했네,,, 포스트 query 해야해요,,</div>
         </ContentHeader>
         <ContentWrapper>
-          {category &&
+          {/* {category &&
             category.map((c) => (
               <Content key={c.category_idx}>{c.category_name}</Content>
-            ))}
+            ))} */}
+            {/* CATEGORY_LIST */}
         </ContentWrapper>
       </ContentContainer>
 
@@ -205,10 +211,10 @@ const Home = () => {
           <div>실수로 카테고리했네,,, 포스트 query 해야해요,,</div>
         </ContentHeader>
         <ContentWrapper>
-          {category &&
+          {/* {category &&
             category.map((c) => (
               <Content key={c.category_idx}>{c.category_name}</Content>
-            ))}
+            ))} */}
         </ContentWrapper>
       </ContentContainer>
       <ContentContainer>
@@ -217,10 +223,10 @@ const Home = () => {
           <div>실수로 카테고리했네,,, 포스트 query 해야해요,,</div>
         </ContentHeader>
         <ContentWrapper>
-          {category &&
+          {/* {category &&
             category.map((c) => (
               <Content key={c.category_idx}>{c.category_name}</Content>
-            ))}
+            ))} */}
         </ContentWrapper>
       </ContentContainer>
       <Footer>

@@ -115,7 +115,7 @@ const Profile3 = () => {
           <InputSection>
             <ProfileImage>
               <form
-                action="http://localhost:5000/api/upload"
+                action="http://ec2-52-79-180-113.ap-northeast-2.compute.amazonaws.com:5000/api/upload"
                 method="post"
                 enctype="multipart/form-data"
               >
@@ -160,7 +160,7 @@ const Profile3 = () => {
           <AddImg />
           <ImageSection>
             <form
-              action="http://localhost:5000/api/upload"
+              action="http://ec2-52-79-180-113.ap-northeast-2.compute.amazonaws.com:5000/api/upload"
               method="post"
               enctype="multipart/form-data"
             >
