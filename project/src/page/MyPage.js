@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TestImg from "../img/test1.jpeg";
 import { HeartIcon } from "../component/Icons";
 import { ShareIcon } from "../component/Icons";
-import { useMutation } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
 //상단 부분
@@ -146,11 +146,12 @@ const Li = styled.li`
 `;
 
 const MyPage = () => {
-  // 이미지 서버에서 받아와야할 부분
   const GET_PROFILE = gql`
     query {
       meProfile {
         data {
+          profile_idx
+          user_idx
           user_name
           user_location
           user_education
@@ -161,7 +162,11 @@ const MyPage = () => {
       }
     }
   `;
-
+  /*
+  const { loading, error, data } = useQuery(GET_PROFILE);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!(</p>;
+*/
   return (
     <div>
       <Up>
