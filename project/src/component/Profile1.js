@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaApple } from "react-icons/fa";
 import styled from "styled-components";
 import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -91,6 +91,19 @@ const LaterButton = styled.button`
   color: #999999;
 `;
 
+const GET_ICON = gql`
+  query {
+    findCategory {
+      rows {
+        category_name
+        image {
+          image_url
+        }
+      }
+    }
+  }
+`;
+
 const Profile1 = () => {
   const category = [];
 
@@ -111,12 +124,36 @@ const Profile1 = () => {
     console.log(category);
   };
 
+  const { data } = useQuery(GET_ICON);
+  const [icon, setIcon] = useState([]);
+  useEffect(() => {
+    if (data) {
+      console.log(data.findCategory);
+      setIcon(data.findCategory);
+    }
+    console.log(icon);
+  }, [data, icon]);
+
   return (
     <div>
       <Content>
         <HeaderDiv>
           <H1>간단한 프로필 작성하고 가세요! 🤗 </H1>
         </HeaderDiv>
+
+        <ButtonDiv>
+          {icon &&
+            icon.map((c) => (
+              <SelectButton
+                id={c.category_name}
+                value={c.category_name}
+                image={c.image.image_url}
+                onClick={onClick}
+              />
+            ))}
+        </ButtonDiv>
+
+        {/* 
         <ButtonDiv>
           <SelectButton
             id="beauty"
@@ -162,7 +199,7 @@ const Profile1 = () => {
             기타
           </SelectButton>
         </ButtonDiv>
-
+*/}
         <CommentDiv>
           <H21>
             하나 이상의{" "}

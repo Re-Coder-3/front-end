@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { useQuery, gql } from "@apollo/client";
 
 const Content = styled.div`
   width: 85%;
