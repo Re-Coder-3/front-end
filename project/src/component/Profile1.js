@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaApple } from "react-icons/fa";
 import styled from "styled-components";
 import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 const Content = styled.div`
   width: 85%;
@@ -55,6 +57,53 @@ const H21 = styled.h1`
   color: #363636;
 `;
 
+const Scroll = styled.div`
+  width: 15%;
+  height: 100%;
+  float: right;
+`;
+
+//다음단계
+const NextButton = styled.button`
+  border: 0px;
+  width: 100%;
+  background: none;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 41px;
+  color: #676767;
+`;
+
+//다음에 하기
+const LaterButton = styled.button`
+  width: 100%;
+  margin-top: 30%;
+  margin-bottom: 200%;
+  border: 0px;
+  background: none;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 41px;
+  color: #999999;
+`;
+
+const GET_ICON = gql`
+  query {
+    findCategory {
+      rows {
+        category_name
+        image {
+          image_url
+        }
+      }
+    }
+  }
+`;
+
 const Profile1 = () => {
   const category = [];
 
@@ -75,36 +124,15 @@ const Profile1 = () => {
     console.log(category);
   };
 
-  const LIKE_CATEGORY = gql`
-    mutation updateUserProfile($user_like_category: String) {
-      updateUserProfile(user_like_category: $user_like_category) {
-        error
-        status
-      }
+  const { data } = useQuery(GET_ICON);
+  const [icon, setIcon] = useState([]);
+  useEffect(() => {
+    if (data) {
+      console.log(data.findCategory);
+      setIcon(data.findCategory);
     }
-  `;
-
-  const [updateUserProfile] = useMutation(LIKE_CATEGORY, {
-    variables: {
-      user_like_categry: category,
-    },
-  });
-
-  //페이지 넘어갈 때
-  const SaveData = async (event) => {
-    event.preventDefault();
-    const result = await updateUserProfile();
-    if (result) {
-      const {
-        data: {
-          updateUserProfile: { status, error },
-        },
-      } = result;
-      if (status === 200) {
-        console.log("관심분야 설정 완료");
-      }
-    }
-  };
+    console.log(icon);
+  }, [data, icon]);
 
   return (
     <div>
@@ -112,6 +140,20 @@ const Profile1 = () => {
         <HeaderDiv>
           <H1>간단한 프로필 작성하고 가세요! 🤗 </H1>
         </HeaderDiv>
+
+        <ButtonDiv>
+          {icon &&
+            icon.map((c) => (
+              <SelectButton
+                id={c.category_name}
+                value={c.category_name}
+                image={c.image.image_url}
+                onClick={onClick}
+              />
+            ))}
+        </ButtonDiv>
+
+        {/* 
         <ButtonDiv>
           <SelectButton
             id="beauty"
@@ -157,7 +199,7 @@ const Profile1 = () => {
             기타
           </SelectButton>
         </ButtonDiv>
-
+*/}
         <CommentDiv>
           <H21>
             하나 이상의{" "}
@@ -167,6 +209,15 @@ const Profile1 = () => {
           <H21>적합한 컨텐츠를 추천해 드리는 데 도움이 됩니다!</H21>
         </CommentDiv>
       </Content>
+      <Scroll>
+        <Link to="/">
+          <LaterButton> 다음에 하기</LaterButton>
+        </Link>
+        <NextButton onClick>
+          <FaArrowRight size="50px" /> <br />
+          다음 단계
+        </NextButton>
+      </Scroll>
     </div>
   );
 };
