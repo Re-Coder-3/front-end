@@ -17,7 +17,7 @@ const LoggedOutPage = () => (
   <>
     <Header />
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Main} />
       <Route path="/auth" component={Auth} />
       <Route path="/search" component={Search} />
 
