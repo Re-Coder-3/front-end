@@ -90,11 +90,13 @@ const LaterButton = styled.button`
   color: #999999;
 `;
 
-const GET_ICON = gql`
+const CATEGORY_QUERY = gql`
   query {
     findCategory {
+      count
       rows {
         category_name
+        category_idx
         image {
           image_url
         }
@@ -123,14 +125,7 @@ const Profile1 = () => {
     console.log(category);
   };
 
-  const { data } = useQuery(GET_ICON);
-  const [Icon, setIcon] = useState([]);
-  useEffect(() => {
-    if (data) {
-      console.log(data.findCategory.rows);
-      setIcon(data.findCategory.rows);
-    }
-  }, [data, Icon]);
+  const { data } = useQuery(CATEGORY_QUERY);
 
   return (
     <div>
@@ -140,13 +135,15 @@ const Profile1 = () => {
         </HeaderDiv>
 
         <ButtonDiv>
-          {Icon &&
-            Icon.map((c) => (
+          {data &&
+            data.findCategory.rows.map((t) => (
               <SelectButton
-                id={c.category_name}
-                image={c.image.image_url}
+                id={t.category_name}
+                image={t.image.image_url}
                 onClick={onClick}
-              />
+              >
+                {t.category_name}
+              </SelectButton>
             ))}
         </ButtonDiv>
 

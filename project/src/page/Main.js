@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import Content from "../component/Content";
 import styled from "styled-components";
