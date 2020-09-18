@@ -65,10 +65,6 @@ const Banner = () => {
   const { data: dataNum } = useQuery(POST_NUMBER);
   const currentArticle = dataNum && dataNum.findPost.count;
 
-  const { data } = useQuery(CATEGORY_QUERY);
-  const { data: dataNum } = useQuery(POST_NUMBER);
-  const currentArticle = dataNum && dataNum.findPost.count;
-
   return (
     <WholeBanner>
       <TextBox>
