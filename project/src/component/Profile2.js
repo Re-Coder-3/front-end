@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { useQuery, gql } from "@apollo/client";
+import { questionMark } from "../component/Icons";
 
 const Content = styled.div`
   width: 85%;
@@ -97,6 +98,7 @@ const Scroll = styled.div`
 //다음단계
 const NextButton = styled.button`
   border: 0px;
+  margin-top: 10%;
   width: 100%;
   background: none;
   font-family: Noto Sans KR;
@@ -111,7 +113,7 @@ const NextButton = styled.button`
 const LaterButton = styled.button`
   width: 100%;
   margin-top: 30%;
-  margin-bottom: 200%;
+  margin-bottom: 150%;
   border: 0px;
   background: none;
   font-family: Noto Sans KR;
@@ -206,6 +208,10 @@ const Profile2 = () => {
         <Link to="/">
           <LaterButton> 다음에 하기</LaterButton>
         </Link>
+        <questionMark>
+          지금 입력 안하고 <p />
+          넘어가실 건가요?
+        </questionMark>
         <Link to="/mypage">
           <NextButton>
             <FaArrowRight size="50px" /> <br />

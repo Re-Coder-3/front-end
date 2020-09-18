@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import MyPage from "../page/MyPage";
 
 /** 임시용  */
+import Profile from "../page/Profile";
 import Profile1 from "../component/Profile1";
 import Profile2 from "../component/Profile2";
 import Profile3 from "../component/Profile3";
@@ -22,6 +23,7 @@ const LoggedOutPage = () => (
       <Route path="/search" component={Search} />
 
       {/* 임시용 */}
+      <Route path="/profile" component={Profile} />
       <Route path="/profile1" component={Profile1} />
       <Route path="/profile2" component={Profile2} />
       <Route path="/profile3" component={Profile3} />

@@ -365,7 +365,7 @@ export const AddImg = () => (
   </svg>
 );
 
-export const FilledHeart = () => {
+export const FilledHeart = () => (
   <svg
     width="38"
     height="34"
@@ -419,5 +419,59 @@ export const FilledHeart = () => {
         <stop offset="1" stop-color="white" stop-opacity="0" />
       </linearGradient>
     </defs>
-  </svg>;
-};
+  </svg>
+);
+
+export const questionMark = () => (
+  <svg
+    width="249"
+    height="152"
+    viewBox="0 0 249 152"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g filter="url(#filter0_d)">
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M40 28C34.4772 28 30 32.4771 30 38V95.9294C30 101.452 34.4772 105.929 40 105.929H121.215L127.999 120L134.784 105.929H216C221.523 105.929 226 101.452 226 95.9294V38C226 32.4772 221.523 28 216 28H40Z"
+        fill="white"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_d"
+        x="0"
+        y="0"
+        width="256"
+        height="152"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        />
+        <feOffset dy="2" />
+        <feGaussianBlur stdDeviation="15" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow"
+          result="shape"
+        />
+      </filter>
+    </defs>
+  </svg>
+);

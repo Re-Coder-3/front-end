@@ -31,7 +31,7 @@ const SlideBox = styled.div`
     background-size: cover;
   }
 `;
-
+/*
 //5 Slide later/next button
 const Scroll = styled.div`
   width: 15%;
@@ -66,7 +66,7 @@ const LaterButton = styled.button`
   line-height: 41px;
   color: #999999;
 `;
-
+*/
 const Profile = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
@@ -82,6 +82,7 @@ const Profile = () => {
     slideRef.current.style.transform = `translateY(-${currentSlide}00%)`;
   }, [currentSlide]);
 
+  /*
   return (
     <Wrapper>
       <Container ref={slideRef}>
@@ -129,5 +130,24 @@ const Profile = () => {
     </Wrapper>
   );
 };
+*/
 
+  return (
+    <Wrapper>
+      <Container ref={slideRef}>
+        <SlideBox>
+          <Profile1></Profile1>
+        </SlideBox>
+
+        <SlideBox>
+          <Profile2></Profile2>
+        </SlideBox>
+
+        <SlideBox>
+          <Profile3></Profile3>
+        </SlideBox>
+      </Container>
+    </Wrapper>
+  );
+};
 export default Profile;
