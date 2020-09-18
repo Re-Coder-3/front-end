@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaApple } from "react-icons/fa";
 import styled from "styled-components";
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -125,14 +124,13 @@ const Profile1 = () => {
   };
 
   const { data } = useQuery(GET_ICON);
-  const [icon, setIcon] = useState([]);
+  const [Icon, setIcon] = useState([]);
   useEffect(() => {
     if (data) {
-      console.log(data.findCategory);
-      setIcon(data.findCategory);
+      console.log(data.findCategory.rows);
+      setIcon(data.findCategory.rows);
     }
-    console.log(icon);
-  }, [data, icon]);
+  }, [data, Icon]);
 
   return (
     <div>
@@ -142,11 +140,10 @@ const Profile1 = () => {
         </HeaderDiv>
 
         <ButtonDiv>
-          {icon &&
-            icon.map((c) => (
+          {Icon &&
+            Icon.map((c) => (
               <SelectButton
                 id={c.category_name}
-                value={c.category_name}
                 image={c.image.image_url}
                 onClick={onClick}
               />

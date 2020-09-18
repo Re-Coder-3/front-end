@@ -3,15 +3,15 @@ import Footer from "../component/Footer";
 import Banner from "../component/Banner";
 import Content from "../component/Content";
 import styled from "styled-components";
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql } from "@apollo/client";
 
 const Page = styled.div`
   width: 100%;
   padding: 64px 0 0 0;
-`
+`;
 
 const MainContents = styled.div`
-  width:68vw;
+  width: 68vw;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -24,17 +24,17 @@ const ContentWrapper = styled.div`
 const ContentInnerWrapper = styled.div`
   overflow-x: scroll;
   white-space: nowrap;
-  &::-webkit-scrollbar{
-  display:none;
+  &::-webkit-scrollbar {
+    display: none;
   }
-`
+`;
 
 const ContentTitle = styled.div`
- font-size: 2vw;
- display: inline-block;
- margin-bottom: 1vw;
- font-weight: bold;
-`
+  font-size: 2vw;
+  display: inline-block;
+  margin-bottom: 1vw;
+  font-weight: bold;
+`;
 const ContentMore = styled.div`
   display: inline-block;
   font-size: 1.5vw;
@@ -43,23 +43,21 @@ const ContentMore = styled.div`
 `;
 
 const CONTENT_QUERY = gql`
-    query{
-      findPost(args:{
-        offset:0
-        limit:5
-        filter:{
-          field:""
-          operator:""
-          value:""
-        }
-      }){
-       rows{
+  query {
+    findPost(
+      args: {
+        offset: 0
+        limit: 5
+        filter: { field: "", operator: "", value: "" }
+      }
+    ) {
+      rows {
         post_idx
         post_title
-        image{
+        image {
           image_url
         }
-        hashtag{
+        hashtag {
           hashtag_name
         }
       }
@@ -84,33 +82,45 @@ const Main = () => {
   const recommend = name + "님을 위한 추천";
   // 첫번째 컴포넌트에 들어갈 텍스트. 어디 둘지 몰라서 여기 둡니다..
 
-    return (
-        <Page>
-            <Banner/>
-            <MainContents>
-                <ContentWrapper>
-                    <ContentTitle>{recommend}</ContentTitle>
-                    <ContentMore>더보기></ContentMore><br/>
-                    <ContentInnerWrapper>
-                        {contentState &&
-                    contentState.map((c) => (
-                        <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name} image={c.image.image_url}/>
-                    ))}
-                    </ContentInnerWrapper>
-                </ContentWrapper>
-                <ContentWrapper>
-                    <ContentTitle>{recommend}</ContentTitle>
-                    <ContentMore>더보기</ContentMore><br/>
-                    <ContentInnerWrapper>
-                        {data &&
-                        data.findPost.rows.map((c) => (
-                            <Content key={c.post_idx} title={c.post_title} tags={c.hashtag.hashtag_name} image={c.image.image_url}/>
-                        ))}
-                    </ContentInnerWrapper>
-                </ContentWrapper>
-            </MainContents>
-        </Page>
-    );
-}
+  return (
+    <Page>
+      <Banner />
+      <MainContents>
+        <ContentWrapper>
+          <ContentTitle>{recommend}</ContentTitle>
+          <ContentMore>더보기></ContentMore>
+          <br />
+          <ContentInnerWrapper>
+            {contentState &&
+              contentState.map((c) => (
+                <Content
+                  key={c.post_idx}
+                  title={c.post_title}
+                  tags={c.hashtag.hashtag_name}
+                  image={c.image.image_url}
+                />
+              ))}
+          </ContentInnerWrapper>
+        </ContentWrapper>
+        <ContentWrapper>
+          <ContentTitle>{recommend}</ContentTitle>
+          <ContentMore>더보기</ContentMore>
+          <br />
+          <ContentInnerWrapper>
+            {data &&
+              data.findPost.rows.map((c) => (
+                <Content
+                  key={c.post_idx}
+                  title={c.post_title}
+                  tags={c.hashtag.hashtag_name}
+                  image={c.image.image_url}
+                />
+              ))}
+          </ContentInnerWrapper>
+        </ContentWrapper>
+      </MainContents>
+    </Page>
+  );
+};
 
 export default Main;
