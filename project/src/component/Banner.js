@@ -25,11 +25,6 @@ const POST_NUMBER = gql`
       findPost(args:{
         offset:0
         limit:0
-        filter:{
-          field:""
-          operator:""
-          value:""
-        }
       }){
        count
       } 
