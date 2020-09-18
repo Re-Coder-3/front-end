@@ -7,6 +7,7 @@ import MyDropzone from "../component/MyDropzone";
 import SearchPost from "../component/SearchPost";
 import UploadBtn from "../component/UploadBtn";
 import ReviewBtn from "../component/ReviewBtn";
+import qs from 'qs';
 
 const Container = styled.div`
   width: 72%;
@@ -52,15 +53,20 @@ const CHECK_USER = gql`
   }
 `;
 
-const Search = ({match}) => {
-  const [type, setType] = useState("all");
+const Search = ({location, match}) => {
+  // const [type, setType] = useState("all");
 
-  const SearchText = "이것"
-  // 백엔드 연결 전에 임시로 쓰는 데이터
+  /* const onClick = (e) => {
+    setType(e.target.id);
+  };*/
 
   const onClick = (e) => {
-    setType(e.target.id);
-  };
+      window.location.replace(`/search/${match.params.searchText}?class=${e.target.id}`);
+  }
+
+  const urlQuery = qs.parse(location.search, {ignoreQueryPrefix: true});
+
+  const type = urlQuery.class || "all";
 
   return (
     <Container>

@@ -147,6 +147,9 @@ export default () => {
           maskClosable={true}
           onClose={closeModal}
           size={size}
+          post_title={title}
+          post_content={textarea}
+          hashtag_name={hashtag}
         >
           <MContentWrapper>
             <MInputBox>

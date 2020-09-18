@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import {SearchIcon} from "./Icons";
-import { Link } from 'react-router-dom';
 
 const SearchInp = styled.input`
   height: 100%;
@@ -41,7 +40,7 @@ const SearchBar = () =>{
 
     const submitLink = (e) =>{
         e.preventDefault();
-        window.location.replace(`/search/${text}`);
+        window.location.replace(`/search/${text}?class=all`);
     }
 
     return (

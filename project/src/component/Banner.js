@@ -18,6 +18,7 @@ const CATEGORY_QUERY = gql`
     }
   }
 `;
+
 const POST_NUMBER = gql`
   query {
     findPost(
@@ -60,6 +61,10 @@ const NumberText = styled.span`
 `;
 
 const Banner = () => {
+  const { data } = useQuery(CATEGORY_QUERY);
+  const { data: dataNum } = useQuery(POST_NUMBER);
+  const currentArticle = dataNum && dataNum.findPost.count;
+
   const { data } = useQuery(CATEGORY_QUERY);
   const { data: dataNum } = useQuery(POST_NUMBER);
   const currentArticle = dataNum && dataNum.findPost.count;
