@@ -17,7 +17,8 @@ const client = new ApolloClient({
   headers: {
     Authorization: `${localStorage.getItem("TOKEN")}`,
   },
-  link: createUploadLink({ uri: "http://localhost:5000" }),
+
+  link: createUploadLink({ uri: "http://localhost:5000/" }),
   cache,
   typeDefs,
   resolvers,
