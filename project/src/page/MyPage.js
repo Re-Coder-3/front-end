@@ -173,11 +173,8 @@ const MyPage = () => {
     }
   `;
 
-  /*
-  const { loading, error, data } = useQuery(GET_PROFILE);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!(</p>;
-*/
+  const { userInfo } = useQuery(GET_PROFILE);
+
   return (
     <div>
       <Up>
@@ -193,9 +190,8 @@ const MyPage = () => {
               }}
             />
           </ProfileImg>
-
           <Box1>
-            <ProfileName>우왕좌왕</ProfileName>
+            <ProfileName>{t.user_name}</ProfileName>
             <ProfileField>뷰티, 헤어 디자이너</ProfileField>
           </Box1>
 
