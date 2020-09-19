@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Category from "./Category";
 import styled from "styled-components";
 import banner from "../img/banner.png";
@@ -61,7 +61,7 @@ const NumberText = styled.span`
 `;
 
 const Banner = () => {
-  const { data } = useQuery(CATEGORY_QUERY);
+  const { data, loading } = useQuery(CATEGORY_QUERY);
   const { data: dataNum } = useQuery(POST_NUMBER);
   const currentArticle = dataNum && dataNum.findPost.count;
 
@@ -79,7 +79,8 @@ const Banner = () => {
         <NumberText>{currentArticle}개</NumberText> 글이 있습니다
       </TextBox>
       <CategoryCircles>
-        {data &&
+        {!loading &&
+          data &&
           data.findCategory.rows.map((t) => (
             <Category
               key={t.category_idx}
