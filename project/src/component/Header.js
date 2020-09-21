@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import useInput from "../Hooks/useInput";
 import { Link } from "react-router-dom";
+import UploadBtn from "./UploadBtn";
 
 const HeaderWrapper = styled.div`
   height: 64px;
@@ -63,7 +64,7 @@ const Header = () => {
         {LoggedBool ? (
           <>
             <div>
-              <Pencil />
+              <UploadBtn />
             </div>
             <div>
               <Heart />
