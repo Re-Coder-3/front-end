@@ -13,11 +13,13 @@ import { createUploadLink } from "apollo-upload-client";
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/",
+  uri: "http://localhost:5000",
   headers: {
     Authorization: `${localStorage.getItem("TOKEN")}`,
   },
-  link: createUploadLink({ uri: "http://localhost:5000" }),
+  link: createUploadLink({
+    uri: "http://localhost:5000",
+  }),
   cache,
   typeDefs,
   resolvers,
