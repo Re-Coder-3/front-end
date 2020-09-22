@@ -89,41 +89,6 @@ const H3 = styled.h1`
   color: #585858;
 `;
 
-const Scroll = styled.div`
-  width: 15%;
-  height: 100%;
-  float: right;
-`;
-
-//다음단계
-const NextButton = styled.button`
-  border: 0px;
-  margin-top: 10%;
-  width: 100%;
-  background: none;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 41px;
-  color: #676767;
-`;
-
-//다음에 하기
-const LaterButton = styled.button`
-  width: 100%;
-  margin-top: 30%;
-  margin-bottom: 150%;
-  border: 0px;
-  background: none;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 41px;
-  color: #999999;
-`;
-
 const Profile2 = () => {
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
@@ -203,22 +168,6 @@ const Profile2 = () => {
 
         <H3>{check}이벤트 등 프로모션 알림 메일 받을래요?</H3>
       </Content>
-
-      <Scroll>
-        <Link to="/">
-          <LaterButton> 다음에 하기</LaterButton>
-        </Link>
-        <questionMark>
-          지금 입력 안하고 <p />
-          넘어가실 건가요?
-        </questionMark>
-        <Link to="/mypage">
-          <NextButton>
-            <FaArrowRight size="50px" /> <br />
-            완료 하기
-          </NextButton>
-        </Link>
-      </Scroll>
     </div>
   );
 };

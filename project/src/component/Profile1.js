@@ -57,41 +57,6 @@ const H21 = styled.h1`
   color: #363636;
 `;
 
-const Scroll = styled.div`
-  width: 15%;
-  height: 100%;
-  float: right;
-`;
-
-//다음단계
-const NextButton = styled.button`
-  border: 0px;
-  margin-top: 10%;
-  width: 100%;
-  background: none;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 41px;
-  color: #676767;
-`;
-
-//다음에 하기
-const LaterButton = styled.button`
-  width: 100%;
-  margin-top: 30%;
-  margin-bottom: 150%;
-  border: 0px;
-  background: none;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 41px;
-  color: #999999;
-`;
-
 const CATEGORY_QUERY = gql`
   query {
     findCategory {
@@ -149,53 +114,6 @@ const Profile1 = () => {
             ))}
         </ButtonDiv>
 
-        {/* 
-        <ButtonDiv>
-          <SelectButton
-            id="beauty"
-            value="beauty"
-            property="false"
-            onClick={onClick}
-          >
-            <FaApple size="1x"></FaApple>패션&뷰티
-          </SelectButton>
-
-          <SelectButton
-            id="education"
-            value="education"
-            property="false"
-            onClick={onClick}
-          >
-            <FaApple size="1x" />
-            교육
-          </SelectButton>
-
-          <SelectButton
-            id="shot"
-            value="shot"
-            property="false"
-            onClick={onClick}
-          >
-            <FaApple size="1x" />
-            촬영
-          </SelectButton>
-
-          <SelectButton
-            id="medical"
-            value="medical"
-            property="false"
-            onClick={onClick}
-          >
-            <FaApple size="1x" />
-            의료
-          </SelectButton>
-
-          <SelectButton id="etc" value="etc" property="false" onClick={onClick}>
-            <FaApple size="1x" />
-            기타
-          </SelectButton>
-        </ButtonDiv>
-*/}
         <CommentDiv>
           <H21>
             하나 이상의{" "}
@@ -205,19 +123,6 @@ const Profile1 = () => {
           <H21>적합한 컨텐츠를 추천해 드리는 데 도움이 됩니다!</H21>
         </CommentDiv>
       </Content>
-      <Scroll>
-        <Link to="/">
-          <LaterButton> 다음에 하기</LaterButton>
-        </Link>
-        <questionMark>
-          지금 선택 안하고 <p />
-          넘어가실 건가요?
-        </questionMark>
-        <NextButton>
-          <FaArrowRight size="50px" /> <br />
-          다음 단계
-        </NextButton>
-      </Scroll>
     </div>
   );
 };
