@@ -216,22 +216,6 @@ const Profile3 = () => {
           </ImageSection>
         </ContentDiv>
       </Wrapper>
-
-      <Scroll>
-        <Link to="/">
-          <LaterButton style={{ color: "white" }}>다음에 하기</LaterButton>{" "}
-        </Link>
-        <questionMark style={{ color: "white" }}>
-          지금 입력 안하고 <p />
-          넘어가실 건가요?
-        </questionMark>
-        <Link to="/mypage">
-          <NextButton>
-            <FaArrowRight size="50px" /> <br />
-            완료 하기
-          </NextButton>
-        </Link>
-      </Scroll>
     </div>
   );
 };

@@ -47,7 +47,7 @@ const H1 = styled.h1`
   color: #353535;
 `;
 
-const H2 = styled.h1`
+const H21 = styled.h1`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
@@ -55,66 +55,6 @@ const H2 = styled.h1`
   line-height: 41px;
   text-align: center;
   color: #363636;
-`;
-
-const H3 = styled.h1`
-  font-style: normal;
-  font-size: 1.3rem;
-  line-height: 20px;
-  text-align: center;
-  color: #363636;
-`;
-
-const CategoryCircle = styled.div`
-  background-color: white;
-  height: 8vw;
-  width: 8vw;
-  display: inline-block;
-  &:not(:last-child) {
-    margin-right: 1%;
-  }
-  border-radius: 100%;
-  font-size: 1vw;
-`;
-
-const CategoryImage = styled.img`
-  height: 100%;
-  width: 100%;
-`;
-
-const Scroll = styled.div`
-  width: 15%;
-  height: 100%;
-  float: right;
-`;
-
-//다음단계
-const NextButton = styled.button`
-  border: 0px;
-  margin-top: 10%;
-  width: 100%;
-  background: none;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 41px;
-  color: #676767;
-`;
-
-//다음에 하기
-const LaterButton = styled.button`
-  width: 100%;
-  margin-top: 30%;
-  margin-bottom: 150%;
-  border: 0px;
-  background: none;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 41px;
-  color: #999999;
 `;
 
 const CATEGORY_QUERY = gql`
@@ -166,43 +106,23 @@ const Profile1 = () => {
             data.findCategory.rows.map((t) => (
               <SelectButton
                 id={t.category_name}
-                key={t.category_idx}
+                image={t.image.image_url}
                 onClick={onClick}
               >
-                <CategoryCircle>
-                  <CategoryImage
-                    id={t.category_name}
-                    key={t.category_idx}
-                    src={t.image.image_url}
-                  />
-                </CategoryCircle>{" "}
-                <H3>{t.category_name}</H3>
+                {t.category_name}
               </SelectButton>
             ))}
         </ButtonDiv>
 
         <CommentDiv>
-          <H2>
+          <H21>
             하나 이상의{" "}
             <p style={{ display: "inline", color: "#F04E44" }}>관심분야</p>를
             선택해 주세요.{" "}
-          </H2>
-          <H2>적합한 컨텐츠를 추천해 드리는 데 도움이 됩니다!</H2>
+          </H21>
+          <H21>적합한 컨텐츠를 추천해 드리는 데 도움이 됩니다!</H21>
         </CommentDiv>
       </Content>
-      <Scroll>
-        <Link to="/">
-          <LaterButton> 다음에 하기</LaterButton>
-        </Link>
-        <questionMark>
-          지금 선택 안하고 <p />
-          넘어가실 건가요?
-        </questionMark>
-        <NextButton>
-          <FaArrowRight size="50px" /> <br />
-          다음 단계
-        </NextButton>
-      </Scroll>
     </div>
   );
 };

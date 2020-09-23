@@ -158,6 +158,10 @@ const Modal = ({
 
     setTimeout(1000);
     await removeUrlMutation({ variables: { bool } });
+    if (onClose) {
+      onClose();
+      const bool = "bool";
+    }
   };
   return (
     <>
