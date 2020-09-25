@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FaApple } from "react-icons/fa";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
-import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
-import { questionMark } from "../component/Icons";
 
 const Content = styled.div`
   width: 85%;
@@ -23,9 +19,10 @@ const ButtonDiv = styled.div`
 `;
 
 const SelectButton = styled.button`
-  margin: 3%;
-  width: 13%;
-  height: 15%;
+  margin: 2%;
+  width: 15%;
+  height: 20%;
+  padding: 2%;
   color: black;
   background-color: white;
   font-size: 15px;

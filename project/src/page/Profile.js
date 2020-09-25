@@ -128,23 +128,4 @@ const Profile = () => {
     </Wrapper>
   );
 };
-
-//   return (
-//     <Wrapper>
-//       <Container ref={slideRef}>
-//         <SlideBox>
-//           <Profile1></Profile1>
-//         </SlideBox>
-
-//         <SlideBox>
-//           <Profile2></Profile2>
-//         </SlideBox>
-
-//         <SlideBox>
-//           <Profile3></Profile3>
-//         </SlideBox>
-//       </Container>
-//     </Wrapper>
-//   );
-// };
 export default Profile;
