@@ -6,10 +6,17 @@ const query = gql`
   }
 `;
 
+const infoQuery = gql`
+  query info {
+    InfoArr @client
+  }
+`;
+
 export const typeDefs = gql`
   extend type Query {
     LoggedBool: Boolean!
     UrlArr: [String]
+    InfoArr: [String]
   }
 `;
 export const resolvers = {
@@ -37,6 +44,23 @@ export const resolvers = {
         cache.writeData({
           data: {
             UrlArr: [],
+          },
+        });
+      }
+    },
+    addInfo: (_, { info }, { cache }) => {
+      const { InfoArr } = cache.readQuery({ infoQuery });
+      cache.writeData({
+        data: {
+          InfoArr: [...InfoArr, info],
+        },
+      });
+    },
+    removeInfo: (_, { bool }, { cache }) => {
+      if (bool) {
+        cache.writeData({
+          data: {
+            InfoArr: [],
           },
         });
       }

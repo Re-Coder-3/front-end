@@ -191,7 +191,7 @@ const MyPage = () => {
             />
           </ProfileImg>
           <Box1>
-            <ProfileName>{t.user_name}</ProfileName>
+            {/* <ProfileName>{t.user_name}</ProfileName> */}
             <ProfileField>뷰티, 헤어 디자이너</ProfileField>
           </Box1>
 
