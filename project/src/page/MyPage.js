@@ -6,6 +6,9 @@ import { ShareIcon } from "../component/Icons";
 import { FilledHeart } from "../component/Icons";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { SharingBtn } from "../component/SharingBtn";
+
+import { UploadBtn } from "../component/UploadBtn";
 
 //상단 부분
 const Up = styled.div`
@@ -148,6 +151,7 @@ const Li = styled.li`
 
 const MyPage = () => {
   const [liked, setLiked] = React.useState(false);
+  const [share, setShare] = React.useState(false);
   const onClick = () => {
     {
       liked ? setLiked(false) : setLiked(true);
@@ -155,6 +159,15 @@ const MyPage = () => {
     }
   };
   const like_idx = 1247;
+
+  const shareOnClick = () => {
+    {
+      share ? setShare(false) : setShare(true);
+    }
+  };
+
+  const url = "https://github.com/caspg/react-sharingbuttons";
+  const shareText = "Check this site!";
 
   const GET_PROFILE = gql`
     query {
@@ -191,7 +204,7 @@ const MyPage = () => {
             />
           </ProfileImg>
           <Box1>
-            <ProfileName>{t.user_name}</ProfileName>
+            <ProfileName></ProfileName>
             <ProfileField>뷰티, 헤어 디자이너</ProfileField>
           </Box1>
 
@@ -200,9 +213,12 @@ const MyPage = () => {
               {liked ? <FilledHeart /> : <HeartIcon />}
               {like_idx}
             </Button>
-            <Button>
+
+            <Button onClick={shareOnClick}>
               <ShareIcon /> 공유
+              <SharingBtn />
             </Button>
+
             <Button style={{ color: "#9e9e9e" }}>신고</Button>
           </Box2>
 

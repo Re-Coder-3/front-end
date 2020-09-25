@@ -8,7 +8,7 @@ import { questionMark } from "../component/Icons";
 
 const Content = styled.div`
   width: 85%;
-  height: 100%;
+  height: 80%;
   float: left;
 `;
 
@@ -112,9 +112,6 @@ const Profile2 = () => {
     setLocation(e.target.value);
   }, []);
 
-  let check = React.createElement("input", { type: "checkbox", value: false });
-  let checkState = check.value;
-
   return (
     <div>
       <Content>
@@ -161,12 +158,6 @@ const Profile2 = () => {
             onChange={myLocation}
           />
         </InputDiv>
-
-        <ProButton>
-          <Link to="/profile3">혹시 프로세요...?</Link>
-        </ProButton>
-
-        <H3>{check}이벤트 등 프로모션 알림 메일 받을래요?</H3>
       </Content>
     </div>
   );

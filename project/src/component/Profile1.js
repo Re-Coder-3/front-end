@@ -25,7 +25,7 @@ const ButtonDiv = styled.div`
 const SelectButton = styled.button`
   margin: 3%;
   width: 13%;
-  height: 13%;
+  height: 15%;
   color: black;
   background-color: white;
   font-size: 15px;
@@ -47,7 +47,7 @@ const H1 = styled.h1`
   color: #353535;
 `;
 
-const H21 = styled.h1`
+const H2 = styled.h1`
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
@@ -55,6 +55,31 @@ const H21 = styled.h1`
   line-height: 41px;
   text-align: center;
   color: #363636;
+`;
+
+const H3 = styled.h1`
+  font-style: normal;
+  font-size: 1.3rem;
+  line-height: 20px;
+  text-align: center;
+  color: #363636;
+`;
+
+const CategoryCircle = styled.div`
+  background-color: white;
+  height: 8vw;
+  width: 8vw;
+  display: inline-block;
+  &:not(:last-child) {
+    margin-right: 1%;
+  }
+  border-radius: 100%;
+  font-size: 1vw;
+`;
+
+const CategoryImage = styled.img`
+  height: 80%;
+  width: 80%;
 `;
 
 const CATEGORY_QUERY = gql`
@@ -107,20 +132,28 @@ const Profile1 = () => {
               <SelectButton
                 id={t.category_name}
                 image={t.image.image_url}
+                key={t.category_idx}
                 onClick={onClick}
               >
-                {t.category_name}
+                <CategoryCircle>
+                  <CategoryImage
+                    id={t.category_name}
+                    key={t.category_idx}
+                    src={t.image.image_url}
+                  />
+                </CategoryCircle>{" "}
+                <H3>{t.category_name}</H3>
               </SelectButton>
             ))}
         </ButtonDiv>
 
         <CommentDiv>
-          <H21>
+          <H2>
             하나 이상의{" "}
             <p style={{ display: "inline", color: "#F04E44" }}>관심분야</p>를
             선택해 주세요.{" "}
-          </H21>
-          <H21>적합한 컨텐츠를 추천해 드리는 데 도움이 됩니다!</H21>
+          </H2>
+          <H2>적합한 컨텐츠를 추천해 드리는 데 도움이 됩니다!</H2>
         </CommentDiv>
       </Content>
     </div>
