@@ -222,21 +222,6 @@ const Profile3 = () => {
 
 export default Profile3;
 
-// const LIKE_CATEGORY = gql`
-//     mutation updateUserProfile($user_like_category: String) {
-//       updateUserProfile(user_like_category: $user_like_category) {
-//         error
-//         status
-//       }
-//     }
-//   `;
-
-//   const [updateUserProfile] = useMutation(LIKE_CATEGORY, {
-//     variables: {
-//       user_like_categry: category,
-//     },
-//   });
-
 //   //페이지 넘어갈 때
 //   const SaveData = async (event) => {
 //     event.preventDefault();

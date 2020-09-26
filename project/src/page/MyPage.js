@@ -204,7 +204,7 @@ const MyPage = () => {
             />
           </ProfileImg>
           <Box1>
-            <ProfileName></ProfileName>
+            <ProfileName>우왕좌왕</ProfileName>
             <ProfileField>뷰티, 헤어 디자이너</ProfileField>
           </Box1>
 

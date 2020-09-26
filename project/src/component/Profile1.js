@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
+import { useMutation } from "@apollo/react-hooks";
+import { useDropzone } from "react-dropzone";
 
 const Content = styled.div`
   width: 85%;
@@ -75,8 +77,8 @@ const CategoryCircle = styled.div`
 `;
 
 const CategoryImage = styled.img`
-  height: 80%;
-  width: 80%;
+  height: 90%;
+  width: 90%;
 `;
 
 const CATEGORY_QUERY = gql`
@@ -94,6 +96,15 @@ const CATEGORY_QUERY = gql`
   }
 `;
 
+const LIKE_CATEGORY = gql`
+  mutation updateUserProfile($user_like_category: String) {
+    updateUserProfile(user_like_category: $user_like_category) {
+      status
+      error
+    }
+  }
+`;
+
 const Profile1 = () => {
   const category = [];
 
@@ -102,11 +113,11 @@ const Profile1 = () => {
     e.target.property = !e.target.property;
     {
       if (e.target.property === true) {
-        e.target.style.color = "#F04E44";
+        e.target.style.background = "#F04E44";
         if (category.includes(e.target.id) === false)
           category.push(e.target.id);
       } else {
-        e.target.style.color = "#000000";
+        e.target.style.background = "#ffffff";
         if (category.includes(e.target.id) === true)
           category.splice(category.indexOf(e.target.id), 1);
       }
@@ -114,7 +125,24 @@ const Profile1 = () => {
     console.log(category);
   };
 
+  // const [updateUserProfile] = useMutation(LIKE_CATEGORY, {
+  //   variables: {
+  //     user_like_categry: category,
+  //   },
+  // });
+
   const { data } = useQuery(CATEGORY_QUERY);
+
+  const ADD_LIST = gql`
+    mutation addInfo($info: String) {
+      addInfo(info: $info) @client
+    }
+  `;
+  const [addCategoryMutation] = useMutation(ADD_LIST);
+
+  const onClick2 = useCallback(async () => {
+    addCategoryMutation({ variables: { info: category } });
+  });
 
   return (
     <div>
@@ -130,10 +158,10 @@ const Profile1 = () => {
                 id={t.category_name}
                 image={t.image.image_url}
                 key={t.category_idx}
-                onClick={onClick}
               >
                 <CategoryCircle>
                   <CategoryImage
+                    onClick={onClick}
                     id={t.category_name}
                     key={t.category_idx}
                     src={t.image.image_url}
@@ -145,7 +173,7 @@ const Profile1 = () => {
         </ButtonDiv>
 
         <CommentDiv>
-          <H2>
+          <H2 onClick={onClick2}>
             하나 이상의{" "}
             <p style={{ display: "inline", color: "#F04E44" }}>관심분야</p>를
             선택해 주세요.{" "}
